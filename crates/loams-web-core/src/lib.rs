@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize, de::DeserializeOwned};
 use serde_json::Value;
 use std::{
     any::Any,
-    collections::HashMap,
+    collections::{BTreeSet, HashMap, HashSet},
     fmt,
     future::Future,
     pin::Pin,
@@ -134,6 +134,262 @@ impl fmt::Display for ApiError {
     }
 }
 impl std::error::Error for ApiError {}
+
+/// A bounded, safe description of an invalid input. `at` is an RFC 6901 JSON
+/// pointer, with an empty string denoting the root. Dynamic object keys are
+/// omitted: only declared field names and array indices appear in pointers.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize, JsonSchema)]
+pub struct ValidationProblem {
+    #[schemars(length(max = MAX_VALIDATION_POINTER_BYTES))]
+    pub at: String,
+    #[schemars(length(max = 32))]
+    pub code: String,
+    #[schemars(length(max = 96))]
+    pub message: String,
+}
+
+/// Alias retained for consumers that call one issue an input problem.
+pub type InputProblem = ValidationProblem;
+
+/// Structured input error details. `truncated` signals a count, pointer or schema
+/// traversal budget; dynamic map keys are always collapsed to their safe parent.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+pub struct ValidationDetails {
+    #[schemars(length(max = MAX_VALIDATION_PROBLEMS))]
+    pub problems: Vec<ValidationProblem>,
+    pub truncated: bool,
+}
+
+pub const MAX_VALIDATION_PROBLEMS: usize = 32;
+pub const MAX_VALIDATION_ERRORS: usize = 256;
+pub const MAX_VALIDATION_POINTER_BYTES: usize = 256;
+pub const MAX_VALIDATION_POINTER_DEPTH: usize = 16;
+const MAX_SCHEMA_SEARCH: usize = 64;
+
+fn input_error(problems: Vec<InputProblem>, truncated: bool) -> ApiError {
+    ApiError::invalid_argument("invalid_input", "Input does not match the procedure schema")
+        .with_details(serde_json::json!(ValidationDetails {
+            problems,
+            truncated
+        }))
+}
+
+fn root_input_error(code: &str, message: &str) -> ApiError {
+    let mut error = input_error(
+        vec![InputProblem {
+            at: String::new(),
+            code: code.into(),
+            message: message.into(),
+        }],
+        false,
+    );
+    error.message = match code {
+        "encoding" => "Input cannot be represented as JSON",
+        "decode" => "Input cannot be decoded",
+        _ => "Input does not match the procedure schema",
+    }
+    .into();
+    error
+}
+
+// Never format ValidationError: its instance, schema values and parser wording
+// can contain credentials, rejected values or request-selected property names.
+fn problem_kind(kind: &jsonschema::error::ValidationErrorKind) -> (&'static str, &'static str) {
+    use jsonschema::error::ValidationErrorKind as Kind;
+    match kind {
+        Kind::Required { .. } => ("required", "A required field is missing."),
+        Kind::Type { .. } => ("type", "Value has the wrong type."),
+        Kind::Minimum { .. } => ("minimum", "Must be at least the minimum."),
+        Kind::Maximum { .. } => ("maximum", "Must be at most the maximum."),
+        Kind::ExclusiveMinimum { .. } => ("exclusive_minimum", "Must be greater than the minimum."),
+        Kind::ExclusiveMaximum { .. } => ("exclusive_maximum", "Must be less than the maximum."),
+        Kind::MultipleOf { .. } => ("multiple_of", "Must use an allowed numeric increment."),
+        Kind::MinLength { .. } => ("min_length", "Text is too short."),
+        Kind::MaxLength { .. } => ("max_length", "Text is too long."),
+        Kind::MinItems { .. } => ("min_items", "There are too few items."),
+        Kind::MaxItems { .. } | Kind::AdditionalItems { .. } | Kind::UnevaluatedItems { .. } => {
+            ("max_items", "There are too many items.")
+        }
+        Kind::MinProperties { .. } => ("min_properties", "There are too few fields."),
+        Kind::MaxProperties { .. } => ("max_properties", "There are too many fields."),
+        Kind::AdditionalProperties { .. } | Kind::UnevaluatedProperties { .. } => {
+            ("unknown_field", "An undeclared field is present.")
+        }
+        Kind::Enum { .. } | Kind::Constant { .. } => ("choice", "Value is not an allowed choice."),
+        Kind::Format { .. } | Kind::Pattern { .. } => ("format", "Value has an invalid format."),
+        Kind::UniqueItems => ("unique_items", "Items must be unique."),
+        Kind::PropertyNames { .. } => ("field_name", "A field name is invalid."),
+        _ => ("invalid", "Value does not match the required shape."),
+    }
+}
+
+// Expand only local references and composition branches, with a fixed work
+// budget. Recursive schemas are safe because each node is visited once here.
+fn schema_candidates<'a>(root: &'a Value, seeds: &[&'a Value]) -> (Vec<&'a Value>, bool) {
+    let mut stack = seeds
+        .iter()
+        .copied()
+        .take(MAX_SCHEMA_SEARCH)
+        .collect::<Vec<_>>();
+    let mut limited = seeds.len() > MAX_SCHEMA_SEARCH;
+    let mut seen = HashSet::new();
+    let mut result = Vec::new();
+    while let Some(schema) = stack.pop() {
+        if !seen.insert(std::ptr::from_ref(schema)) {
+            continue;
+        }
+        if seen.len() > MAX_SCHEMA_SEARCH {
+            limited = true;
+            break;
+        }
+        result.push(schema);
+        if let Some(reference) = schema.get("$ref").and_then(Value::as_str) {
+            if reference == "#" {
+                stack.push(root);
+            } else if let Some(target) = reference
+                .strip_prefix('#')
+                .and_then(|pointer| root.pointer(pointer))
+            {
+                stack.push(target);
+            }
+        }
+        for keyword in ["allOf", "anyOf", "oneOf"] {
+            if let Some(branches) = schema.get(keyword).and_then(Value::as_array) {
+                let available = MAX_SCHEMA_SEARCH.saturating_sub(stack.len());
+                limited |= branches.len() > available;
+                stack.extend(branches.iter().take(available));
+            }
+        }
+    }
+    (result, limited)
+}
+
+fn safe_pointer(
+    root: &Value,
+    instance: &Value,
+    pointer: &str,
+    required: Option<&str>,
+) -> (String, bool) {
+    let mut schemas = vec![root];
+    let mut current = Some(instance);
+    let mut at = String::new();
+    let mut limited = false;
+    // Required properties originate in the schema, but still must pass the same
+    // declared-field checks; raw instance pointer segments are always untrusted.
+    let segments = pointer
+        .split('/')
+        .skip(1)
+        .map(|part| (part, true))
+        .chain(required.map(|part| (part, false)));
+    for (depth, (raw, escaped)) in segments.enumerate() {
+        if depth >= MAX_VALIDATION_POINTER_DEPTH || raw.len() > MAX_VALIDATION_POINTER_BYTES {
+            limited = true;
+            break;
+        }
+        let segment = if escaped {
+            raw.replace("~1", "/").replace("~0", "~")
+        } else {
+            raw.to_owned()
+        };
+        let (candidates, bounded) = schema_candidates(root, &schemas);
+        limited |= bounded;
+        let mut next = Vec::new();
+        let declared = if current.is_some_and(Value::is_array) {
+            if let Ok(index) = segment.parse::<usize>() {
+                for schema in &candidates {
+                    if let Some(item) = schema
+                        .get("prefixItems")
+                        .and_then(Value::as_array)
+                        .and_then(|items| items.get(index))
+                        .or_else(|| schema.get("items"))
+                    {
+                        next.push(item);
+                    }
+                }
+                !next.is_empty()
+            } else {
+                false
+            }
+        } else {
+            let mut declared = false;
+            for schema in &candidates {
+                if let Some(property) = schema
+                    .get("properties")
+                    .and_then(|properties| properties.get(&segment))
+                {
+                    declared = true;
+                    next.push(property);
+                }
+                if schema
+                    .get("required")
+                    .and_then(Value::as_array)
+                    .is_some_and(|required| {
+                        required.iter().any(|name| name.as_str() == Some(&segment))
+                    })
+                {
+                    declared = true;
+                }
+            }
+            declared
+        };
+        if !declared {
+            break;
+        }
+        let encoded = segment.replace('~', "~0").replace('/', "~1");
+        if at.len() + encoded.len() + 1 > MAX_VALIDATION_POINTER_BYTES {
+            limited = true;
+            break;
+        }
+        at.push('/');
+        at.push_str(&encoded);
+        current = current.and_then(|value| match value {
+            Value::Array(items) => segment
+                .parse::<usize>()
+                .ok()
+                .and_then(|index| items.get(index)),
+            Value::Object(fields) => fields.get(&segment),
+            _ => None,
+        });
+        schemas = next;
+    }
+    (at, limited)
+}
+
+fn validate_input(
+    validator: &jsonschema::Validator,
+    schema: &Value,
+    instance: &Value,
+) -> Result<(), ApiError> {
+    let mut problems = BTreeSet::new();
+    let mut truncated = false;
+    for (index, error) in validator.iter_errors(instance).enumerate() {
+        if index == MAX_VALIDATION_ERRORS {
+            truncated = true;
+            break;
+        }
+        let required = match &error.kind {
+            jsonschema::error::ValidationErrorKind::Required { property } => property.as_str(),
+            _ => None,
+        };
+        let (at, limited) = safe_pointer(schema, instance, error.instance_path.as_str(), required);
+        truncated |= limited;
+        let (code, message) = problem_kind(&error.kind);
+        problems.insert(InputProblem {
+            at,
+            code: code.into(),
+            message: message.into(),
+        });
+        if problems.len() > MAX_VALIDATION_PROBLEMS {
+            problems.pop_last();
+            truncated = true;
+        }
+    }
+    if problems.is_empty() {
+        Ok(())
+    } else {
+        Err(input_error(problems.into_iter().collect(), truncated))
+    }
+}
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Principal {
@@ -306,6 +562,7 @@ pub struct Procedure<I, O> {
     input_validator: Option<Arc<InputValidator<I>>>,
     input_schema: jsonschema::Validator,
     typed_input_schema: jsonschema::Validator,
+    typed_input_description: Value,
     output_schema: jsonschema::Validator,
 }
 impl<I, O> Procedure<I, O>
@@ -330,28 +587,20 @@ where
         let request_id = ctx.request_id.clone();
         let result = async {
             let value = serde_json::to_value(&input).map_err(|_| {
-                ApiError::invalid_argument("invalid_input", "Input cannot be represented as JSON")
+                root_input_error("encoding", "Input must be representable as JSON.")
             })?;
-            if !self.typed_input_schema.is_valid(&value) {
-                return Err(ApiError::invalid_argument(
-                    "invalid_input",
-                    "Input does not match the procedure schema",
-                ));
-            }
+            validate_input(
+                &self.typed_input_schema,
+                &self.typed_input_description,
+                &value,
+            )?;
             self.invoke_validated(ctx, input).await
         }
         .await;
         result.map_err(|error| self.declared_error(error).with_request_id(request_id))
     }
     fn check_input(&self, value: &Value) -> Result<(), ApiError> {
-        if self.input_schema.is_valid(value) {
-            Ok(())
-        } else {
-            Err(ApiError::invalid_argument(
-                "invalid_input",
-                "Input does not match the procedure schema",
-            ))
-        }
+        validate_input(&self.input_schema, &self.descriptor.input_schema, value)
     }
     fn declared_error(&self, error: ApiError) -> ApiError {
         if self
@@ -380,9 +629,8 @@ where
         let request_id = ctx.request_id.clone();
         let result = async {
             self.check_input(&input)?;
-            let input = serde_json::from_value(input).map_err(|_| {
-                ApiError::invalid_argument("invalid_input", "Input cannot be decoded")
-            })?;
+            let input = serde_json::from_value(input)
+                .map_err(|_| root_input_error("decode", "Input cannot be decoded."))?;
             let output = self.invoke_validated(ctx, input).await?;
             serde_json::to_value(output).map_err(|_| ApiError::internal())
         }
@@ -518,6 +766,7 @@ where
             input_validator: self.input_validator,
             input_schema: input_validator,
             typed_input_schema: typed_input_validator,
+            typed_input_description: typed_input_schema,
             output_schema: output_validator,
         })
     }

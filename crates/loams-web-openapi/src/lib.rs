@@ -47,6 +47,23 @@ pub fn generate<'a>(
             }
         }),
     );
+    let validation_details = schemars::generate::SchemaSettings::draft2020_12()
+        .for_serialize()
+        .into_generator()
+        .into_root_schema_for::<loams_web_core::ValidationDetails>()
+        .to_value();
+    let details_ref = add_schema("LoamsValidationDetails", &validation_details, &mut schemas)?;
+    schemas.insert("LoamsValidationError".into(), json!({
+        "description":"Framework schema validation failure. Problems use safe JSON pointers and fixed messages; truncated indicates bounded reporting.",
+        "allOf":[
+            {"$ref":"#/components/schemas/LoamsApiError"},
+            {"type":"object","required":["details"],"properties":{
+                "code":{"const":"invalid_argument"},
+                "reason":{"const":"invalid_input"},
+                "details":{"$ref":details_ref}
+            }}
+        ]
+    }));
     for descriptor in descriptors {
         if !names.insert(descriptor.name.clone()) {
             return Err(OpenApiError::DuplicateName(descriptor.name.clone()));
@@ -123,6 +140,8 @@ pub fn generate<'a>(
             declared.push(json!({"code":error.code.as_str(), "reason":error.reason, "description":error.description}));
         }
         let mut operation = json!({"operationId":descriptor.name, "responses":responses, "x-loams-errors":declared});
+        operation["x-loams-validation-error"] =
+            json!({"$ref":"#/components/schemas/LoamsValidationError"});
         if let Some(summary) = &descriptor.summary {
             operation["summary"] = Value::String(summary.clone());
         }

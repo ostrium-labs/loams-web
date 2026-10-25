@@ -30,6 +30,16 @@ declared on the Rust type using Schemars and used for runtime validation
 and documentation. JSON with missing or unknown fields, incompatible
 types, or values outside the bounds is rejected before the handler runs.
 
+Validation failures use `code: "invalid_argument"`, `reason:
+"invalid_input"`, and `details.problems`. Each problem has an `at` JSON
+pointer, a branchable `code`, and a fixed `message`. For example,
+`people: 0` produces a problem at `/people` with code `minimum`. Problems
+are deduplicated and sorted by pointer, code and message. Responses expose
+up to 32 problems, with `details.truncated` indicating reporting limits.
+Request-selected map keys, unknown field names and rejected values are
+excluded from problem paths and messages. This deliberately uses JSON
+pointers rather than Spindle's `body.field` location strings.
+
 `GET /openapi.json` exposes the descriptor-generated document. Generate it
 without starting a server or running a handler:
 
@@ -52,6 +62,20 @@ lossless int64 representation are outside this preview. `--check` fails for
 missing or stale artifacts. This helper does not add `loams app` to the
 separate engine CLI.
 
+Create a standalone application using the local unpublished framework:
+
+```sh
+cargo run --locked -p loams-web-cli -- new /tmp/my-loams-app --name my-loams-app --framework-path .
+cargo run --manifest-path /tmp/my-loams-app/Cargo.toml
+```
+
+The destination's parent must exist; an existing destination, including a
+symlink, is refused. The framework path accepts this repository root or
+its `crates/loams-web` directory. The generated project keeps a local path
+dependency on that checkout and includes a typed `POST /hello` procedure,
+`GET /openapi.json`, and the server policy described below. Scaffolding
+writes files and leaves dependency installation and execution to the user.
+
 Set `LOAMS_WEB_ADDR` to change the listen address. The default is
 `127.0.0.1:8080`. Ctrl-C stops accepting connections and gives active
 requests up to five seconds to drain.
@@ -66,9 +90,22 @@ default limits are 1 MiB buffered request and response payloads, 128
 concurrent procedure calls, and a 30-second body/invocation deadline.
 Excess concurrency receives 503 immediately. Declared errors share the
 response payload bound; fixed framework error envelopes are still returned
-when that bound is too small for them. The adapter has no listener-level
-connection or header deadline policy yet. Its invocation deadline cancels
+when that bound is too small for them. Its invocation deadline cancels
 the handler future; this has not established Spindle cancellation parity.
+
+`loams_web::http::server::Server` serves an explicitly bound Tokio listener
+using hyper HTTP/1. Its default policy admits up to 512 TCP connections,
+closes excess connections immediately, allows 10 seconds to read each
+request head, parses up to 100 header fields, and sets a 16 KiB read buffer
+bound. The buffer bound is not an exact header byte limit. Shutdown stops
+accepting, requests graceful connection completion, then cancels remaining
+connection tasks after five seconds. The helper returns connection counts
+and installs no signal or logging hooks; the example supplies Ctrl-C.
+
+This helper does not yet implement TLS, HTTP/2, dual-family binding,
+minimum body rate, idle/write progress deadlines, or handler panic
+containment. A connection task panic is counted as a failed connection;
+the process's existing panic hook still applies.
 This preview does not implement the complete Spindle transport policy,
 OAuth, cookies, sessions, streaming, RPC, SDK integration, frontend hosts,
 or the procedure and WireType macros. Application validation beyond the

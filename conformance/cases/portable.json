@@ -146,9 +146,9 @@
       "status": "fixture_ready",
       "runtime_status": {
         "ocaml-reference": "planned",
-        "rust": "implemented_partial"
+        "rust": "implemented"
       },
-      "divergence": "Rust runner proves invalid_argument/HTTP 400 rejection. Current fixed invalid_input error does not expose individual invalid_fields; full field-problem parity remains planned.",
+      "divergence": null,
       "runners": {
         "rust": {
           "path": "examples/bill-split/tests/portable.rs",
@@ -186,9 +186,9 @@
       "status": "fixture_ready",
       "runtime_status": {
         "ocaml-reference": "planned",
-        "rust": "implemented_partial"
+        "rust": "implemented"
       },
-      "divergence": "Rust runner proves invalid_argument/HTTP 400 rejection. Current fixed invalid_input error does not expose individual invalid_fields; full field-problem parity remains planned.",
+      "divergence": null,
       "runners": {
         "rust": {
           "path": "examples/bill-split/tests/portable.rs",
@@ -226,9 +226,9 @@
       "status": "fixture_ready",
       "runtime_status": {
         "ocaml-reference": "planned",
-        "rust": "implemented_partial"
+        "rust": "implemented"
       },
-      "divergence": "Rust runner proves invalid_argument/HTTP 400 rejection. Current fixed invalid_input error does not expose individual invalid_fields; full field-problem parity remains planned.",
+      "divergence": null,
       "runners": {
         "rust": {
           "path": "examples/bill-split/tests/portable.rs",

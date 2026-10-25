@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run portable valid split cases against the actual Rust executable over TCP."""
+"""Run portable split cases against the actual Rust executable over TCP."""
 import argparse
 import hashlib
 import json
@@ -84,6 +84,28 @@ def request_split(opener, address, bill):
         return value
 
 
+def normalize_split(observed):
+    """Project actual structured problems into the reference's declared field order."""
+    if not isinstance(observed, dict) or observed.get('http_status') != 400:
+        return observed
+    error = observed.get('json')
+    if not isinstance(error, dict) or error.get('code') != 'invalid_argument' or error.get('reason') != 'invalid_input':
+        return observed
+    details = error.get('details')
+    if not isinstance(details, dict) or details.get('truncated') is not False:
+        return observed
+    problems = details.get('problems')
+    if not isinstance(problems, list) or not problems:
+        return observed
+    declared = ('total', 'tip', 'people')
+    pointers = set()
+    for problem in problems:
+        if not isinstance(problem, dict) or problem.get('at') not in tuple('/'+field for field in declared):
+            return observed
+        pointers.add(problem['at'])
+    return {'invalid_fields': [field for field in declared if '/'+field in pointers]}
+
+
 def run(binary, cases):
     binary = Path(binary).resolve(strict=True)
     validate_cases(cases)
@@ -98,16 +120,14 @@ def run(binary, cases):
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
         for case in cases['cases']:
             result = {'id':case['id']}
-            if case['kind']=='split' and 'each' in case['expected']:
+            if case['kind']=='split':
                 try:
-                    observed = request_split(opener,address,case['input'])
+                    observed = normalize_split(request_split(opener,address,case['input']))
                 except (OSError,ValueError,RuntimeError) as error:
                     observed = {'adapter_error':str(error)}
                 result.update(status='passed' if observed==case['expected'] else 'failed',observed=observed)
-            elif case['kind']=='split':
-                result.update(status='planned',reason='Rust rejects invalid input but lacks individual field-problem parity; this adapter does not fabricate invalid_fields.')
             else:
-                result.update(status='planned',reason='Requires parser/controlled-I/O or application-specific adapter; valid split TCP runner does not execute this case.')
+                result.update(status='planned',reason='Requires parser/controlled-I/O or application-specific adapter; split TCP runner does not execute this case.')
             report['results'].append(result)
     finally:
         stop(process)

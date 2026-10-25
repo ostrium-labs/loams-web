@@ -65,6 +65,14 @@ fn deterministic_generation_keeps_bounds_errors_and_resolves_recursion_without_r
         .as_array()
         .unwrap();
     assert!(!required.contains(&json!("details")));
+    assert_eq!(
+        first["components"]["schemas"]["LoamsValidationDetails"]["properties"]["problems"]["maxItems"],
+        loams_web_core::MAX_VALIDATION_PROBLEMS
+    );
+    assert_eq!(
+        first["paths"]["/split"]["post"]["x-loams-validation-error"]["$ref"],
+        "#/components/schemas/LoamsValidationError"
+    );
 }
 
 #[test]

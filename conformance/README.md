@@ -93,7 +93,7 @@ when its checks pass. Full upstream adapters, controlled I/O, official Connect
 profiles, service fixtures, and an execution-required CI gate remain future
 work; static validation must never stand in for those gates.
 
-The executable TCP adapter runs three valid split cases against a fresh server
+The executable TCP adapter runs six split cases against a fresh server
 on an ephemeral loopback port, bounds startup and requests, disables proxy
 environment inheritance, and terminates the child even if startup or a request
 fails. Readiness is read from stderr using a selector and deadline, without
@@ -102,12 +102,15 @@ sleep-based polling. Build and run:
 ```sh
 cargo build --workspace
 python3 conformance/run_rust.py --binary target/debug/bill-split --output /tmp/loams-web-rust-observations.json
-python3 conformance/check.py --observations /tmp/loams-web-rust-observations.json
+python3 conformance/check.py --observations /tmp/loams-web-rust-observations.json --require-executed-kind split
 ```
 
 The report records the executable SHA-256 and actual decoded HTTP responses.
-It currently leaves twelve cases explicitly planned, including invalid split
-cases whose per-field problem parity is absent. It exits nonzero on any
+For invalid inputs it checks HTTP 400, the canonical error code/reason and
+the actual structured problem pointers. It normalizes only their ordering
+to the reference's declared `total`, `tip`, `people` order; missing or
+truncated problems fail the comparison. It currently leaves nine cases
+explicitly planned. It exits nonzero on any
 executed mismatch and writes failed observations for inspection. A loopback
 socket permission boundary may require an approved invocation. Results are
 written outside the checkout and must be regenerated after executable changes.

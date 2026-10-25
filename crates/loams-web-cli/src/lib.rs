@@ -430,3 +430,6 @@ pub fn check_client(path: impl AsRef<Path>, source: &str) -> Result<(), Artifact
         Err(ArtifactError::Stale)
     }
 }
+
+mod scaffold;
+pub use scaffold::{ScaffoldError, ScaffoldOptions, scaffold};

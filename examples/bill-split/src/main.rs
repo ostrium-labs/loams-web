@@ -1,4 +1,6 @@
-use std::{future::IntoFuture, net::SocketAddr};
+use std::net::SocketAddr;
+
+use loams_web::http::server::{Server, ServerConfig};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -30,23 +32,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .parse()?;
     let listener = tokio::net::TcpListener::bind(address).await?;
     eprintln!("Bill split listening on http://{}", listener.local_addr()?);
-    let (shutdown, shutdown_requested) = tokio::sync::oneshot::channel();
-    let server = axum::serve(listener, bill_split::router())
-        .with_graceful_shutdown(async {
-            let _ = shutdown_requested.await;
+    Server::new(ServerConfig::default())?
+        .serve(listener, bill_split::router(), async {
+            let _ = tokio::signal::ctrl_c().await;
         })
-        .into_future();
-    tokio::pin!(server);
-    tokio::select! {
-        result = &mut server => result?,
-        signal = tokio::signal::ctrl_c() => {
-            signal?;
-            let _ = shutdown.send(());
-            // Stop accepting immediately and allow in-flight calls a bounded drain.
-            if let Ok(result) = tokio::time::timeout(std::time::Duration::from_secs(5), &mut server).await {
-                result?;
-            }
-        }
-    }
+        .await?;
     Ok(())
 }

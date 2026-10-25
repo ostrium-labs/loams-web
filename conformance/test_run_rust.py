@@ -10,6 +10,23 @@ import run_rust
 
 
 class RustAdapterTests(unittest.TestCase):
+    def test_normalization_uses_observed_fields_in_declared_order(self):
+        observed = {'http_status': 400, 'json': {
+            'code': 'invalid_argument', 'reason': 'invalid_input',
+            'details': {'truncated': False, 'problems': [
+                {'at': '/people'}, {'at': '/total'}, {'at': '/people'}]}}}
+        self.assertEqual(run_rust.normalize_split(observed), {'invalid_fields': ['total', 'people']})
+        self.assertEqual(run_rust.normalize_split({'each': 33.0}), {'each': 33.0})
+
+    def test_normalization_never_fabricates_missing_field_evidence(self):
+        for details in [None, {'problems': []},
+                        {'truncated': True, 'problems': [{'at': '/people'}]},
+                        {'truncated': False, 'problems': [{'at': '/secret-key'}]},
+                        {'truncated': False, 'problems': [{'at': ''}]}]:
+            observed = {'http_status': 400, 'json': {
+                'code': 'invalid_argument', 'reason': 'invalid_input', 'details': details}}
+            self.assertEqual(run_rust.normalize_split(observed), observed)
+
     def test_readiness_rejects_non_loopback_and_invalid_port(self):
         self.assertIsNone(run_rust.readiness_line(b'Bill split listening on http://0.0.0.0:1234'))
         self.assertIsNone(run_rust.readiness_line(b'Bill split listening on http://127.0.0.1:0'))

@@ -48,6 +48,26 @@ async fn portable_split_cases() {
             let error = result.expect_err(id);
             assert_eq!(error.code, loams_web::RpcCode::InvalidArgument, "{id}");
             assert_eq!(response.status(), StatusCode::BAD_REQUEST, "{id}");
+            let problems = error.details["problems"]
+                .as_array()
+                .expect("structured validation problems");
+            assert_eq!(error.details["truncated"], false, "{id}");
+            let fields: Vec<_> = ["total", "tip", "people"]
+                .into_iter()
+                .filter(|field| {
+                    problems
+                        .iter()
+                        .any(|problem| problem["at"] == format!("/{field}"))
+                })
+                .collect();
+            assert_eq!(
+                serde_json::to_value(fields).unwrap(),
+                case["expected"]["invalid_fields"],
+                "{id}"
+            );
+            let bytes = response.into_body().collect().await.unwrap().to_bytes();
+            let wire: Value = serde_json::from_slice(&bytes).unwrap();
+            assert_eq!(wire["details"], error.details, "{id}");
         }
     }
     assert!(

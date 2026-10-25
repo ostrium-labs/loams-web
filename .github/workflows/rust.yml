@@ -19,9 +19,13 @@ jobs:
       - run: cargo test --locked --workspace
       - run: python3 conformance/check.py
       - run: python3 -m unittest discover -s conformance -p 'test_*.py'
-      - run: cargo build --locked -p bill-split
+      - run: cargo build --locked -p bill-split -p loams-web-cli
+      - run: target/debug/loams-web-cli new /tmp/loams-web-scaffold --name scaffold-smoke --framework-path .
+      - run: cargo check --offline --manifest-path /tmp/loams-web-scaffold/Cargo.toml
+        env:
+          CARGO_TARGET_DIR: ${{ github.workspace }}/target
       - run: python3 conformance/run_rust.py --binary target/debug/bill-split --output /tmp/loams-web-rust-observations.json
-      - run: python3 conformance/check.py --observations /tmp/loams-web-rust-observations.json
+      - run: python3 conformance/check.py --observations /tmp/loams-web-rust-observations.json --require-executed-kind split
       - run: cargo check --locked -p loams-web --no-default-features
       - run: cargo doc --locked --workspace --no-deps
         env:

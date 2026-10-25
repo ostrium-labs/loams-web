@@ -1,7 +1,10 @@
 //! Bounded JSON REST adapter for transport-independent Loams Web procedures.
 //!
-//! This first slice supports literal paths. Path/query extractors, authentication,
-//! streaming, and socket/header limits belong to later transport work.
+//! This first slice supports literal paths. [`server`] adds connection admission,
+//! HTTP/1 header-read deadlines, and bounded shutdown. Path/query extractors,
+//! authentication, streaming, and progress-based I/O limits remain future work.
+
+pub mod server;
 
 use axum::{
     Json, Router,
