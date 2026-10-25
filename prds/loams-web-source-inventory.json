@@ -1,0 +1,4607 @@
+{
+  "inspection_date": "2026-10-25",
+  "upstream_url": "https://github.com/hyphatech/spindle.git",
+  "upstream_commit": "e180e57ae94ea6869038fccde8621d738dd2b84a",
+  "tracked_file_count": 402,
+  "audit_limit": "Exhaustive file inventory plus static contract/test indexing; not a manual line-by-line proof. Runtime suites not executed.",
+  "tool_availability": {
+    "opam": null,
+    "dune": null,
+    "bun": null,
+    "cargo": null,
+    "rustup": null,
+    "podman": "/usr/bin/podman",
+    "python3": "/usr/bin/python3"
+  },
+  "source_totals": {
+    ".ml": {
+      "files": 178,
+      "lines": 50598
+    },
+    ".mli": {
+      "files": 110,
+      "lines": 7941
+    }
+  },
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 2281,
+      "lines": 60,
+      "sha256": "91db0d56d65518020fbc6f5cf39fab35f8ab575a204bef1072745cf22fd56344"
+    },
+    {
+      "path": ".github/workflows/docs.yml",
+      "bytes": 1107,
+      "lines": 41,
+      "sha256": "5f5bd96ddef8b19d348de909815a1fc35f2c555428e273fcde321252481d2700"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "bytes": 3980,
+      "lines": 100,
+      "sha256": "67805a8c0144219a651da44eb7254b39342717778cff38922d935282a2508d52"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 245,
+      "lines": 9,
+      "sha256": "5a89afe5b88c0da87da93e86811b197d822468cead87eaae4dab6d6e72b20254"
+    },
+    {
+      "path": ".ocamlformat",
+      "bytes": 47,
+      "lines": 3,
+      "sha256": "1ea41b995a204d175e7046ace7ffed6d291d24664306e95d19d9fa4ed4314fa7"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 20505,
+      "lines": 327,
+      "sha256": "37b9f85ee9468fb1827550e0c0c8dbc264870b909e6e18895d293ab84460d571"
+    },
+    {
+      "path": "CHANGES.md",
+      "bytes": 68752,
+      "lines": 1187,
+      "sha256": "4dc8451aee13e1d499121c8d43d7866d00fe752fd64810b1fdef740082e7e074"
+    },
+    {
+      "path": "CLAUDE.md",
+      "bytes": 11,
+      "lines": 1,
+      "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 146,
+      "lines": 4,
+      "sha256": "27c8c1b52a68eceafb6367c46fd455444037c1a8cdfdc60b3866d18460ae3236"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "lines": 21,
+      "sha256": "7cdee9ceb10a6d7f18b52b25075eff5e013eac968c2f2df1bc8a2d4634051c57"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 3466,
+      "lines": 79,
+      "sha256": "34ed47545e65084f3567dac94b3f32207ac6787de1aa0ed7579d653fe67a7f00"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3121,
+      "lines": 96,
+      "sha256": "19d093419b32ac0f40eab4e6d2df9db733830370445f7cbb26975afee236ca4f"
+    },
+    {
+      "path": "cli/dune",
+      "bytes": 205,
+      "lines": 7,
+      "sha256": "67f8d1874911b9edb8e15420386bb6e0f373c8ee87a202849fc23f218d5d9f5a"
+    },
+    {
+      "path": "cli/spindle_cli.ml",
+      "bytes": 5267,
+      "lines": 163,
+      "sha256": "bfc504d80bac43aa6b726c94d04c916f4812212e53104ec6d395951f2d5af620"
+    },
+    {
+      "path": "cli/spindle_cli.mli",
+      "bytes": 2114,
+      "lines": 45,
+      "sha256": "2c2afd486f761859c50a0fdf9172fada65901b2df2404b61a728689bca21fb73"
+    },
+    {
+      "path": "client/dune",
+      "bytes": 537,
+      "lines": 29,
+      "sha256": "d517bcd31df2085c071eaff63a2e397be2812aba1320b416d5a01e9e4eb87222"
+    },
+    {
+      "path": "client/spindle_client.ml",
+      "bytes": 73578,
+      "lines": 2036,
+      "sha256": "1b305524453d5a321a241a16c68f365b6747c6223e037009812d2c0e13d55ad6"
+    },
+    {
+      "path": "client/spindle_client.mli",
+      "bytes": 18090,
+      "lines": 403,
+      "sha256": "d8634e3f198412a1ea3f9396ec8ff201f4120a6cb97122cfc6d49a6cf29e76ff"
+    },
+    {
+      "path": "compose.yaml",
+      "bytes": 671,
+      "lines": 29,
+      "sha256": "3b2c2dfe28c1e011cb1856535d8e3b8f8af5f23615121c7b0a4581f4825d7555"
+    },
+    {
+      "path": "core/alarm.ml",
+      "bytes": 2239,
+      "lines": 70,
+      "sha256": "265da05a28033da93970e0adde2dbfdb57e2a7e53af3d220566aec4fa8679150"
+    },
+    {
+      "path": "core/alarm.mli",
+      "bytes": 1431,
+      "lines": 35,
+      "sha256": "129a8d9b811cc7267f3284ae37da0b47abfd2bbc6519d9d63e63c233fe3088c4"
+    },
+    {
+      "path": "core/app.ml",
+      "bytes": 43954,
+      "lines": 1207,
+      "sha256": "176f5eedd204f06500472492618f9824d190b8af28eadd7e2a8032adaa085d6c"
+    },
+    {
+      "path": "core/app.mli",
+      "bytes": 9646,
+      "lines": 172,
+      "sha256": "20e6492bd861acedcd32df3df65db6cbf9d0cde439887a4432eae1d92c59c229"
+    },
+    {
+      "path": "core/background.ml",
+      "bytes": 1454,
+      "lines": 41,
+      "sha256": "6ca9e59203aeb988d835528ae8cf2c95b8c13160b9319bcb7ba510c5a164d497"
+    },
+    {
+      "path": "core/background.mli",
+      "bytes": 1445,
+      "lines": 27,
+      "sha256": "66529d701f117a2e78eb564022ba953ee25cdb9fb22d64ee54e742bd550c6906"
+    },
+    {
+      "path": "core/bearer.ml",
+      "bytes": 10562,
+      "lines": 337,
+      "sha256": "e5d29d75b9fb4722d0e7b67abf6d5f4a5728d7d6ba6d980127cad94599d64734"
+    },
+    {
+      "path": "core/bearer.mli",
+      "bytes": 4858,
+      "lines": 101,
+      "sha256": "6611b2e98e21dcf9d3ec0ea1b92f4b4b573985baec341d52ea719633b08f4262"
+    },
+    {
+      "path": "core/body.ml",
+      "bytes": 1192,
+      "lines": 42,
+      "sha256": "bfd1313986d6c4db904c57b9151685e44c72314da4adadf9dc72d429e6d171a9"
+    },
+    {
+      "path": "core/body.mli",
+      "bytes": 2270,
+      "lines": 52,
+      "sha256": "185f7a09449cdf6a97d26718b61f8f1ffc506becf24dfa647a0e6dd8f2d60b4d"
+    },
+    {
+      "path": "core/body_repr.ml",
+      "bytes": 1911,
+      "lines": 68,
+      "sha256": "361eb4b923dbace438e4399b2ddc1f3a2022fb24d9bf6967fa67c4835606f1a3"
+    },
+    {
+      "path": "core/body_repr.mli",
+      "bytes": 1529,
+      "lines": 48,
+      "sha256": "fb29e7831d9aa21ca7aa7aa81945c998b9901b1a6fbb4bd61a8b76b540dc2c3b"
+    },
+    {
+      "path": "core/broadcast.ml",
+      "bytes": 3363,
+      "lines": 99,
+      "sha256": "2bfff4f864ec6b1f17b7a0f68f80c88e7986c6feb70285e8f41bcf78c1d47e08"
+    },
+    {
+      "path": "core/broadcast.mli",
+      "bytes": 2763,
+      "lines": 55,
+      "sha256": "648034d55ad572380cdfd1d6028dd4ec21186ee919f1ba57a889d8befb649b1e"
+    },
+    {
+      "path": "core/cache.ml",
+      "bytes": 1148,
+      "lines": 30,
+      "sha256": "88f54beeb16309b9dd08432c854c6dd0ebdfc0ed946fc165199ceebc8923e998"
+    },
+    {
+      "path": "core/cache.mli",
+      "bytes": 1250,
+      "lines": 25,
+      "sha256": "03fe96c2bcb877f1e4d629b1d3a0be503749b890da618fbc8af0d35256bfbd43"
+    },
+    {
+      "path": "core/codec.ml",
+      "bytes": 7647,
+      "lines": 258,
+      "sha256": "837d5839da8ca87a8ed082ee5d8dd54cc9d805b46b65c991eae015a3cfa508c5"
+    },
+    {
+      "path": "core/codec.mli",
+      "bytes": 5810,
+      "lines": 144,
+      "sha256": "1fd915097cc261c2da605dec311870fbcfa0231d0cd8e81ec4c9b564c804c154"
+    },
+    {
+      "path": "core/codec_repr.ml",
+      "bytes": 331,
+      "lines": 17,
+      "sha256": "9236ad31a6ca4541497df99840e4b6eaa022204468d900c898650678ba42977c"
+    },
+    {
+      "path": "core/codec_repr.mli",
+      "bytes": 732,
+      "lines": 24,
+      "sha256": "45aa287fcfbfae8c591a0caf8b002ea3b21e46a4f187c077323b7de184538804"
+    },
+    {
+      "path": "core/compress.ml",
+      "bytes": 943,
+      "lines": 34,
+      "sha256": "b3cfaa3731fbfea57df9a22c01f0d0cf09d8b3db928da120b58a3cac36264b71"
+    },
+    {
+      "path": "core/compress.mli",
+      "bytes": 2867,
+      "lines": 52,
+      "sha256": "ea184a2a218465a4c011e9312c787c7e978b1e36581722dce3941c3070d725af"
+    },
+    {
+      "path": "core/compress_repr.ml",
+      "bytes": 883,
+      "lines": 27,
+      "sha256": "4fecd4de18cb37965f37b8e50d826da97bf972f81d52247108f09608d7cfcc9a"
+    },
+    {
+      "path": "core/compress_repr.mli",
+      "bytes": 928,
+      "lines": 23,
+      "sha256": "2c53465e4ad00e5026ec4545a9955b430f74a1ed89b799fe0bb1e826fa65224c"
+    },
+    {
+      "path": "core/conditional.ml",
+      "bytes": 5027,
+      "lines": 148,
+      "sha256": "ac52e71caf35880316e086515962b0c6014c098944d8628a22f93a263cf57d7e"
+    },
+    {
+      "path": "core/conditional.mli",
+      "bytes": 1325,
+      "lines": 36,
+      "sha256": "9022c3adf7a7ef3eb7805ad5e0cf42b9025536fa5a1881941af86c24c14ab2a3"
+    },
+    {
+      "path": "core/cookie.ml",
+      "bytes": 20,
+      "lines": 1,
+      "sha256": "bcbd96273416cee6869c0eb58af4b0c9d5cae15f9961cfad2d05af67209bee62"
+    },
+    {
+      "path": "core/cookie.mli",
+      "bytes": 4984,
+      "lines": 116,
+      "sha256": "ea363e2738193ae73585a1a8a764b24ce479b5d88ab2d074d9b4e2c486e18b67"
+    },
+    {
+      "path": "core/cookie_repr.ml",
+      "bytes": 9222,
+      "lines": 273,
+      "sha256": "7887751d7da41233e98f4d16bb57e994de15e4bdd8755599b923df28fe89dc91"
+    },
+    {
+      "path": "core/cookie_repr.mli",
+      "bytes": 2394,
+      "lines": 75,
+      "sha256": "b7d7085ff1bca7637ea24dce251ba4d7f5122e0cb49ae24bbf6bd361342e2bca"
+    },
+    {
+      "path": "core/cors.ml",
+      "bytes": 675,
+      "lines": 20,
+      "sha256": "3ae7bbbc355babcbc487d6ffbda955685e651785d227d2b1a786be99113c91c4"
+    },
+    {
+      "path": "core/cors.mli",
+      "bytes": 2969,
+      "lines": 63,
+      "sha256": "b3a67f7eece1168142d57ca3c2d08a3b2c11ec19457bfee05f74a83c9715f2e3"
+    },
+    {
+      "path": "core/cors_repr.ml",
+      "bytes": 2412,
+      "lines": 79,
+      "sha256": "50a6e92ada8671cbb103382ab8e9061268da16f7089c96bfb0d9327142ee4f36"
+    },
+    {
+      "path": "core/cors_repr.mli",
+      "bytes": 1352,
+      "lines": 36,
+      "sha256": "77cd4f30c1093469e367441fa83115d74bb141b8db784f1f9d7c74f7061523b4"
+    },
+    {
+      "path": "core/deadline.ml",
+      "bytes": 4177,
+      "lines": 134,
+      "sha256": "7d7a155a1695e858a1219bc6a26965e20091c4657bbed5616222ad4f06b4f08a"
+    },
+    {
+      "path": "core/deadline.mli",
+      "bytes": 2546,
+      "lines": 59,
+      "sha256": "26ebf9a119257e8d21030e36826217c89ec5550f435dc49f57db2b5e8204b5f8"
+    },
+    {
+      "path": "core/dep.ml",
+      "bytes": 4450,
+      "lines": 133,
+      "sha256": "a6f1e924b0dc9f69d0a0f701ff6e9f40171b9b1132d52349be6f7f0dacf2cd32"
+    },
+    {
+      "path": "core/dep.mli",
+      "bytes": 10463,
+      "lines": 234,
+      "sha256": "bc4cc995f2a8e9cc7fd47da5a17a3b8358574080944f17ae1ca25d6524f3be1c"
+    },
+    {
+      "path": "core/dep_repr.ml",
+      "bytes": 13428,
+      "lines": 404,
+      "sha256": "973bccb317aab704ff3ac9066b7d16d12255bfc5191b5c633d0781e09dcb2c23"
+    },
+    {
+      "path": "core/dep_repr.mli",
+      "bytes": 7280,
+      "lines": 221,
+      "sha256": "145899ecd5eeee192f1809ab2ebe77da13ae4d1cb690c0ba719cb40d44fcb99f"
+    },
+    {
+      "path": "core/described.ml",
+      "bytes": 18904,
+      "lines": 593,
+      "sha256": "4c14c2728497f81ce3431c71e1bec56dab02926d22efa78e1ae1429f9ed3cd74"
+    },
+    {
+      "path": "core/described.mli",
+      "bytes": 3461,
+      "lines": 91,
+      "sha256": "5c331221e85ccd4e8aafe8acefeaa47d21ccc81a46bd7dff353b4e330c332f3d"
+    },
+    {
+      "path": "core/dune",
+      "bytes": 2266,
+      "lines": 94,
+      "sha256": "a9330afe6155af2647e1b7af7bacdf95d9899f8fca2acf9784aaf8a0e9405a10"
+    },
+    {
+      "path": "core/event.ml",
+      "bytes": 1578,
+      "lines": 49,
+      "sha256": "b6e9c82ccd4e7c19d54c7c95134fed463204abcf051642893c7e761b593bfecf"
+    },
+    {
+      "path": "core/event.mli",
+      "bytes": 3368,
+      "lines": 83,
+      "sha256": "2621e2e970f264508a90be434fe57f895904ec60d9ce761dca7b755eee35a0c1"
+    },
+    {
+      "path": "core/file_types.ml",
+      "bytes": 2461,
+      "lines": 72,
+      "sha256": "2f226b457a679fe58ddae43193b9a36fbf9ed9e363644d201e082da3a07b6c89"
+    },
+    {
+      "path": "core/file_types.mli",
+      "bytes": 1160,
+      "lines": 24,
+      "sha256": "de14117e7e48bc41ff78400f3a14d8131b82557f53ff3145dbb8f09bfbd46b01"
+    },
+    {
+      "path": "core/files.ml",
+      "bytes": 10989,
+      "lines": 319,
+      "sha256": "7bba07eee6061325007d7476e07df4de4d6c25ea4c40492eac5477976abc01cf"
+    },
+    {
+      "path": "core/files.mli",
+      "bytes": 4567,
+      "lines": 88,
+      "sha256": "be8d416b4b13d9ec3efbb577dafdd1f81a6cc67131037d6aee9a241aff2e7589"
+    },
+    {
+      "path": "core/form.ml",
+      "bytes": 5649,
+      "lines": 183,
+      "sha256": "6e080cfc57635c9b9e5e40a40385f9389c669761030b179b3ef3a907f7bea31c"
+    },
+    {
+      "path": "core/form.mli",
+      "bytes": 3066,
+      "lines": 75,
+      "sha256": "3f28b6fce78a593a79834551ef2a52d3620e44f7fd234ad6f834730a4f50ef5c"
+    },
+    {
+      "path": "core/gzip.ml",
+      "bytes": 3569,
+      "lines": 116,
+      "sha256": "2d6190123d99730e41bf77584c7efe6196268d9077c35f00b4132084dd961238"
+    },
+    {
+      "path": "core/gzip.mli",
+      "bytes": 610,
+      "lines": 18,
+      "sha256": "15f69bcd6586191ebd17498c565f30db871043018068429f5e3fa941bbe8d01f"
+    },
+    {
+      "path": "core/header.ml",
+      "bytes": 205,
+      "lines": 3,
+      "sha256": "89080f31f14e18a8dfc5b932e0c4130db763b3a3f1b91c75a602e4a203558eba"
+    },
+    {
+      "path": "core/header.mli",
+      "bytes": 1079,
+      "lines": 22,
+      "sha256": "7f3a4449f6bb03d4a23b21cf86baca34d2c3c4f98f9c904a9f7fc11632153e68"
+    },
+    {
+      "path": "core/health.ml",
+      "bytes": 1823,
+      "lines": 50,
+      "sha256": "2c8fc209a7aa0d452c5eeb11e3475184980143bbffc4002b583e0f7ca78de46e"
+    },
+    {
+      "path": "core/health.mli",
+      "bytes": 2851,
+      "lines": 66,
+      "sha256": "3139b104a2c113466b02c4d2b95d908dbd017fdb1fa53a4bfcc48fd71bb35a60"
+    },
+    {
+      "path": "core/input.ml",
+      "bytes": 4469,
+      "lines": 133,
+      "sha256": "6fa5221525821265c6eb6930220ff1f03de72ad9da58ea4bac6d24f03a0bc0b3"
+    },
+    {
+      "path": "core/input.mli",
+      "bytes": 973,
+      "lines": 23,
+      "sha256": "8ef05632869aae01456fd83d5a57274401bcb93135c368650b15588f1928d1d1"
+    },
+    {
+      "path": "core/key.ml",
+      "bytes": 17,
+      "lines": 1,
+      "sha256": "f56b989b09e9ae40bd2668000283dd0fa9749262332959430f8dae1046e9a1eb"
+    },
+    {
+      "path": "core/key.mli",
+      "bytes": 2915,
+      "lines": 67,
+      "sha256": "dbf17fd7cc3b7be3b74475887da0f37fa73059c1c64159796328edd09a1cee31"
+    },
+    {
+      "path": "core/key_repr.ml",
+      "bytes": 2503,
+      "lines": 74,
+      "sha256": "fb288d13f41f71c649415b0c390311ea6eeca0b438d038ebfbfa8402b1d1dfb5"
+    },
+    {
+      "path": "core/key_repr.mli",
+      "bytes": 845,
+      "lines": 26,
+      "sha256": "94e421cbd34f213d4b8aa4094c2b68a2459a2e752319faae51fff287ac81b77c"
+    },
+    {
+      "path": "core/log.ml",
+      "bytes": 13844,
+      "lines": 420,
+      "sha256": "69fa97aea938ead4376744b01e9123a7279e68ce0898dc9c1e6e7666d84cef0e"
+    },
+    {
+      "path": "core/log.mli",
+      "bytes": 3003,
+      "lines": 58,
+      "sha256": "5a97ac3cc0e8f0da9a3fefa823a2513e6c79709605c1b2a4499bfe61886fa292"
+    },
+    {
+      "path": "core/melange.ml",
+      "bytes": 15004,
+      "lines": 450,
+      "sha256": "b038a54afcc03aff95b5d7a57d5dcb9f02cdf35f8691d9c592b9966fc24119e1"
+    },
+    {
+      "path": "core/melange.mli",
+      "bytes": 3091,
+      "lines": 49,
+      "sha256": "1ca46bb477d03ea34861f71c67d5c671f18a9d78bf6e6cb9801acd4a7dac9a57"
+    },
+    {
+      "path": "core/melange/route.ml",
+      "bytes": 20410,
+      "lines": 581,
+      "sha256": "2c5c9ff4b2379932d1451902326ab996a9c06d89278e0fddb08ce1c80e4add94"
+    },
+    {
+      "path": "core/meta.ml",
+      "bytes": 1029,
+      "lines": 42,
+      "sha256": "8a853eea6f46cb8cda036eac8d9b793985449b99d4835bcda5e3c7d7542e5a53"
+    },
+    {
+      "path": "core/meta.mli",
+      "bytes": 1334,
+      "lines": 48,
+      "sha256": "c4492ee6d875c7057e7a5f4605d3332a565de67d33318f55c261f9f91d3ea0f3"
+    },
+    {
+      "path": "core/metrics.ml",
+      "bytes": 12733,
+      "lines": 379,
+      "sha256": "7a18c8a677ed82413a3ddc9eedb0a0ba3212cf82848744ee3d271a24d0e21284"
+    },
+    {
+      "path": "core/metrics.mli",
+      "bytes": 5161,
+      "lines": 129,
+      "sha256": "931d0c238c2d152638a793c447be1dabae3c73f59d7fb8a92eb74e84ad1842ba"
+    },
+    {
+      "path": "core/middleware.ml",
+      "bytes": 414,
+      "lines": 15,
+      "sha256": "73c89be29155d82fda0b882e284277cccd96d5fbc1137e13eb1faae975bab51e"
+    },
+    {
+      "path": "core/middleware.mli",
+      "bytes": 1818,
+      "lines": 41,
+      "sha256": "de8c232451cc09a7ba8659e373a7cd690487b3059fc6a823a6e5b6c1243b6def"
+    },
+    {
+      "path": "core/multipart.ml",
+      "bytes": 527,
+      "lines": 19,
+      "sha256": "a3580e53a71a5472626cfd6206eea33fc296c17933d75a289bd12d531be7afa0"
+    },
+    {
+      "path": "core/multipart.mli",
+      "bytes": 1584,
+      "lines": 41,
+      "sha256": "ef9098ba974103224c83ee36c194bed08188ef666af9c41b16716884cdb97200"
+    },
+    {
+      "path": "core/openapi.ml",
+      "bytes": 18054,
+      "lines": 563,
+      "sha256": "0c85924fc06f3d09e51e4365f8946373bb1d62faede20cdf230b72c49bdcfd6b"
+    },
+    {
+      "path": "core/openapi.mli",
+      "bytes": 3571,
+      "lines": 72,
+      "sha256": "b0fc5b8688f39b72a0d8243bcfc236675369f86f0c921bac71c5ff4bb8964efa"
+    },
+    {
+      "path": "core/out.ml",
+      "bytes": 2536,
+      "lines": 76,
+      "sha256": "c9da12d46b866cf9880969ddfc42228ecd78a0c2a258cc8c577e98a9fae24a06"
+    },
+    {
+      "path": "core/out.mli",
+      "bytes": 604,
+      "lines": 20,
+      "sha256": "4d2dd27965bad90437b332cfd5f0e737e605b3eee48b8cd43879f84644872c20"
+    },
+    {
+      "path": "core/outgoing.ml",
+      "bytes": 717,
+      "lines": 22,
+      "sha256": "eb23418410124ec9c2e689ed64b12709323a1a7b54c603fdce533bf4350d983f"
+    },
+    {
+      "path": "core/outgoing.mli",
+      "bytes": 313,
+      "lines": 6,
+      "sha256": "58ca3dde0d05a8d66ba63ce4c1ccc7da3f4f49d106e93395f0e700b95b4c19bb"
+    },
+    {
+      "path": "core/path.ml",
+      "bytes": 3109,
+      "lines": 93,
+      "sha256": "96a42d940a5bcd7a1e94f7b3d73dae102ccdd16e6a9d819198e9ce7b703caba0"
+    },
+    {
+      "path": "core/path.mli",
+      "bytes": 4428,
+      "lines": 107,
+      "sha256": "fe826a2eeacdd926b810d32d51dba97c10a7790b870dd61c6021b7ae09b82836"
+    },
+    {
+      "path": "core/path_repr.ml",
+      "bytes": 2354,
+      "lines": 80,
+      "sha256": "15c1fd5a361690a5ba0a09e6a56a5918d740e838889281cd8f43c60eba0e90e2"
+    },
+    {
+      "path": "core/path_repr.mli",
+      "bytes": 1568,
+      "lines": 53,
+      "sha256": "0344c1b824669fe6ea3f050b65d5c5bd95047f853584d6104bc22460c37fc7e1"
+    },
+    {
+      "path": "core/query.ml",
+      "bytes": 258,
+      "lines": 4,
+      "sha256": "5d4ca0df3edac0cc7b45293caa594b41d3db454e4137b91d9f7e789b6dd1686a"
+    },
+    {
+      "path": "core/query.mli",
+      "bytes": 1217,
+      "lines": 25,
+      "sha256": "df0a253c5aca88b86188772cf77b8d2d5b687a2a227a595092e3ef26bc6649ec"
+    },
+    {
+      "path": "core/rate.ml",
+      "bytes": 3995,
+      "lines": 106,
+      "sha256": "6448ede929ca6d762825ac8ac640cdad648238b071d19fe1f92ac46015beebc2"
+    },
+    {
+      "path": "core/rate.mli",
+      "bytes": 2237,
+      "lines": 42,
+      "sha256": "5520c46dd52e97bed60a40ff37cd5924105403214641a314bc4be4ba6e16a73c"
+    },
+    {
+      "path": "core/refusal.ml",
+      "bytes": 4777,
+      "lines": 162,
+      "sha256": "518480755d73c4124d5de9f161260ef69566df4fec2a4a28b18c808ef28bdb69"
+    },
+    {
+      "path": "core/refusal.mli",
+      "bytes": 6050,
+      "lines": 157,
+      "sha256": "bd3a4719b92b610b05b61d6215899fea8c64ee9cd4ce0ed42e8ddbc0139f4d15"
+    },
+    {
+      "path": "core/request.ml",
+      "bytes": 21,
+      "lines": 1,
+      "sha256": "64c0dfd30b15209cf3aaf531c963a327e9f1c52f1aeb2b72efbb79d16c2da24b"
+    },
+    {
+      "path": "core/request.mli",
+      "bytes": 5899,
+      "lines": 130,
+      "sha256": "7ce1ce6d0249f3bff5a792cf344b1a8dcb98790e85a00e12083b40933f5f4d05"
+    },
+    {
+      "path": "core/request_repr.ml",
+      "bytes": 5861,
+      "lines": 185,
+      "sha256": "9ed3b87e92975919064fe78ad496081f291d4ecb7a7e17b6bdb9b42a7f8e6422"
+    },
+    {
+      "path": "core/request_repr.mli",
+      "bytes": 1876,
+      "lines": 60,
+      "sha256": "abd86d9d8e886c3a4e421066a3cfaf2e5492db72f85f03383af99d44c45e6380"
+    },
+    {
+      "path": "core/response.ml",
+      "bytes": 5804,
+      "lines": 178,
+      "sha256": "8ef381bd93d520b010d1e61e94a95628c8a43c39aaaa1063ed2401a47771c8b1"
+    },
+    {
+      "path": "core/response.mli",
+      "bytes": 8111,
+      "lines": 196,
+      "sha256": "b4eaf486470d8e0556dc276e33f5e68244f64928f1636ba0fbf41e5d39a26a73"
+    },
+    {
+      "path": "core/returns.ml",
+      "bytes": 1651,
+      "lines": 50,
+      "sha256": "912515ab068fbd55973709c8e46591b4ec6cb10b393795fc165f1ffacc588a48"
+    },
+    {
+      "path": "core/returns.mli",
+      "bytes": 6095,
+      "lines": 138,
+      "sha256": "70ad2c0dfd39958a51b0238a41a9008cf58edf927760cb1b8a02dedb1fa55642"
+    },
+    {
+      "path": "core/returns_repr.ml",
+      "bytes": 10392,
+      "lines": 288,
+      "sha256": "6a088226a8c0c97c5f8ccb1b841c59f0606eb01c31dfb84d56be97dcdbe8db0c"
+    },
+    {
+      "path": "core/returns_repr.mli",
+      "bytes": 2930,
+      "lines": 88,
+      "sha256": "23c06f58b2d9cd3c2d707f3b8e67a2a33739d6af78bacec894983e1c06fc352d"
+    },
+    {
+      "path": "core/route.ml",
+      "bytes": 4207,
+      "lines": 119,
+      "sha256": "ed4cc4319635621486d49d8935b3c4ed5bf375614011ad39b26ea6c77dd3e613"
+    },
+    {
+      "path": "core/route.mli",
+      "bytes": 3717,
+      "lines": 99,
+      "sha256": "ac81d0fb6537a4aee62926a993937ad4cf9531b180fc04e643b963637787dec0"
+    },
+    {
+      "path": "core/route_repr.ml",
+      "bytes": 8817,
+      "lines": 268,
+      "sha256": "4b92e278b38bfb403037fd8effd2febb4b4c9aaaaa6fa5357f73351329e8d202"
+    },
+    {
+      "path": "core/route_repr.mli",
+      "bytes": 3719,
+      "lines": 142,
+      "sha256": "e72121b697fd7be0ba0d311f7d51ba48e5a033a916a8bff3dbf4c2b761f7154c"
+    },
+    {
+      "path": "core/scalar.mli",
+      "bytes": 90,
+      "lines": 3,
+      "sha256": "d405c1d43449f1cdd5b05f35586550a49e623fdcd484c4d0f37ea072d7cfcbfc"
+    },
+    {
+      "path": "core/scalar/standalone.js",
+      "bytes": 4353277,
+      "lines": 2519,
+      "sha256": "bf091006bdc3af6067af77c2f534812e3e633e94a94e87138069f570f33b762c"
+    },
+    {
+      "path": "core/server.ml",
+      "bytes": 57547,
+      "lines": 1497,
+      "sha256": "8336ac8023271b038504dff1a05ce598c468080d7e9684eeb3ecea2ebd03ccd0"
+    },
+    {
+      "path": "core/server.mli",
+      "bytes": 13769,
+      "lines": 260,
+      "sha256": "307238dda35d58cc268000eb4e450e26f3979ce4d7da73d5153eede5e6959020"
+    },
+    {
+      "path": "core/session.ml",
+      "bytes": 8190,
+      "lines": 251,
+      "sha256": "d4f3509f7c29abef58328e4a1c86e472171ce7956610882a8d04ecd4bb09a9c9"
+    },
+    {
+      "path": "core/session.mli",
+      "bytes": 5434,
+      "lines": 121,
+      "sha256": "d8022fa130739f9edf0a80b3298ce5301baba7d5483e78475704dae90bb8c25d"
+    },
+    {
+      "path": "core/spindle.ml",
+      "bytes": 9381,
+      "lines": 276,
+      "sha256": "5ce6c51cd3a842327fc175e1c15283d284890016375c118f722da2753d793443"
+    },
+    {
+      "path": "core/spindle.mli",
+      "bytes": 15267,
+      "lines": 372,
+      "sha256": "53fbb88ed6d76f8ffe5ee79609851ed0529c8b046a8db1e8b99f0689994a3788"
+    },
+    {
+      "path": "core/static.ml",
+      "bytes": 7517,
+      "lines": 213,
+      "sha256": "f630538dca9966567f9cccb9317dc6bba14336acd438849dd97075cd3e8e865c"
+    },
+    {
+      "path": "core/static.mli",
+      "bytes": 5154,
+      "lines": 104,
+      "sha256": "655819c355ccc48dddae881079bcb38e5c8190fbae7100f1700ae4bd271ab2b9"
+    },
+    {
+      "path": "core/test.ml",
+      "bytes": 14862,
+      "lines": 425,
+      "sha256": "c2afbd74ac75fe9577b2c8eefa3b7bb73b104d3fb28c8f4204beb7240e016707"
+    },
+    {
+      "path": "core/test.mli",
+      "bytes": 6703,
+      "lines": 158,
+      "sha256": "99c0388cce8013585ff934d2295c57bd29c83730d155751a87fbf845db865b5b"
+    },
+    {
+      "path": "core/wire.ml",
+      "bytes": 7587,
+      "lines": 203,
+      "sha256": "2ac29e734720eafae8efc5fb4dda396bab468758ea73e2e7e1fc13496af47810"
+    },
+    {
+      "path": "core/wire.mli",
+      "bytes": 2460,
+      "lines": 47,
+      "sha256": "d55865ab24eea455d6e1fe51e710dee6f190ea2d3428468c24959bfb792c9aba"
+    },
+    {
+      "path": "core/zod.ml",
+      "bytes": 4116,
+      "lines": 108,
+      "sha256": "9bdfa2a476b4fc47576cdbe6158b83079839874c2b556f4204cfe57170f8c780"
+    },
+    {
+      "path": "core/zod.mli",
+      "bytes": 840,
+      "lines": 14,
+      "sha256": "6393a17ea4725c8de417e83e4032e10f8357880654c226b78b036cc4f0d469a2"
+    },
+    {
+      "path": "docs/astro.config.mjs",
+      "bytes": 2993,
+      "lines": 86,
+      "sha256": "f630eaa62b3d83019a37993a6382a3014ebdde2f335aa678cfce5e3eab7ffecf"
+    },
+    {
+      "path": "docs/bun.lock",
+      "bytes": 102022,
+      "lines": 844,
+      "sha256": "dbf8fc1addcbe71ad746af57508df87c1f922b0a990fd7d907f5f4705b0403a9"
+    },
+    {
+      "path": "docs/dune",
+      "bytes": 136,
+      "lines": 4,
+      "sha256": "8129d9f3545586f257eedcfbb0bd71fb07767a2613da2330524d81677cc654a0"
+    },
+    {
+      "path": "docs/package.json",
+      "bytes": 277,
+      "lines": 11,
+      "sha256": "a7416e1dc841ce8f17333c4812549873f0e51dd35f16e0e3a833ea91c18f83dc"
+    },
+    {
+      "path": "docs/public/favicon.svg",
+      "bytes": 5151,
+      "lines": 8,
+      "sha256": "c292751331d8ff8936aa408a343984ad44744541e69c5284c5d2881e2f438528"
+    },
+    {
+      "path": "docs/src/assets/logo-dark.svg",
+      "bytes": 11150,
+      "lines": 7,
+      "sha256": "f857b438496d4d7559b29ee84ec4460ef5368f80d03722db7e2e695ca6aa4274"
+    },
+    {
+      "path": "docs/src/assets/logo-light.svg",
+      "bytes": 11150,
+      "lines": 7,
+      "sha256": "b119f13630af8005b9ba4ec6ca3c4ced04f7bdb059289b2d3ba9a1c94dd3f5dc"
+    },
+    {
+      "path": "docs/src/assets/scalar.png",
+      "bytes": 211855,
+      "lines": 1613,
+      "sha256": "7c2a9f6f104a66e928c16dd097e647a1a950941f78a8a79a9341303237cb044f"
+    },
+    {
+      "path": "docs/src/content.config.ts",
+      "bytes": 270,
+      "lines": 7,
+      "sha256": "1f8b206b5f7c0afb44c3715a3fe79954b448885fe9e753ba372dddf1210ecfd5"
+    },
+    {
+      "path": "docs/src/content/docs/guide/background.md",
+      "bytes": 2715,
+      "lines": 72,
+      "sha256": "d0c97ad78edfe52cb73a50ed66e40462366d43bc8c9539bb6d17fe893203b428"
+    },
+    {
+      "path": "docs/src/content/docs/guide/client.md",
+      "bytes": 5186,
+      "lines": 145,
+      "sha256": "e6487128ac2ec3726f62970c2aa7be26ef862efa6f14ade10e6ba031a8118ff1"
+    },
+    {
+      "path": "docs/src/content/docs/guide/compression.md",
+      "bytes": 2873,
+      "lines": 75,
+      "sha256": "34ea361929693effbe5e21c1fdb7375c51f6ae68294fc066d7127ff605b413b7"
+    },
+    {
+      "path": "docs/src/content/docs/guide/cookies.mdx",
+      "bytes": 9282,
+      "lines": 215,
+      "sha256": "920b3c7e8fd594d82a44dd742e993f8d15ee96aa168039a357cafbb661d129be"
+    },
+    {
+      "path": "docs/src/content/docs/guide/databases.mdx",
+      "bytes": 6634,
+      "lines": 201,
+      "sha256": "4e9dc53b6e545d4d55e3b8db9a7ef8b1f4eb4ab62f52806fca0ec3092259a1a2"
+    },
+    {
+      "path": "docs/src/content/docs/guide/domains.mdx",
+      "bytes": 2220,
+      "lines": 60,
+      "sha256": "ebffaa8cbd74d690ec78463893f364750dd03938b56383ee1df1ab1117181dcd"
+    },
+    {
+      "path": "docs/src/content/docs/guide/health.mdx",
+      "bytes": 2866,
+      "lines": 78,
+      "sha256": "920e350c6c2e1e6b6d80006b75afc30e2c9cb1236e9e4ce0828335683cf9e343"
+    },
+    {
+      "path": "docs/src/content/docs/guide/mcp.mdx",
+      "bytes": 9037,
+      "lines": 219,
+      "sha256": "1f72f214d64dd8c09ae828bf0fe8cc68ea6170a938e76758799b75802361e22b"
+    },
+    {
+      "path": "docs/src/content/docs/guide/metrics.md",
+      "bytes": 3419,
+      "lines": 104,
+      "sha256": "201c73367278021053a9a2b05be9ade9eb92df06047474375637944b6e41d20b"
+    },
+    {
+      "path": "docs/src/content/docs/guide/middleware.mdx",
+      "bytes": 3056,
+      "lines": 88,
+      "sha256": "f1645f470751a68cff6e3a74a011fbb2c11d1bbbd4dd968b6b6337dfb9d1dcc2"
+    },
+    {
+      "path": "docs/src/content/docs/guide/oauth.mdx",
+      "bytes": 6055,
+      "lines": 146,
+      "sha256": "ebd8cd76ea9f5e2fece9af333c607558a4d03d40b64d90a7efa59df5ac4d8d06"
+    },
+    {
+      "path": "docs/src/content/docs/guide/pages.mdx",
+      "bytes": 2861,
+      "lines": 79,
+      "sha256": "3d3eaa2d36a8c0952f2e7168b5ee1943eb53eb1991b3b8287cc2795a944a9e55"
+    },
+    {
+      "path": "docs/src/content/docs/guide/rate-limits.md",
+      "bytes": 2078,
+      "lines": 54,
+      "sha256": "113707f0c126228b0b24d4d822d37dee32e0a6c755267096c328b507f6af698a"
+    },
+    {
+      "path": "docs/src/content/docs/guide/serving.md",
+      "bytes": 9517,
+      "lines": 183,
+      "sha256": "a27bd851f290c8826cdf9288f7f0791daaeafa6b34e08b68e95dc5c04cd452ec"
+    },
+    {
+      "path": "docs/src/content/docs/guide/sse.mdx",
+      "bytes": 4043,
+      "lines": 112,
+      "sha256": "a02dcbc110cc385e0c9abf8a8cde7b2bb5ba67201b7824a86b33de75e41e50d8"
+    },
+    {
+      "path": "docs/src/content/docs/guide/testing.md",
+      "bytes": 4521,
+      "lines": 109,
+      "sha256": "a91909d985e4a1206ad583542db19f0054e2fece63ad738964fe64a16444331a"
+    },
+    {
+      "path": "docs/src/content/docs/guide/websockets.mdx",
+      "bytes": 5999,
+      "lines": 149,
+      "sha256": "6c10c06e4d49e23b97a4b4b12ca47136db38850da66a1286348f67e5354ef26e"
+    },
+    {
+      "path": "docs/src/content/docs/index.mdx",
+      "bytes": 2813,
+      "lines": 71,
+      "sha256": "7b85283190531c4418dc24fadb049e7e3e2bcae858879c9646891cd73dbd8b3a"
+    },
+    {
+      "path": "docs/src/content/docs/install.mdx",
+      "bytes": 2995,
+      "lines": 127,
+      "sha256": "be45ac51a979528ad86ba895cadac086bbdc79920f95c6d4c9dad0e6fa1fd7a5"
+    },
+    {
+      "path": "docs/src/content/docs/reference.md",
+      "bytes": 3775,
+      "lines": 62,
+      "sha256": "393d8d8421bc4d88c1ae36e76aaa9d1ee85b30a02ff515b216299b8b5e0313ed"
+    },
+    {
+      "path": "docs/src/content/docs/tutorial/bodies.mdx",
+      "bytes": 10900,
+      "lines": 253,
+      "sha256": "694f20607249f9bc82665e2509ac25ad0499a35051968900348bd4ef1f740614"
+    },
+    {
+      "path": "docs/src/content/docs/tutorial/client-schemas.mdx",
+      "bytes": 8969,
+      "lines": 271,
+      "sha256": "bcc3098e502b7b8949071e7f3488f080d227ba77326d7a89565e80eec7e314ee"
+    },
+    {
+      "path": "docs/src/content/docs/tutorial/database.mdx",
+      "bytes": 7387,
+      "lines": 228,
+      "sha256": "36e2866716eebf579e217d3fa18c28c4861194a9ae9c2bc91e2b9c70d0dc1dbb"
+    },
+    {
+      "path": "docs/src/content/docs/tutorial/dependencies.mdx",
+      "bytes": 11786,
+      "lines": 264,
+      "sha256": "562152e8e265633d18aafd2e9f013c4c587d747a29393763aa8e5854cdc7a0ec"
+    },
+    {
+      "path": "docs/src/content/docs/tutorial/first-app.mdx",
+      "bytes": 3554,
+      "lines": 129,
+      "sha256": "55d970f476572b5f73f587a0d23798c1d27d2be593dcc3ca407dd62321e97aaf"
+    },
+    {
+      "path": "docs/src/content/docs/tutorial/logging.mdx",
+      "bytes": 5294,
+      "lines": 124,
+      "sha256": "7174ac21c5c7f67dee1ba5838b0efd6e5230c6b5cd5ee7b04d70b21138351cc5"
+    },
+    {
+      "path": "docs/src/content/docs/tutorial/openapi.mdx",
+      "bytes": 6370,
+      "lines": 150,
+      "sha256": "e1ef6f9664d2bb0ce1e4beeaa3fb9932619e11cd9c3fe16036b283cb9d31a5d3"
+    },
+    {
+      "path": "docs/src/content/docs/tutorial/routes.mdx",
+      "bytes": 8143,
+      "lines": 190,
+      "sha256": "46966d6bd35053ec5434eb0fef30da824ccea088ab6f01580aadd82c7c54dc64"
+    },
+    {
+      "path": "docs/src/content/docs/tutorial/static-files.mdx",
+      "bytes": 6475,
+      "lines": 156,
+      "sha256": "b819797929a5233f050dbf0b34fce7e84ed0230994436ad7ede555b7a912231d"
+    },
+    {
+      "path": "dune",
+      "bytes": 672,
+      "lines": 14,
+      "sha256": "3f518829260121a53e145dd740811f5f6f5de2fdb67235a2c5af28515cd0549a"
+    },
+    {
+      "path": "dune-project",
+      "bytes": 8293,
+      "lines": 419,
+      "sha256": "092c624a327e6eb5de626d8231c1214c239321156034b57d567cc14ff07f9e2b"
+    },
+    {
+      "path": "examples/api_cli.ml",
+      "bytes": 997,
+      "lines": 29,
+      "sha256": "06e70eb36b3f9f0394371313f8ff2e1de4a1d8ec9af8f5c5f000bc6e2de90275"
+    },
+    {
+      "path": "examples/bearer_auth.ml",
+      "bytes": 2001,
+      "lines": 53,
+      "sha256": "246a09b99769a18e1420caf2b9d94768e063ed1da54de8f091648095b44eaa14"
+    },
+    {
+      "path": "examples/bearer_token.ml",
+      "bytes": 1374,
+      "lines": 30,
+      "sha256": "86a1fc14f8c3583fa741afdc473702dbeb6edc00e72c93da225437e7aec0e2c7"
+    },
+    {
+      "path": "examples/billing.ml",
+      "bytes": 492,
+      "lines": 13,
+      "sha256": "baf5fc3e9943a85ed28de99555fe6372357ff683040d004ebe500a3dcf287e95"
+    },
+    {
+      "path": "examples/cookie.ml",
+      "bytes": 641,
+      "lines": 23,
+      "sha256": "06139711c283bd82dc877917d23b5832579ce1da58c56c5ccbea8d53284826c2"
+    },
+    {
+      "path": "examples/databases_routes.ml",
+      "bytes": 860,
+      "lines": 27,
+      "sha256": "64239789833c559db4362ab64485df84e08567f6502bdb91579372ebb04979ba"
+    },
+    {
+      "path": "examples/dependencies.ml",
+      "bytes": 792,
+      "lines": 27,
+      "sha256": "2a70d22d4e11f9ae857db98d5185fd8cdcda49eae6b0e4ca2f6dd900601fec0b"
+    },
+    {
+      "path": "examples/dune",
+      "bytes": 1093,
+      "lines": 63,
+      "sha256": "80cd26bde204d8f5b69d9c084cf39acb5a27fc754499fe6074f9f2b5b4b2a0cb"
+    },
+    {
+      "path": "examples/fahrenheit.ml",
+      "bytes": 794,
+      "lines": 25,
+      "sha256": "f12faaa1db894835f95c23f2ac747ab0d2a0cee8c85ff0ba6b50960647203f80"
+    },
+    {
+      "path": "examples/forecast_tool.ml",
+      "bytes": 887,
+      "lines": 25,
+      "sha256": "cf1189005b7d52c1bfae9fb6cbbadb008c294404852ef6a5d4b89aa43736e731"
+    },
+    {
+      "path": "examples/greeting.ml",
+      "bytes": 474,
+      "lines": 20,
+      "sha256": "ec253a1d3bf7a2a16ddd4a94f74423daa3e6302a0e41fb430b7881c9b3b331e6"
+    },
+    {
+      "path": "examples/greetings.ml",
+      "bytes": 1473,
+      "lines": 40,
+      "sha256": "2c0b94455d2dd432ac0dda8209c274a2cb46975b10683f5d731548f93e82e31f"
+    },
+    {
+      "path": "examples/health.ml",
+      "bytes": 904,
+      "lines": 26,
+      "sha256": "20161ab69a1098e6651c20cebe739dc8b79efcc5f807c4e45a80d7b99e6c31e4"
+    },
+    {
+      "path": "examples/hello.ml",
+      "bytes": 525,
+      "lines": 16,
+      "sha256": "ee1cf304bd71c4ea75cc892d38557a23750f1e13cba49fdf946253f63e1196ab"
+    },
+    {
+      "path": "examples/json_body.ml",
+      "bytes": 1689,
+      "lines": 48,
+      "sha256": "a43478e344a462f037664876d11c294b473b9423746ecb346d62426ee1cff3ce"
+    },
+    {
+      "path": "examples/logging.ml",
+      "bytes": 874,
+      "lines": 29,
+      "sha256": "c632a5f771ec53d5e61a106d474fec94b823a7c2e5f0d1c8f0b2b12411660abe"
+    },
+    {
+      "path": "examples/mcp.ml",
+      "bytes": 905,
+      "lines": 22,
+      "sha256": "cb3362f1384691da45daae122de725e1444925a12869de9e6f679683dea0a11f"
+    },
+    {
+      "path": "examples/mcp_client.ml",
+      "bytes": 1002,
+      "lines": 27,
+      "sha256": "6b22e15192fd8234877fec4389b3d680f71bb436db9e6846dcba166dd0a65690"
+    },
+    {
+      "path": "examples/methods.ml",
+      "bytes": 2150,
+      "lines": 60,
+      "sha256": "1a85e8d035213eff42142bd384ffbf4cff175a58ec3603e2fc0efe3de55e04bc"
+    },
+    {
+      "path": "examples/middleware.ml",
+      "bytes": 921,
+      "lines": 30,
+      "sha256": "11976f9e04093ddd38b52c78c05ff3330c9a5cbe8a1fa18f9acad676ac1e6df0"
+    },
+    {
+      "path": "examples/migrations/20261021000000_create_names.sql",
+      "bytes": 155,
+      "lines": 6,
+      "sha256": "0bfc6070360195835ea9685a03f3a183be649c0ff71477e15a90803e998c4492"
+    },
+    {
+      "path": "examples/multidomain.ml",
+      "bytes": 2104,
+      "lines": 52,
+      "sha256": "03efffd954079ea434c0dbd68e980e719f6bb4464c9e7684abbf34bc9c1494e8"
+    },
+    {
+      "path": "examples/name_claim.ml",
+      "bytes": 1091,
+      "lines": 28,
+      "sha256": "b55244e10b93dc04eb475667fecabc51406a8082fb6ee4653270710ea0cff0ad"
+    },
+    {
+      "path": "examples/names_query.ml",
+      "bytes": 452,
+      "lines": 12,
+      "sha256": "e87bd758215c9321e3a69b31f0b8832f3efd235818b5689d76c2ff3a68000fcf"
+    },
+    {
+      "path": "examples/names_routes.ml",
+      "bytes": 440,
+      "lines": 16,
+      "sha256": "ec5bec2e2f39b3d0d115c839a3efb09719add8a681d40b417f108dae50bd41a8"
+    },
+    {
+      "path": "examples/notes_auth.ml",
+      "bytes": 200,
+      "lines": 6,
+      "sha256": "a634de6c9d7fa6163a1483622860c20c4fcace1d11c952ce9f7ccdd6d6ce3b1a"
+    },
+    {
+      "path": "examples/notes_routes.ml",
+      "bytes": 604,
+      "lines": 21,
+      "sha256": "374fc0def8efc7095875d1acd5459db32c9a2eee3d5b937845dbde1733ddf34c"
+    },
+    {
+      "path": "examples/oauth.ml",
+      "bytes": 820,
+      "lines": 21,
+      "sha256": "5fe947d639c21b352f55d4e9375c2606d6417388ea138cdf49d81d8fdd268028"
+    },
+    {
+      "path": "examples/openapi.ml",
+      "bytes": 658,
+      "lines": 16,
+      "sha256": "e5e25eb978b1f8ce755fd3cf83ce6d6b393cf66480ad4687bfdd53564d144c3a"
+    },
+    {
+      "path": "examples/pages/dune",
+      "bytes": 933,
+      "lines": 38,
+      "sha256": "afd52f5612a757d4a192242111ff6efc869ca20fb7f7cf5e3a84d2bc74d713a1"
+    },
+    {
+      "path": "examples/pages/htmlit_page.ml",
+      "bytes": 826,
+      "lines": 28,
+      "sha256": "6307ecc757a8c754ed1152a904942061a8769c01b988714fd7a1faefa5abf427"
+    },
+    {
+      "path": "examples/pages/jingoo_page.ml",
+      "bytes": 1098,
+      "lines": 34,
+      "sha256": "b0d29b55f07735ccf4ac94f08c191c972a5db9df76a1f6d18a61a58ef19fcb20"
+    },
+    {
+      "path": "examples/pages/jsx_page.mlx",
+      "bytes": 928,
+      "lines": 30,
+      "sha256": "91bc1ed28b6f47c987dd9967892ce77e0833857fb876ce6e85aaec73efc89a62"
+    },
+    {
+      "path": "examples/pages/templates/greeting.jingoo",
+      "bytes": 120,
+      "lines": 5,
+      "sha256": "e7d4b450fc8e6067c0a7287b489bf04d8876632214841d4e720c07688a0d15f6"
+    },
+    {
+      "path": "examples/pages/tyxml_page.ml",
+      "bytes": 1045,
+      "lines": 36,
+      "sha256": "961095787a9659cbb2135c8320a73f306a35679b6deff0a1bf6391bac5070a84"
+    },
+    {
+      "path": "examples/paging.ml",
+      "bytes": 853,
+      "lines": 21,
+      "sha256": "8db94399bb1f5f8ea40603dae75f4893270ed932338fa7da54e66ee8e1604a90"
+    },
+    {
+      "path": "examples/path_params.ml",
+      "bytes": 1251,
+      "lines": 37,
+      "sha256": "220f8ab582ad73da03edadce31adbfd2eced86089bb6b5199b3e077554743bab"
+    },
+    {
+      "path": "examples/public/index.html",
+      "bytes": 315,
+      "lines": 12,
+      "sha256": "02356d752a78384223f1d667c902c94d75e0a0330face5059a3425a73dc98738"
+    },
+    {
+      "path": "examples/public/style.css",
+      "bytes": 88,
+      "lines": 5,
+      "sha256": "7f2eb31b2bbb6b82a77f6a3f7b26278d33cc63ccac74fafc9ab4f9cb5b88abdd"
+    },
+    {
+      "path": "examples/session.ml",
+      "bytes": 1800,
+      "lines": 54,
+      "sha256": "b22576fa9578ecb56f81bd9087fec3b15cfc702691fc6e261cf391675fb9cf78"
+    },
+    {
+      "path": "examples/split.ml",
+      "bytes": 894,
+      "lines": 33,
+      "sha256": "c7e46ff395e96eb95bc5c40e13dea987d544b25883295e0a593db199ccedd0c7"
+    },
+    {
+      "path": "examples/sql_postgres.ml",
+      "bytes": 688,
+      "lines": 17,
+      "sha256": "74516b6880181834fdb0c443732ea9fc4f1c221119287c78c1c4fc44556c5f28"
+    },
+    {
+      "path": "examples/sql_query.ml",
+      "bytes": 654,
+      "lines": 16,
+      "sha256": "9c72ae74180c5b08372a60c762e5f1a671b11d1d40d293f9672ce66f3940aff4"
+    },
+    {
+      "path": "examples/sql_transaction.ml",
+      "bytes": 1530,
+      "lines": 40,
+      "sha256": "07a6a4b4b3379974c6dc6a4c2f1dc5c7244fe0343c5174d32da54bd88fd6bc11"
+    },
+    {
+      "path": "examples/sse.ml",
+      "bytes": 1694,
+      "lines": 48,
+      "sha256": "38a9596930f55c8a36ad586ba3d2e0b6486db79b55ea7f34d11f6920d2f2c488"
+    },
+    {
+      "path": "examples/static.ml",
+      "bytes": 674,
+      "lines": 17,
+      "sha256": "34437ac3b1841c44edb2267faaf6e9745721ebdc57fcfb313c8454b15f45fcbe"
+    },
+    {
+      "path": "examples/websocket_client.ml",
+      "bytes": 1603,
+      "lines": 43,
+      "sha256": "7d4bf7fe0c56d88f26b8f005162a9ff5eed6fa32c4c5dd8d5b3c8499c56d95fc"
+    },
+    {
+      "path": "examples/websocket_server.ml",
+      "bytes": 1062,
+      "lines": 37,
+      "sha256": "c8e09652cfa049299d4cc4526b5fe0aa34bf47e5fee4e01ce2e13ca5c8309d79"
+    },
+    {
+      "path": "http/README.md",
+      "bytes": 10442,
+      "lines": 149,
+      "sha256": "873c223b7d8be9b770d2ba246b8ceef5937e72253da1e903d79ed7ec41f6d39b"
+    },
+    {
+      "path": "http/accept.ml",
+      "bytes": 4794,
+      "lines": 159,
+      "sha256": "1de5b6a37024803f247b57f8ed28079d794718b5b0853c339cd83fce0b87b0fa"
+    },
+    {
+      "path": "http/accept.mli",
+      "bytes": 2394,
+      "lines": 50,
+      "sha256": "94900409e1f000f566e6c2b7f3c1f2271e4b15217f9d2e617445bba7a7f959f8"
+    },
+    {
+      "path": "http/auth.ml",
+      "bytes": 3503,
+      "lines": 113,
+      "sha256": "448e5e8a37f50366a4a749abd0ed002841e0ec879fa3812fc57497567f3b8997"
+    },
+    {
+      "path": "http/auth.mli",
+      "bytes": 1709,
+      "lines": 37,
+      "sha256": "822c335ea4ddfdfffbdb725137dbbb006384afaa42cb373f11321140074934b1"
+    },
+    {
+      "path": "http/base64url.ml",
+      "bytes": 512,
+      "lines": 16,
+      "sha256": "88749744a5a397ae9708baf8f8a33edf388f8c8cb718de6fb55d6e3154535f07"
+    },
+    {
+      "path": "http/base64url.mli",
+      "bytes": 377,
+      "lines": 7,
+      "sha256": "f9720f11124c0b14551104e76fd13b6df121aad35bbbf9b85cb2372f21960fa3"
+    },
+    {
+      "path": "http/cache_control.ml",
+      "bytes": 1583,
+      "lines": 49,
+      "sha256": "bb25704c78c0669d82abb7cb3fd2bc72f136f9ae1a3b8b651fb9501524ada0ef"
+    },
+    {
+      "path": "http/cache_control.mli",
+      "bytes": 1126,
+      "lines": 26,
+      "sha256": "5ec26129fb033ef30bf511e8e16431d0dd3f01fb11afcd738c1b8103eaa572ef"
+    },
+    {
+      "path": "http/calendar.ml",
+      "bytes": 225,
+      "lines": 17,
+      "sha256": "d220cc45dc494f918ab25eb7f6327f9bae04ac335f01bacb035ccec8d739f493"
+    },
+    {
+      "path": "http/calendar.mli",
+      "bytes": 243,
+      "lines": 7,
+      "sha256": "d475d29a13d9a8ce4dbe25dab6d664449e5a317f5d0c2ba0f5a07194d79f9d4b"
+    },
+    {
+      "path": "http/connection.ml",
+      "bytes": 175,
+      "lines": 7,
+      "sha256": "3b6192815ae75007e4a059be93144b396c9f5dcb7aa98a51c60b9058e5a86638"
+    },
+    {
+      "path": "http/connection.mli",
+      "bytes": 754,
+      "lines": 16,
+      "sha256": "3371607ec9f1d3edf8c9552f96869b24ab15e18aa34a128ee86490a882b6986d"
+    },
+    {
+      "path": "http/context.ml",
+      "bytes": 5077,
+      "lines": 161,
+      "sha256": "c90b879e4df709cd1e967312a2731258db3c549157cba60792ed9dc5fe375b69"
+    },
+    {
+      "path": "http/context.mli",
+      "bytes": 2226,
+      "lines": 80,
+      "sha256": "1cbb4d1ef3cf773ed6378f7ac42f19bb4d69608657d8f58de8e540e47684b349"
+    },
+    {
+      "path": "http/date.ml",
+      "bytes": 4835,
+      "lines": 151,
+      "sha256": "5572bcbe97a6228568d26d4cd23f65808b35303e846056f087cb89f0582dc1f6"
+    },
+    {
+      "path": "http/date.mli",
+      "bytes": 1265,
+      "lines": 27,
+      "sha256": "f23e867587e69babbf99b5af4075a47be61ca8342c778d807459c2cd813ef69d"
+    },
+    {
+      "path": "http/dune",
+      "bytes": 848,
+      "lines": 27,
+      "sha256": "056dc476ac57c4c9b8ca715d99a3eed7888ac64667965d4755641f7dd65c0421"
+    },
+    {
+      "path": "http/etag.ml",
+      "bytes": 1010,
+      "lines": 33,
+      "sha256": "eacaef93b7055ebeb9406caceb5601745446b0ebc2e179357024612b871ff2f2"
+    },
+    {
+      "path": "http/etag.mli",
+      "bytes": 1342,
+      "lines": 37,
+      "sha256": "992484f593ef435df877cad5d7c0d123f1b3ca35c683cb82f95aa3abc2af8fae"
+    },
+    {
+      "path": "http/event_stream.ml",
+      "bytes": 5494,
+      "lines": 184,
+      "sha256": "666d2d45342d6266235b306957dbadd0721a295e8389385c4b64feacdf5ec567"
+    },
+    {
+      "path": "http/event_stream.mli",
+      "bytes": 2898,
+      "lines": 64,
+      "sha256": "b741388ef1d74927c66a526d0df7dade1490616247ba979e3755368dc8215888"
+    },
+    {
+      "path": "http/field.ml",
+      "bytes": 3418,
+      "lines": 111,
+      "sha256": "dd5e0e7f4bfb35a4e4a67f6af5fe85955c3d9b3727a8c3462e4c7c9874dd030b"
+    },
+    {
+      "path": "http/field.mli",
+      "bytes": 2498,
+      "lines": 49,
+      "sha256": "5b568813bf89127fc6d793257d56f1d63e6e95eb5cc14ba3a3030ce27170070e"
+    },
+    {
+      "path": "http/forwarded.ml",
+      "bytes": 5756,
+      "lines": 175,
+      "sha256": "fff77a70ff9c6343cd300d21947a6b5826d105718df3cff8fe6119922da6e7ad"
+    },
+    {
+      "path": "http/forwarded.mli",
+      "bytes": 1708,
+      "lines": 40,
+      "sha256": "317d4c60715699cbdf1744536ed223efd272903ab746772d7e3beec9af0fce6d"
+    },
+    {
+      "path": "http/frame.ml",
+      "bytes": 3372,
+      "lines": 112,
+      "sha256": "be7a0c115ed95d9344a7ca747f4913baeaf6ee2f28a943756b4ef31a04c74fc1"
+    },
+    {
+      "path": "http/frame.mli",
+      "bytes": 1662,
+      "lines": 42,
+      "sha256": "ee1fc3a145e93d3fd5aeb5b00a8f2902479fa6a28efbc8c7ecb3fb626974c433"
+    },
+    {
+      "path": "http/framing.ml",
+      "bytes": 11060,
+      "lines": 310,
+      "sha256": "41e8dcf3816c1eb6228286f61dd877ba2afc0f022a55250ef0ed6882c97352a3"
+    },
+    {
+      "path": "http/framing.mli",
+      "bytes": 3923,
+      "lines": 79,
+      "sha256": "0528d3315fc2ff141d37836c3dd4cf17bfdc3a6454ce9f0b5aa758b11f313798"
+    },
+    {
+      "path": "http/grammar.ml",
+      "bytes": 1821,
+      "lines": 68,
+      "sha256": "8208f7432420f965b7ea0e7fce69b385fa72a64d5a05808c7eceec5d89420ac9"
+    },
+    {
+      "path": "http/grammar.mli",
+      "bytes": 1223,
+      "lines": 27,
+      "sha256": "935e3d3f1c584824e3e2ae5ae1426058b48b3a94291e0ad279aaf6dfe06d137f"
+    },
+    {
+      "path": "http/head.ml",
+      "bytes": 15764,
+      "lines": 422,
+      "sha256": "b03b973b75a3346fe7b68339762dd8bfe2da63142b1431446966df4eacd02215"
+    },
+    {
+      "path": "http/head.mli",
+      "bytes": 5671,
+      "lines": 121,
+      "sha256": "bdd758666f551a6f0cf0fea420f03d3c8766a06f7d00a13da223caf343253f90"
+    },
+    {
+      "path": "http/instant.ml",
+      "bytes": 1477,
+      "lines": 37,
+      "sha256": "be3f11027da3f4e32c039734d2c0974282551f3ed799829e29d4bf865debc080"
+    },
+    {
+      "path": "http/instant.mli",
+      "bytes": 1114,
+      "lines": 25,
+      "sha256": "08d9da1ffd6305540b434e58ca6b4d40314d18a6cb069500133a4d564c18cc74"
+    },
+    {
+      "path": "http/jwk.ml",
+      "bytes": 4934,
+      "lines": 156,
+      "sha256": "b3cbb2efb9f30561d52feac8b49afc631934a1dd92e805bece4648f09c74b701"
+    },
+    {
+      "path": "http/jwk.mli",
+      "bytes": 1690,
+      "lines": 43,
+      "sha256": "04eb3706908aec354ce037645e847406a415caee8822a24aad87d60066f51c13"
+    },
+    {
+      "path": "http/jws.ml",
+      "bytes": 3026,
+      "lines": 98,
+      "sha256": "49179e17163ce56035010b8a61006681d0a7c09f3dddf39a7ede16f2390bf241"
+    },
+    {
+      "path": "http/jws.mli",
+      "bytes": 1696,
+      "lines": 43,
+      "sha256": "eece45d735019055e062343c17cac21e0a5cdb75f13221e21c4907b075254afa"
+    },
+    {
+      "path": "http/local.ml",
+      "bytes": 550,
+      "lines": 13,
+      "sha256": "d45374e505573c65273e8e04609a21183032406e78dc3bea698c6f49c2399184"
+    },
+    {
+      "path": "http/local.mli",
+      "bytes": 1109,
+      "lines": 19,
+      "sha256": "7db99b386afb78faf5d39e70af5bb4734555febab0ee3821ba2749d3a3b5ef0e"
+    },
+    {
+      "path": "http/log.ml",
+      "bytes": 4354,
+      "lines": 126,
+      "sha256": "048f756e1d79cd3d910fa66f2a7f8a541765435f287f79b83c58f04d100c2bc4"
+    },
+    {
+      "path": "http/log.mli",
+      "bytes": 3605,
+      "lines": 81,
+      "sha256": "c5515028df01f111e44c9a0e9080515b032a6f79dff90d00197b7ef329f76cb8"
+    },
+    {
+      "path": "http/media_type.ml",
+      "bytes": 2299,
+      "lines": 73,
+      "sha256": "711a132e3a121a3dea30d579933e5b82f6e8330f3b0238e92239b548159febf5"
+    },
+    {
+      "path": "http/media_type.mli",
+      "bytes": 1800,
+      "lines": 46,
+      "sha256": "51d3fc904c45c3cf8a0dc584d254efb7520fcc617c1957338277dc04d8b6e779"
+    },
+    {
+      "path": "http/meth.ml",
+      "bytes": 442,
+      "lines": 25,
+      "sha256": "28dbae369a836f4a10b57a9deb06fb81f3277d6a2d880c1b8b0a43af84d697d3"
+    },
+    {
+      "path": "http/meth.mli",
+      "bytes": 476,
+      "lines": 20,
+      "sha256": "f9403b1a9a0dee3dcfe8b815b78554d882d200897127b73042b366c2b10c36c0"
+    },
+    {
+      "path": "http/multipart.ml",
+      "bytes": 13530,
+      "lines": 421,
+      "sha256": "a80e2f68feb3bd38a9687a292542344dae8c5e02a2b7aea2d818663355781eb1"
+    },
+    {
+      "path": "http/multipart.mli",
+      "bytes": 3701,
+      "lines": 79,
+      "sha256": "80989c19554ce022a26313dd197b701e8f218eff6c697fecc196d7ebb04f1610"
+    },
+    {
+      "path": "http/private.ml",
+      "bytes": 102,
+      "lines": 4,
+      "sha256": "d31585fc89e13c6f5f0bd26da3de0d7e9a5c95ac9c7df37dced9dd71192b830d"
+    },
+    {
+      "path": "http/private.mli",
+      "bytes": 463,
+      "lines": 10,
+      "sha256": "7cbaf6b576b2bdfd7b2b3776c46c54d5e54b08304cb02959bcc4a4a72ad96d63"
+    },
+    {
+      "path": "http/range.ml",
+      "bytes": 1775,
+      "lines": 51,
+      "sha256": "adcb091c1cfe78e5852a77bda87ba758c8cadc4a6b5cbba9201224dc294db9fe"
+    },
+    {
+      "path": "http/range.mli",
+      "bytes": 1465,
+      "lines": 34,
+      "sha256": "47cc4f459339fd60c067cdef6279751d1144d87b2359ecf2f305bdcdecf4e31d"
+    },
+    {
+      "path": "http/spindle_http.ml",
+      "bytes": 708,
+      "lines": 31,
+      "sha256": "d341aff07f464dadd27ac9f9d26f488570355716f05d88ed0808c56abdb2d212"
+    },
+    {
+      "path": "http/spindle_http.mli",
+      "bytes": 1113,
+      "lines": 51,
+      "sha256": "362a4e890a97588eebe435e3a9cf7ef96f6891195612ebdd206b4d476154da84"
+    },
+    {
+      "path": "http/status.ml",
+      "bytes": 7853,
+      "lines": 275,
+      "sha256": "25b9ee8cf179c1cc5a4ee3dd793dfc67b22617d83a969d691780e59279701b7d"
+    },
+    {
+      "path": "http/status.mli",
+      "bytes": 2434,
+      "lines": 84,
+      "sha256": "577537b34502d61e2caebfcaec6e26e83d52b1eb1f961b89a18226346bb4bbd3"
+    },
+    {
+      "path": "http/structured.ml",
+      "bytes": 11397,
+      "lines": 378,
+      "sha256": "dc5b36d85c431a306468dc92f978df3c2a9b5ff98b48809f4d55672ad669da62"
+    },
+    {
+      "path": "http/structured.mli",
+      "bytes": 2359,
+      "lines": 59,
+      "sha256": "7308bb2f69d6044a2206e932620275463902b3bb073a5bba94f1bcffdec44686"
+    },
+    {
+      "path": "http/trace.ml",
+      "bytes": 1721,
+      "lines": 58,
+      "sha256": "9f81880358082e93350a0a530c2c14dd47d4edfa9fb8c75e22aedf7afbacfc81"
+    },
+    {
+      "path": "http/trace.mli",
+      "bytes": 3791,
+      "lines": 102,
+      "sha256": "fbb1e12d48ca3d3ed42a7d49d9c72942d2b4bb0524976223d220f06d276ed0b1"
+    },
+    {
+      "path": "http/urlencoded.ml",
+      "bytes": 1740,
+      "lines": 60,
+      "sha256": "5f6b302e601e12748564cdb54c188723604470e9ee62cbd22772e9550d23e660"
+    },
+    {
+      "path": "http/urlencoded.mli",
+      "bytes": 954,
+      "lines": 21,
+      "sha256": "146b2446d713fd37929d1fc886bfee67bfbdae68f0bf956c1ba61e696837bc3c"
+    },
+    {
+      "path": "http/version.ml",
+      "bytes": 29,
+      "lines": 1,
+      "sha256": "821f914a954e3497b4f7616c2c2f898d335ee401a5fbef533dcef68320fab4f4"
+    },
+    {
+      "path": "http/version.mli",
+      "bytes": 184,
+      "lines": 4,
+      "sha256": "9a9fa8c19dac8490757e3c1a1eddd49d8714a368d3ccd3ac1fa667490e45f0ca"
+    },
+    {
+      "path": "http/websocket.ml",
+      "bytes": 19799,
+      "lines": 551,
+      "sha256": "57f33fe65f02c45ec935e257ef8cb65e5762a6ca46d5a4fbe4fc52e0cd0ccc06"
+    },
+    {
+      "path": "http/websocket.mli",
+      "bytes": 7563,
+      "lines": 176,
+      "sha256": "20bb21d4a49549730ba9e5ff2a5b158105ab7adad64538e54c64bb73430a8802"
+    },
+    {
+      "path": "http/write.ml",
+      "bytes": 1574,
+      "lines": 60,
+      "sha256": "2929e5c2259af33f6ea5e47dcc053c6e4d8e1042e7543c26f9cc17152ecce70c"
+    },
+    {
+      "path": "http/write.mli",
+      "bytes": 1558,
+      "lines": 38,
+      "sha256": "c0679a69060b0b12a7786911f326b3950631aa759ed0b34f3962449aa0cf277d"
+    },
+    {
+      "path": "mcp-client/dune",
+      "bytes": 300,
+      "lines": 13,
+      "sha256": "0451dd6b008043ea7abc01d77b91678de576dde38953fe91dcfbe243e712904b"
+    },
+    {
+      "path": "mcp-client/protocol/dune",
+      "bytes": 232,
+      "lines": 7,
+      "sha256": "fffd3332fa0c9f791913397a216377a2b0f057a2b7144203398349251719aefe"
+    },
+    {
+      "path": "mcp-client/protocol/spindle_mcp_protocol.ml",
+      "bytes": 3605,
+      "lines": 118,
+      "sha256": "312a1c770a399c4beb43c8f7c661cf0b69b275bf498db546452778e3fd02078c"
+    },
+    {
+      "path": "mcp-client/protocol/spindle_mcp_protocol.mli",
+      "bytes": 2041,
+      "lines": 54,
+      "sha256": "a4b6e5be1b6602bb75e5f67cad7cf918a1dec9e7199bce1c834bdb1521ffc4a4"
+    },
+    {
+      "path": "mcp-client/spindle_mcp_client.ml",
+      "bytes": 19923,
+      "lines": 594,
+      "sha256": "97c0a7179ff2c79dca0e15b79a0c836643dc5b00bf5beaa08c492fb1d01e9d3d"
+    },
+    {
+      "path": "mcp-client/spindle_mcp_client.mli",
+      "bytes": 5169,
+      "lines": 144,
+      "sha256": "d64346e23f862c03390e3733a3a2f48c064ea569ad3ce9bb72441cfbca8d6172"
+    },
+    {
+      "path": "mcp/dune",
+      "bytes": 282,
+      "lines": 15,
+      "sha256": "3255ce17d01330a083125abf26b033f40c9eea9f73cef67696cf218474c2da40"
+    },
+    {
+      "path": "mcp/spindle_mcp.ml",
+      "bytes": 24957,
+      "lines": 681,
+      "sha256": "b50600e57662441023a6de996517c4a4bea0de4b148fb01b14ee213c1b6713c9"
+    },
+    {
+      "path": "mcp/spindle_mcp.mli",
+      "bytes": 7501,
+      "lines": 162,
+      "sha256": "57950b585493454b33385f91d5f18785e7454e3d0ffc789d83223e692282f790"
+    },
+    {
+      "path": "postgres/bounds.ml",
+      "bytes": 1365,
+      "lines": 35,
+      "sha256": "a9148c01f5af602c3daca497789a8587b3e0afd33f6e98e5c0aff60ccda17b1c"
+    },
+    {
+      "path": "postgres/bounds.mli",
+      "bytes": 600,
+      "lines": 13,
+      "sha256": "4859a6d6c07c3051198b8f625329297a4bc6273bdb03fcec04133773b1722e88"
+    },
+    {
+      "path": "postgres/dune",
+      "bytes": 607,
+      "lines": 19,
+      "sha256": "95e24de47b911e3fd680dd60e710bdad1b1ea961d955484ee51561550e1b67bf"
+    },
+    {
+      "path": "postgres/migrations/20261021000000_create_spindle_sessions.sql",
+      "bytes": 889,
+      "lines": 17,
+      "sha256": "76a93b7a69a4366c0ac01f7992fd9cfff6eb786165151aa92a7d40d4b8d4f9bd"
+    },
+    {
+      "path": "postgres/pool.ml",
+      "bytes": 4238,
+      "lines": 110,
+      "sha256": "954959f41e98b6c342c1b344bb322063c67290fab27ed2c25f8b124d526bf52e"
+    },
+    {
+      "path": "postgres/pool.mli",
+      "bytes": 5584,
+      "lines": 147,
+      "sha256": "14bf5e7fc30c50522a15edaf9ad7ff94b9edea6d4c056f7a793641a7ea3a860b"
+    },
+    {
+      "path": "postgres/session.ml",
+      "bytes": 4466,
+      "lines": 123,
+      "sha256": "e62c7a81530d697e45318122d984b0bf00d746da814df1218de2b391ef2f08b8"
+    },
+    {
+      "path": "postgres/session.mli",
+      "bytes": 2048,
+      "lines": 42,
+      "sha256": "a607b49d59d147fb4ab960168d66008eae16aeba5961f0abf902da012d75ab3a"
+    },
+    {
+      "path": "postgres/source.ml",
+      "bytes": 89,
+      "lines": 2,
+      "sha256": "5b73e9509e33e4fcacb7d9c01f02f8611c9b3ad1b833d60cbe60cb23b1c95cf6"
+    },
+    {
+      "path": "postgres/source.mli",
+      "bytes": 163,
+      "lines": 4,
+      "sha256": "49d678ffd7c38e95d05fc2a42eaf51dd34fa125dd44b93a0023e17b2b679aa45"
+    },
+    {
+      "path": "postgres/spindle_postgres.ml",
+      "bytes": 1594,
+      "lines": 40,
+      "sha256": "797a5598ecbac4c848af937358c4f9da2e8342ecc33c04751aa50903988e465b"
+    },
+    {
+      "path": "postgres/spindle_postgres.mli",
+      "bytes": 4086,
+      "lines": 86,
+      "sha256": "9990ca39873ed373b66c06e3111f29e591b98bd37e133be9fe5311c52d875e7d"
+    },
+    {
+      "path": "postgres/traced.ml",
+      "bytes": 311,
+      "lines": 12,
+      "sha256": "0cdb3b8d8389a61151951f4c5da5923f25b8fbe4c227dc6454223e5404411685"
+    },
+    {
+      "path": "postgres/traced.mli",
+      "bytes": 390,
+      "lines": 7,
+      "sha256": "dd8ef59545362c9488dbdedf83533612f27780637ced163bca49993f538b6bb4"
+    },
+    {
+      "path": "prds/README.md",
+      "bytes": 731,
+      "lines": 14,
+      "sha256": "29e922168d46a77088135a903bf59dcc24984d69f1828c6a4861b6f047d58456"
+    },
+    {
+      "path": "prds/broadcast-stream.md",
+      "bytes": 11487,
+      "lines": 268,
+      "sha256": "3720cbd7f962914a35d67be4a08136f425e41c9bfd24b681b4fec23a013e08ed"
+    },
+    {
+      "path": "spindle-cli.opam",
+      "bytes": 759,
+      "lines": 31,
+      "sha256": "d15a1d8f8701d0657422b50645358a8db34b8e269ace33bbfcff98dac00505db"
+    },
+    {
+      "path": "spindle-client.opam",
+      "bytes": 1338,
+      "lines": 49,
+      "sha256": "739f1a506cb7057066a45382a2aa247da553c433efeb1d05dd68aaa4d00c6171"
+    },
+    {
+      "path": "spindle-http.opam",
+      "bytes": 1299,
+      "lines": 43,
+      "sha256": "53daa3bb787ab283d0464156fdd08188efa05b85a94260ae23c817688b6e3c94"
+    },
+    {
+      "path": "spindle-mcp-client.opam",
+      "bytes": 1196,
+      "lines": 37,
+      "sha256": "17f63f7723574f36045281fc23229c734df3679ea7e0f6dafe1ef66deeaf9f88"
+    },
+    {
+      "path": "spindle-mcp.opam",
+      "bytes": 1181,
+      "lines": 40,
+      "sha256": "dcdc68213abf2bfe85b562801f3d15b437922742392fe976e5f536199b3c4cba"
+    },
+    {
+      "path": "spindle-postgres.opam",
+      "bytes": 1790,
+      "lines": 59,
+      "sha256": "c5ad0624a501a4ecd5d97ffeeddc861b892827a9596a2074a8d6fa27cf11efab"
+    },
+    {
+      "path": "spindle-sqlite.opam",
+      "bytes": 1061,
+      "lines": 40,
+      "sha256": "b37f1af28151b7072e082312ce56dceb97adf05477670813002fb1a38ae0a306"
+    },
+    {
+      "path": "spindle.opam",
+      "bytes": 1938,
+      "lines": 63,
+      "sha256": "3f7e615f4c83feb9fb2b06fe9a0218ed0a7f69945473385f4daa2e8508757e37"
+    },
+    {
+      "path": "sqlite/dune",
+      "bytes": 571,
+      "lines": 18,
+      "sha256": "829ee690cc95561ffb5e94398fe7a1614b314ad88fd39acc841d00594b3842c9"
+    },
+    {
+      "path": "sqlite/migrations/20261021000000_create_spindle_sessions.sql",
+      "bytes": 712,
+      "lines": 16,
+      "sha256": "f03e709aebd48931a35cb651b5c40a045be43c0ce933c591dc8755f84d906bfb"
+    },
+    {
+      "path": "sqlite/pool.ml",
+      "bytes": 3815,
+      "lines": 101,
+      "sha256": "1613e4ba0f37aacd23cfa545d90fdbc603565ea7c70855db76e7e6b6a9f144e1"
+    },
+    {
+      "path": "sqlite/pool.mli",
+      "bytes": 5008,
+      "lines": 128,
+      "sha256": "d6271d9b206659cefe40caaf04963b04656fd3f7fd7253e4eb677b2ecac83235"
+    },
+    {
+      "path": "sqlite/session.ml",
+      "bytes": 4070,
+      "lines": 114,
+      "sha256": "387d57894f738f58435016947d2a70e39653768963dafe31c109b8fa65f94dd1"
+    },
+    {
+      "path": "sqlite/session.mli",
+      "bytes": 1881,
+      "lines": 39,
+      "sha256": "871ca5a9a210aa549d19084b0fedd1a72be9d9f26acb2d5fb12f9b0d52f08ef4"
+    },
+    {
+      "path": "sqlite/source.ml",
+      "bytes": 87,
+      "lines": 2,
+      "sha256": "065f081106565f5c6dfa3dafa966accb585a06fc27004ab302b32ea162c6e525"
+    },
+    {
+      "path": "sqlite/source.mli",
+      "bytes": 161,
+      "lines": 4,
+      "sha256": "fd1100da5d6c8c0d3cdd3c678b90e61b0bb09465b23c8444213f3c40194c8042"
+    },
+    {
+      "path": "sqlite/spindle_sqlite.ml",
+      "bytes": 1207,
+      "lines": 31,
+      "sha256": "06eb39874ac73a4a5f94709a153a7677a513d44a975cc9ea903bcacafea3504a"
+    },
+    {
+      "path": "sqlite/spindle_sqlite.mli",
+      "bytes": 2326,
+      "lines": 51,
+      "sha256": "b01766563dab66f60e6ce3f5f9e0d58f3d79a54ee93be1ad85a1d770f4d76838"
+    },
+    {
+      "path": "sqlite/traced.ml",
+      "bytes": 301,
+      "lines": 12,
+      "sha256": "5559edcab3a7de2db9b7bf11c47d38619774986d38c252762899d9b0857eeafa"
+    },
+    {
+      "path": "sqlite/traced.mli",
+      "bytes": 384,
+      "lines": 7,
+      "sha256": "dfc635806db620f2ac93ca1617385ba087e8c414763b2d3e753185ea3b2d3fda"
+    },
+    {
+      "path": "test/cli_app.ml",
+      "bytes": 806,
+      "lines": 27,
+      "sha256": "130c75264358a74c26fd016c7a4641c22873d07ebcb5a6a4f443b3f0ed10c7b0"
+    },
+    {
+      "path": "test/db_target.ml",
+      "bytes": 3338,
+      "lines": 88,
+      "sha256": "ed82ce3886053a4235edf800e6a026aab84a5f314b00429d6354b7ad3797af26"
+    },
+    {
+      "path": "test/dune",
+      "bytes": 2748,
+      "lines": 123,
+      "sha256": "cacab80f462a073369ec4b3b945aeba22f4f0a17e1b588746392f635faf527bb"
+    },
+    {
+      "path": "test/in_memory.ml",
+      "bytes": 7100,
+      "lines": 216,
+      "sha256": "c44617f24e1825815d024a155b69725010003b4a86ef700d4ed6dafb87cfde87"
+    },
+    {
+      "path": "test/instants.ml",
+      "bytes": 663,
+      "lines": 21,
+      "sha256": "7429a4413a6c5ec36335d65a5a36a6e2080dcbf3ce642b045cb25962600e17d0"
+    },
+    {
+      "path": "test/melange/.ocamlformat-ignore",
+      "bytes": 82,
+      "lines": 2,
+      "sha256": "c7b0d50125439b4bc369b06f5e2e0123be73c04abf670a6f7d0e5140653b3bec"
+    },
+    {
+      "path": "test/melange/app.ml",
+      "bytes": 5170,
+      "lines": 155,
+      "sha256": "cde0d2a78c6665283a8dfcb613ad18bcd720e624969a5766c1ff8e1a12f5b872"
+    },
+    {
+      "path": "test/melange/client.ml",
+      "bytes": 79430,
+      "lines": 2169,
+      "sha256": "a033cde73ac04d738c1aa7c0b990cc3a9c1faa67bf6bcab4afceda264b220b32"
+    },
+    {
+      "path": "test/melange/dune",
+      "bytes": 990,
+      "lines": 46,
+      "sha256": "b9042a9fd9c04cc7971af9d6ae6f41b0179007ca6e82f57978bc68bf2f511a18"
+    },
+    {
+      "path": "test/melange/print_client.ml",
+      "bytes": 386,
+      "lines": 15,
+      "sha256": "10f706ecf9938228228b0e20aa33730b5f10638be51d572da7ba85ada996f3f9"
+    },
+    {
+      "path": "test/melange/run.ml",
+      "bytes": 7780,
+      "lines": 210,
+      "sha256": "58329fa318a006713f7a78a28ff2b4bc8da4cf9ba0e35e98db603aefbcc0bc7c"
+    },
+    {
+      "path": "test/melange/test_client.ml",
+      "bytes": 1648,
+      "lines": 53,
+      "sha256": "b4bf37a06f6a59c181e49f082db0697e458d2431f91f5bb1abdd98c5a8594fd0"
+    },
+    {
+      "path": "test/oidc/bun.lock",
+      "bytes": 7481,
+      "lines": 93,
+      "sha256": "cc5d76874fcd2b84abb2974030c61d6fdc728b8e9881f9c98f13375e455f0c01"
+    },
+    {
+      "path": "test/oidc/issuer.mjs",
+      "bytes": 4544,
+      "lines": 142,
+      "sha256": "8c4682d49ab381f81ac9f88c9c78f578c056791e8f691b050e8d9e3cc1b67ab0"
+    },
+    {
+      "path": "test/oidc/package.json",
+      "bytes": 128,
+      "lines": 8,
+      "sha256": "734c68995c27ef24f03c34201eec4b7844b16c42d4920f5babc16df743f4488a"
+    },
+    {
+      "path": "test/serve_app.ml",
+      "bytes": 644,
+      "lines": 18,
+      "sha256": "f07914ee1f122b1ba70f8f0c1fa94466c40e9c6d2a63248e5a75c1e5e6516683"
+    },
+    {
+      "path": "test/structured-field-tests/LICENSE.md",
+      "bytes": 1561,
+      "lines": 25,
+      "sha256": "db59c2f3609ac3b183fc0c5c7d71da6212b6c86c10cb7715e30d6b876c3a587d"
+    },
+    {
+      "path": "test/structured-field-tests/binary.json",
+      "bytes": 3005,
+      "lines": 126,
+      "sha256": "653da96a89c829c7c8f18ce05c315a9b622e1b7c9f140a52d23c02163fbed4ab"
+    },
+    {
+      "path": "test/structured-field-tests/boolean.json",
+      "bytes": 1574,
+      "lines": 75,
+      "sha256": "0413a8dd07dae5a794e9c968cce11dd913d448892a6ff0b102c6530fa4b9446f"
+    },
+    {
+      "path": "test/structured-field-tests/date.json",
+      "bytes": 3009,
+      "lines": 107,
+      "sha256": "187b13bc54e017a26a18fe0270792fc2b9a3819faac3cfbc7490c38d8a7653b3"
+    },
+    {
+      "path": "test/structured-field-tests/dictionary.json",
+      "bytes": 4924,
+      "lines": 169,
+      "sha256": "3e7626a312b6463bbbf6d4cface0492e8880029b33bbdcf0c5691c137862059a"
+    },
+    {
+      "path": "test/structured-field-tests/display-string.json",
+      "bytes": 4047,
+      "lines": 137,
+      "sha256": "c1fc712bfdba7b0bcdf8d3c62a3f9f4aff2fbd33931b6eeb8c9d68d6beb3cded"
+    },
+    {
+      "path": "test/structured-field-tests/examples.json",
+      "bytes": 6084,
+      "lines": 208,
+      "sha256": "f180e525adcb8bf0199e6fdae3e915e030aef28529de138ad2967d2115fd6835"
+    },
+    {
+      "path": "test/structured-field-tests/item.json",
+      "bytes": 735,
+      "lines": 34,
+      "sha256": "6104e2be2fdc269071973a577ae5460e55c25e40ee138a064a3dabcacf9d99a0"
+    },
+    {
+      "path": "test/structured-field-tests/key-generated.json",
+      "bytes": 149773,
+      "lines": 7013,
+      "sha256": "7cf177687eadfa15e8aafe158788348e067dbadc675987823a2a08a414ebeafc"
+    },
+    {
+      "path": "test/structured-field-tests/large-generated.json",
+      "bytes": 727664,
+      "lines": 28819,
+      "sha256": "ade790e9425083bb8e8f5082a6c0b7565877feefdd59d37ed76b4dbfab14d3c4"
+    },
+    {
+      "path": "test/structured-field-tests/list.json",
+      "bytes": 1750,
+      "lines": 74,
+      "sha256": "d8d21cac1f5814363a5cfe56b1bd80963bce36cacbb0c1a59d59c14ae7622ba7"
+    },
+    {
+      "path": "test/structured-field-tests/listlist.json",
+      "bytes": 1969,
+      "lines": 76,
+      "sha256": "82b961c02b55753d122a8f72bffde93d178575f03a43154818afb73091f688cf"
+    },
+    {
+      "path": "test/structured-field-tests/number-generated.json",
+      "bytes": 46235,
+      "lines": 2374,
+      "sha256": "32b672b3cc61bc0b26d9d7da4b2d86508e05bab029bfce43a65afc8fd355c922"
+    },
+    {
+      "path": "test/structured-field-tests/number.json",
+      "bytes": 6108,
+      "lines": 255,
+      "sha256": "fe5cab144d9cd76ba465ed6222eea68e19d7d8679c0e1499ca7f9c7af34f420d"
+    },
+    {
+      "path": "test/structured-field-tests/param-dict.json",
+      "bytes": 3457,
+      "lines": 113,
+      "sha256": "3dcc8fc0977072d542e34f13dcfe5fe22e520a5abc2220f86ffcbbcc8b409bdb"
+    },
+    {
+      "path": "test/structured-field-tests/param-list.json",
+      "bytes": 4814,
+      "lines": 151,
+      "sha256": "232e87b307051619055262cd6ac550790961db11ed1f58d8139186b872afca17"
+    },
+    {
+      "path": "test/structured-field-tests/param-listlist.json",
+      "bytes": 1022,
+      "lines": 36,
+      "sha256": "fde5860376f2be0d2d497fb2e2c5a36ee2bdace0ecfc511ba474ec14e6852321"
+    },
+    {
+      "path": "test/structured-field-tests/serialisation-tests/key-generated.json",
+      "bytes": 141470,
+      "lines": 6239,
+      "sha256": "a1719ac20a72a3ea062a3d1f4c3e3e7858420af80f15f009f7f1b30d0ace1dab"
+    },
+    {
+      "path": "test/structured-field-tests/serialisation-tests/number.json",
+      "bytes": 1530,
+      "lines": 57,
+      "sha256": "f73b5239a7e84cfcc19e29c01dbae85da0a4c6b3273018cc92a19c1fc632b4a1"
+    },
+    {
+      "path": "test/structured-field-tests/serialisation-tests/string-generated.json",
+      "bytes": 6285,
+      "lines": 299,
+      "sha256": "035b53c08a706ce401a3b0e0ebc13bf6090edefc14747089f13bf6ad66e6d822"
+    },
+    {
+      "path": "test/structured-field-tests/serialisation-tests/token-generated.json",
+      "bytes": 33433,
+      "lines": 1490,
+      "sha256": "1f4db75952490df9b7ef17f71f745275482f3cb36e34527c3c1ca434f7e3d868"
+    },
+    {
+      "path": "test/structured-field-tests/string-generated.json",
+      "bytes": 44542,
+      "lines": 2335,
+      "sha256": "99c4d3dac05e0452a0b8bee2b6b1d78898cfb6ccda2cc34aa6d1fcf1dfd2864a"
+    },
+    {
+      "path": "test/structured-field-tests/string.json",
+      "bytes": 2556,
+      "lines": 88,
+      "sha256": "247080f284048c5931c49e6b63064fd3caa49e737b565084b5efa3ccace33137"
+    },
+    {
+      "path": "test/structured-field-tests/token-generated.json",
+      "bytes": 54972,
+      "lines": 2862,
+      "sha256": "33f8cb0f15958126f682608efb99eea8214ce92a04d5fb56999c3c5f01046439"
+    },
+    {
+      "path": "test/structured-field-tests/token.json",
+      "bytes": 1125,
+      "lines": 38,
+      "sha256": "9fd251e8ac0cb3ef71533b6063affb09c6faef1cdefa9568ce8c94a0041381ef"
+    },
+    {
+      "path": "test/stub_server.ml",
+      "bytes": 3033,
+      "lines": 92,
+      "sha256": "2d536bf10aab1591b251b37614ee03adbc07d719de8a8953e03fdad204d56e34"
+    },
+    {
+      "path": "test/test_cli.ml",
+      "bytes": 8549,
+      "lines": 227,
+      "sha256": "12475d515da91522cc4076044bfab20e56d46fd752a8702eac135156c73f5d06"
+    },
+    {
+      "path": "test/test_docs.ml",
+      "bytes": 2252,
+      "lines": 69,
+      "sha256": "5ea19fba3779b434c2ed6f9e1fae35b5491ccc9ffef99dafde3767d7c9fb2d65"
+    },
+    {
+      "path": "test/test_gz.ml",
+      "bytes": 1446,
+      "lines": 43,
+      "sha256": "090a12b424586afedb917c88c9b9aec18da4cd5192f3b35ef7000a00b27c3652"
+    },
+    {
+      "path": "test/test_http_rfc.ml",
+      "bytes": 190254,
+      "lines": 4956,
+      "sha256": "5dc9b572fb63f9e869cec5ca74a8a4708e96d32e562aec24e39e613e1fcf8767"
+    },
+    {
+      "path": "test/test_mcp_spec.ml",
+      "bytes": 48507,
+      "lines": 1228,
+      "sha256": "8acee7bbeadc6295bad1261244a79bb9dcf1eaae890b4b56e318fe31673349d9"
+    },
+    {
+      "path": "test/test_multipart_rfc.ml",
+      "bytes": 13260,
+      "lines": 396,
+      "sha256": "9c3cfb0d2b8a238f0fb60f65a3641045509e5c0e27455b2ac814b2bf2437c63d"
+    },
+    {
+      "path": "test/test_oauth_rfc.ml",
+      "bytes": 58985,
+      "lines": 1454,
+      "sha256": "889d8edda18ebb7572218cccfe00bead1c0dd7f49c3eadc0768fd26e6939dc9a"
+    },
+    {
+      "path": "test/test_openapi.ml",
+      "bytes": 42143,
+      "lines": 1147,
+      "sha256": "9e65146d6cd3c23c5243dcbe8d3c0c9c5bf0e35c4e068ddd67d24061f6c3a48a"
+    },
+    {
+      "path": "test/test_spindle.ml",
+      "bytes": 413933,
+      "lines": 10635,
+      "sha256": "c55fee5db847c21c9a40e219c984deb7b762d2e1885a2e6ebb84799017711313"
+    },
+    {
+      "path": "test/test_spindle_postgres.ml",
+      "bytes": 49048,
+      "lines": 1207,
+      "sha256": "8a92d7085cbf2d6d64e717536266d92ae87df1936265fff9b2c394317b208900"
+    },
+    {
+      "path": "test/test_spindle_sqlite.ml",
+      "bytes": 17575,
+      "lines": 488,
+      "sha256": "6374ba7ce029d31689e45a97562a5f60687cb49b44c85cc7b84973b177de3045"
+    },
+    {
+      "path": "test/test_structured.ml",
+      "bytes": 8778,
+      "lines": 254,
+      "sha256": "832a48b9510204a2570594408b7cabf99d7b02af8163e7df99ff345195193ae8"
+    },
+    {
+      "path": "test/test_websocket.ml",
+      "bytes": 35092,
+      "lines": 941,
+      "sha256": "01dc2bd765ad6a340823f82d888c56ff5d058e9d622ce6d7a27ee8f7b32ff0a3"
+    },
+    {
+      "path": "test/test_websocket_rfc.ml",
+      "bytes": 42474,
+      "lines": 1174,
+      "sha256": "0fe0266c89782d672699df68011a0fb393ab9e7617156e0b9e951e616e4348ca"
+    },
+    {
+      "path": "test/test_wire.ml",
+      "bytes": 48250,
+      "lines": 1235,
+      "sha256": "0c2b74c1bd81022c8ffd9ab383b05935f7a1cfe64b69b6bbbe64c6bbd9d5dc75"
+    },
+    {
+      "path": "test/tls_front.ml",
+      "bytes": 3839,
+      "lines": 108,
+      "sha256": "bd9c2b2e82108f9cd8fa7f3ce083eb5b7edca8a90251e577a7f0f996648daade"
+    }
+  ],
+  "interfaces": [
+    {
+      "path": "cli/spindle_cli.mli",
+      "contract_intro": "An application's command line: its API, described from the routes. OCaml cannot load an application into a generic command, so each application calls {!run} from an executable of its own: {[ let () = Spindle_cli.run ~name:\"myapp\" ~app:(Spindle.App.make routes) () ]} [app] is only described -- no request reaches it, and it is never started -- so a route that reads a resource ({!Spindle.Dep.of_resource}) is described w",
+      "top_level_values": [
+        "run"
+      ]
+    },
+    {
+      "path": "client/spindle_client.mli",
+      "contract_intro": "Calling another server. The request is written, and the response read, by [spindle_http] -- the reader and writer the server is built on, so the framework has one account of where a message ends. A 1xx before the answer is read and dropped, a response cut short or framed two ways is an error, and a TLS connection is ended with its closure alert. Connections are the client's and never a caller's: a connection borrowed",
+      "top_level_values": [
+        "create",
+        "run",
+        "error_to_string",
+        "call",
+        "stream",
+        "events",
+        "websocket_error_to_string",
+        "websocket"
+      ]
+    },
+    {
+      "path": "core/alarm.mli",
+      "contract_intro": "Wake-ups, one per key: \"look at this again after so long\". Setting a key again supersedes what was set before: the earlier wake-up's fiber is cancelled, not left asleep, and a key is forgotten once it has fired or been cancelled -- so a table of alarms holds only what is still to come, however many keys have been and gone.",
+      "top_level_values": [
+        "create",
+        "set",
+        "cancel"
+      ]
+    },
+    {
+      "path": "core/app.mli",
+      "contract_intro": "An application: routes, what answers everything they do not match, and what applies to all of it. A request is matched by method and path. A path some route claims under another method is [405] with [Allow], which names [OPTIONS] too: a plain [OPTIONS] of such a path, where no route declares one, is [204] with that [Allow] (RFC 9110 §9.3.7), and [OPTIONS *], which asks of the server, is [204] with nothing more. A pat",
+      "top_level_values": [
+        "make",
+        "routes",
+        "start",
+        "app",
+        "keys",
+        "handle"
+      ]
+    },
+    {
+      "path": "core/background.mli",
+      "contract_intro": "Work nobody is waiting for. A daemon, so a process shutting down is not held open by one. A failure is {b logged}, never raised: a fiber's exception fails the switch it was forked on, and when that switch is the server's, one bug in a background job would take every request down with it. Cancellation still passes, because that is the server going away and not a failure. {b It runs where it was caused.} A fork from a ",
+      "top_level_values": [
+        "create",
+        "fork"
+      ]
+    },
+    {
+      "path": "core/bearer.mli",
+      "contract_intro": "OAuth 2.0 bearer tokens, checked as a resource server checks them: a JWT access token (RFC 9068) sent in [Authorization] (RFC 6750 §2.1), signed with the issuer's keys and issued for this resource (RFC 8707), refused with the challenge RFC 6750 §3 names, and described by the metadata document RFC 9728 has a client find the issuer from. {[ let auth = Spindle.Bearer.make ~issuer:\"https://id.example.com\" ~resource:\"http",
+      "top_level_values": [
+        "make",
+        "keys",
+        "claims",
+        "scope",
+        "insufficient_scope",
+        "lacking",
+        "metadata"
+      ]
+    },
+    {
+      "path": "core/body.mli",
+      "contract_intro": "A request body read as it arrives: what {!Spindle.body_stream} hands a route, for a body too large to hold -- an upload. {[ let rec save file body = let* part = Spindle.Body.read body in match part with | `Data part -> Out_channel.output_string file part; save file body | `End -> Ok () ]} {b Every failure is the route's answer.} A body past the route's limit is {!Refusal.too_large}, one the server has no room for {!R",
+      "top_level_values": [
+        "error_to_string",
+        "read"
+      ]
+    },
+    {
+      "path": "core/body_repr.mli",
+      "contract_intro": "A request's body while a route runs: read whole once and kept for every dependency that asks, or handed to the one that streams it. What {!Body} is, underneath.",
+      "top_level_values": [
+        "hold",
+        "refusal",
+        "not_multipart",
+        "whole",
+        "stream",
+        "end_handler"
+      ]
+    },
+    {
+      "path": "core/broadcast.mli",
+      "contract_intro": "One event, rendered once, sent to everybody listening to a topic. There is no broker. A broker exists to carry an event from one process to a socket held by another, and in one process three hundred listeners are three hundred fibers parked on a read, which is the thing Eio is good at. What the load actually demands is two rules, and both are here. {b The publisher renders once.} {!publish} takes the event already re",
+      "top_level_values": [
+        "create",
+        "subscribe",
+        "unsubscribe",
+        "next",
+        "close",
+        "publish",
+        "topics",
+        "subscribers"
+      ]
+    },
+    {
+      "path": "core/cache.mli",
+      "contract_intro": "How long a browser may keep what the routes answer, apart from what they serve: a policy of the application's, given among its middleware. {[ Spindle.serve env ~middleware:[ Spindle.Cache.forever ~under:Spindle.Path.[ s \"assets\" ] ] (routes @ [ Spindle.Static.directory \"dist\" ]) ]} Without one, nothing is kept unasked: {!Static} and {!Files} answer every file [no-cache] with a strong entity tag, so a browser keeps it",
+      "top_level_values": [
+        "forever"
+      ]
+    },
+    {
+      "path": "core/codec.mli",
+      "contract_intro": "Codecs: how one piece of text in a request -- a path segment, a query parameter, a header, a cookie -- is read as a value, and written back. {[ let page = Spindle.Query.optional \"page\" Spindle.Codec.int let colour = Spindle.Path.param \"colour\" (Spindle.Codec.enum ~kind:\"colour\" Colour.to_string Colour.[ Red; Green ]) ]} One codec reads the same way wherever the text arrives, and says what it reads as a {!type-shape},",
+      "top_level_values": [
+        "string",
+        "int",
+        "int64",
+        "float",
+        "uuid",
+        "date",
+        "instant",
+        "bool",
+        "enum",
+        "custom",
+        "parse",
+        "print",
+        "expects",
+        "shape",
+        "kind",
+        "media_type",
+        "credentials",
+        "accept",
+        "weighted",
+        "cache_control",
+        "forwarded",
+        "structured_item",
+        "structured_list",
+        "structured_dictionary"
+      ]
+    },
+    {
+      "path": "core/codec_repr.mli",
+      "contract_intro": "A codec as the framework holds it: what {!Codec} is, underneath, and the one thing only the framework reads of one, whether its value is a list. Each value {!Codec} exports is documented there.",
+      "top_level_values": []
+    },
+    {
+      "path": "core/compress.mli",
+      "contract_intro": "Answers compressed with gzip, streams included: one policy for the app ({!App.make}'s [compress]), off unless given, because it is CPU the process pays and the proxy in front often compresses already. {[ Spindle.serve env ~compress:Spindle.Compress.default routes ]} {b What is compressed}: a buffered answer of a listed type and at least [min_bytes], or a stream of one whose length is not known, to a client whose [Acc",
+      "top_level_values": [
+        "make",
+        "default",
+        "never"
+      ]
+    },
+    {
+      "path": "core/compress_repr.mli",
+      "contract_intro": "What {!Compress} is, underneath: shared with the server, which decides whether an answer is compressed.",
+      "top_level_values": [
+        "never",
+        "compressible",
+        "gzip_tag",
+        "unmarked"
+      ]
+    },
+    {
+      "path": "core/conditional.mli",
+      "contract_intro": "A [GET] of a representation: RFC 9110 §13.2.2's preconditions in their order, then §14's range: one account for every file the framework serves.",
+      "top_level_values": [
+        "inputs",
+        "decide",
+        "representation_headers",
+        "bodiless_response"
+      ]
+    },
+    {
+      "path": "core/cookie.mli",
+      "contract_intro": "Cookies: the ones a response sets, and reading the ones a request carries. A cookie is declared once, by its name and the codec its value is read and written by, and used both ways: {[ let visits = Spindle.Cookie.named \"visits\" Spindle.Codec.int let+ n = Spindle.Cookie.optional visits in ... set_cookie (Spindle.Cookie.make visits 3) ]} A cookie is [HttpOnly] and [SameSite=Lax] unless it says otherwise, and whether it",
+      "top_level_values": [
+        "named",
+        "signed",
+        "encrypted",
+        "make",
+        "clear"
+      ]
+    },
+    {
+      "path": "core/cookie_repr.mli",
+      "contract_intro": "A cookie as the framework holds it: writing [Set-Cookie], reading [Cookie], encoding a value. What {!Cookie} is, underneath; each value {!Cookie} exports is documented there.",
+      "top_level_values": [
+        "named",
+        "whole_seconds",
+        "signed",
+        "encrypted",
+        "make",
+        "clear",
+        "unescape",
+        "encode",
+        "decode",
+        "to_header",
+        "parse"
+      ]
+    },
+    {
+      "path": "core/cors.mli",
+      "contract_intro": "Another site's page calling this one's routes, as the Fetch standard lets a server allow: one policy for the app ({!App.make}'s [cors]). {[ Spindle.serve env ~cors: (Spindle.Cors.origins ~credentials:true [ \"https://app.example.com\" ]) routes ]} {b The framework answers the preflight}: an [OPTIONS] with [Origin] and [Access-Control-Request-Method], on a path a covered route answers, is [204] with the methods the rout",
+      "top_level_values": [
+        "origins",
+        "any"
+      ]
+    },
+    {
+      "path": "core/cors_repr.mli",
+      "contract_intro": "A CORS policy as the server applies it: what {!Cors.origins} or {!Cors.any} makes, and the fields of the Fetch standard's answers it owes a cross-origin request.",
+      "top_level_values": [
+        "covers",
+        "trusts",
+        "preflight",
+        "answer_headers"
+      ]
+    },
+    {
+      "path": "core/deadline.mli",
+      "contract_intro": "How long a connection may keep the server waiting: one deadline for the whole connection, and one sweep per domain that looks at every deadline of that domain's connections once a tick -- a deadline and its sweep are on the same domain, always. Every read of the connection, and every flush of an answer to it, runs against it, and moving it is a write to a field, not a timer: arming it for a head, a body or an answer,",
+      "top_level_values": [
+        "sweep",
+        "watch",
+        "run",
+        "reading",
+        "arm",
+        "arm_since_last",
+        "remaining",
+        "clear",
+        "progress",
+        "wait",
+        "passed"
+      ]
+    },
+    {
+      "path": "core/dep.mli",
+      "contract_intro": "Dependencies: what a handler needs, computed from the request. A ['a t] is a value -- a body of some shape, a query parameter, a signed-in person -- that is worked out when a request arrives, or a refusal that answers the request instead. A handler lists what it needs with OCaml's own binding operators, and every line runs before its body: {[ open Spindle.Syntax let+ query = Spindle.json query_json and+ now = Spindle",
+      "top_level_values": [
+        "of_request",
+        "of_resource",
+        "resource",
+        "of_body",
+        "return",
+        "uncached",
+        "refuse",
+        "credential",
+        "credentials",
+        "problem",
+        "map",
+        "both",
+        "join",
+        "bind",
+        "needs",
+        "codes",
+        "opaque"
+      ]
+    },
+    {
+      "path": "core/dep_repr.mli",
+      "contract_intro": "A dependency as the framework runs it: what it reads, how it refuses, its two stages, and the identity its answer is shared by. What {!Dep} is, underneath; the types {!Dep} names are documented there.",
+      "top_level_values": [
+        "content_types",
+        "takes_content_type",
+        "outgoing",
+        "exec",
+        "needs",
+        "codes",
+        "credentials",
+        "merge_credentials",
+        "resources_read",
+        "needs_table",
+        "make",
+        "of_resource",
+        "resource",
+        "cookie_keys",
+        "is_cookie_keys",
+        "supplied",
+        "supply",
+        "kept",
+        "is_supplied",
+        "run",
+        "of_body"
+      ]
+    },
+    {
+      "path": "core/described.mli",
+      "contract_intro": "An application's routes as the two printers read them: every description walked, the answers first and then the bodies, so a component a response and a request share takes the response's name.",
+      "top_level_values": [
+        "of_app",
+        "of_shape"
+      ]
+    },
+    {
+      "path": "core/event.mli",
+      "contract_intro": "Server-Sent Events, declared: what a stream may send, by name and description, and each event made from its declaration. {[ type room let state : (state, room) Event.kind = Event.json \"state\" state_json let token : (string, room) Event.kind = Event.text \"token\" Spindle.get path (Returns.events Event.[ declare state; declare token ]) (let+ room = Spindle.param room in Ok (fun send -> ...)) ]} A stream's events are a t",
+      "top_level_values": [
+        "json",
+        "text",
+        "kind_name",
+        "kind_data",
+        "declare",
+        "declared_name",
+        "make",
+        "retry",
+        "comment",
+        "name",
+        "to_string"
+      ]
+    },
+    {
+      "path": "core/file_types.mli",
+      "contract_intro": "A file's media type by its name, and the precompressed siblings a build writes beside it, shared by {!Static} and {!Files}.",
+      "top_level_values": [
+        "content_type",
+        "extension",
+        "siblings",
+        "coding",
+        "nosniff"
+      ]
+    },
+    {
+      "path": "core/files.mli",
+      "contract_intro": "A directory served from disk as it is when a request arrives: uploads, generated reports, anything that changes while the server runs. {[ Spindle.serve env (routes @ [ Spindle.Files.directory ~at:Path.(s \"uploads\") \"var/uploads\" ]) ]} Where {!Static} reads a built site into memory once, this opens the file a request names when it arrives, and streams it. {b It never leaves its directory, twice over.} A segment that i",
+      "top_level_values": [
+        "directory",
+        "route"
+      ]
+    },
+    {
+      "path": "core/form.mli",
+      "contract_intro": "A form's fields, typed: [Spindle.Form.required \"email\" Spindle.Codec.string]. A field is an input as a query parameter is, read with a {!Codec}, and a problem with one is {!Refusal.invalid} at [form.<name>], reported with every other problem of the request at once. The body is read once, as a form, however many fields a route reads ({!Dep}'s sharing): [application/x-www-form-urlencoded], what a browser posts from a f",
+      "top_level_values": [
+        "optional",
+        "required",
+        "list",
+        "checked"
+      ]
+    },
+    {
+      "path": "core/gzip.mli",
+      "contract_intro": "gzip (RFC 1952) written a piece at a time: deflate from [decompress] and the CRC-32 its trailer carries.",
+      "top_level_values": [
+        "create",
+        "write",
+        "finish",
+        "string"
+      ]
+    },
+    {
+      "path": "core/header.mli",
+      "contract_intro": "Request headers, typed: [Spindle.Header.optional \"x-page\" Spindle.Codec.int]. As {!Query}, at [header.<name>]; a name is matched without regard to case, and a value is read trimmed. A header sent on several lines is one field (RFC 9110 §5.2). A codec of a list -- {!Codec.accept}, {!Codec.weighted}, {!Codec.cache_control}, {!Codec.forwarded}, {!Codec.structured_list}, {!Codec.structured_dictionary}, and a {!Codec.cust",
+      "top_level_values": [
+        "optional",
+        "required",
+        "default"
+      ]
+    },
+    {
+      "path": "core/health.mli",
+      "contract_intro": "Whether the server is up, and whether it can serve: [GET /livez] and [GET /readyz], the two questions an orchestrator, a load balancer or a person asks of a running server. They are routes, added to the application's own, and a check reads what it asks about as a route does, so they are made with the rest before any of it exists: {[ let routes = app_routes @ Spindle.Health.routes [ Spindle_postgres.Pool.check db ] le",
+      "top_level_values": [
+        "check",
+        "not_ready",
+        "routes"
+      ]
+    },
+    {
+      "path": "core/input.mli",
+      "contract_intro": "Reading a typed input: a query parameter, a header, a cookie or a path parameter, told apart only by where its text comes from. {!Query}, {!Header}, the cookie inputs and {!Spindle.param} are built on this, and nothing outside the library reaches it.",
+      "top_level_values": [
+        "query",
+        "header",
+        "cookie",
+        "optional",
+        "default",
+        "required",
+        "list",
+        "param",
+        "parse",
+        "missing"
+      ]
+    },
+    {
+      "path": "core/key.mli",
+      "contract_intro": "The keys a signed or an encrypted cookie is made with ({!Spindle.Cookie}). {[ let () = match Sys.getenv_opt \"COOKIE_SECRET\" with | None -> prerr_endline \"COOKIE_SECRET is not set.\" | Some secret -> ( match Spindle.Key.of_secret secret with | Ok key -> Eio_main.run @@ fun env -> Spindle.serve env ~keys:(Spindle.Key.ring key []) routes | Error sentence -> prerr_endline sentence) ]} The ring is the server's: its signed ",
+      "top_level_values": [
+        "of_secret",
+        "ring",
+        "sign",
+        "verify",
+        "seal",
+        "unseal"
+      ]
+    },
+    {
+      "path": "core/key_repr.mli",
+      "contract_intro": "A key as the framework holds it: {!Key}'s, and the two more a signed and an encrypted cookie are made with, which nothing outside the framework can use.",
+      "top_level_values": [
+        "of_secret",
+        "ring",
+        "sign",
+        "verify",
+        "seal",
+        "unseal",
+        "sign_cookie",
+        "verify_cookie",
+        "seal_cookie",
+        "unseal_cookie"
+      ]
+    },
+    {
+      "path": "core/log.mli",
+      "contract_intro": "Logging: one line per event, on stderr, through {{:https://erratique.ch/software/logs}logs}. Every library that logs through [logs] lands here too, so a line from TLS arrives beside a line from the application in the same shape. A line inside a request carries that request's id; a fiber the request forks inherits it, and {!carry} takes it onto a systhread -- so everything one request caused is one search. Levels mean",
+      "top_level_values": [
+        "setup",
+        "configure"
+      ]
+    },
+    {
+      "path": "core/melange.mli",
+      "contract_intro": "An application's routes as an OCaml module for {{:https://melange.re}Melange}: the shapes as types, and a function per route that calls it, so a browser written in OCaml calls the server with the server's own types and never with a path or a shape typed by hand. It is printed from the same walk as {!Openapi.document} and {!Zod.schemas}, so the three cannot disagree. The module is wiretype's for every component -- [Wi",
+      "top_level_values": [
+        "client"
+      ]
+    },
+    {
+      "path": "core/meta.mli",
+      "contract_intro": "What a route says about itself beside what it does: a summary, a description, tags -- and whatever a package adds, under keys of its own. OCaml keeps no docstrings at run time, so what a document says of a route is written beside it, as values: {[ let item = Spindle.post ~summary:\"Add an item\" ~tags:[ \"orders\" ] path answer inputs (* a package's own",
+      "top_level_values": [
+        "key",
+        "empty",
+        "add",
+        "find",
+        "summary",
+        "doc",
+        "tags",
+        "access"
+      ]
+    },
+    {
+      "path": "core/metrics.mli",
+      "contract_intro": "What a server counts, read as Prometheus reads it: counters, gauges and histograms, each with a fixed list of label names, registered on a registry the application makes and passes where it serves -- {[ let metrics = Spindle.Metrics.create () let () = Eio_main.run @@ fun env -> Spindle_postgres.Pool.run env database @@ fun pool -> Spindle_postgres.Pool.measure pool metrics; Spindle.serve env ~metrics ~resources:[ Spi",
+      "top_level_values": [
+        "create",
+        "counter",
+        "inc",
+        "gauge",
+        "add",
+        "sampled",
+        "histogram",
+        "observe",
+        "exposition",
+        "routes"
+      ]
+    },
+    {
+      "path": "core/middleware.mli",
+      "contract_intro": "What applies to every route: a function from a handler to a handler. {[ let count_requests handler request = Atomic.incr count; handler request ]} {[ Spindle.serve env ~middleware:[ count_requests ] routes ]} A middleware wraps the whole application -- every route and the not-found answer -- so a page gets what an API route gets. It cannot reroute a request, which is matched before it runs: a moved page is a redirect",
+      "top_level_values": [
+        "headers"
+      ]
+    },
+    {
+      "path": "core/multipart.mli",
+      "contract_intro": "A body read a part at a time, as it arrives: what {!Spindle.multipart} hands a route, for an upload too large to hold. {[ let rec each parts = let* part = Spindle.Multipart.next parts in match part with | None -> Ok receipt | Some part -> let* () = save part parts in each parts ]} {b Every failure is the route's answer}, as {!module-Body}'s is: a body that is no [multipart/form-data] is {!Refusal.invalid} at [body], ",
+      "top_level_values": [
+        "next",
+        "read"
+      ]
+    },
+    {
+      "path": "core/openapi.mli",
+      "contract_intro": "An application's routes as an OpenAPI 3.2 document, and [/docs] to read it by ({!val-routes} serves both). Everything is read from {!Spindle.App.routes} and the routes' descriptions: requests from the decoding direction, answers from the encoding one, each description with a [kind] a component named by it. A route's codes are its responses, grouped by status, each with what it means. A credential ({!Spindle.Dep.val-c",
+      "top_level_values": [
+        "document",
+        "report",
+        "make",
+        "routes"
+      ]
+    },
+    {
+      "path": "core/out.mli",
+      "contract_intro": "JSON as the generator writes it: in the order it was built, two spaces to a level, so a committed document changes only where the application did.",
+      "top_level_values": [
+        "of_value",
+        "to_string",
+        "json_string"
+      ]
+    },
+    {
+      "path": "core/outgoing.mli",
+      "contract_intro": "What a handler adds to its answer as dependencies: the cookies and headers it sets, for {!Spindle.set_cookie}, {!Spindle.add_header} and whatever else in the framework sets one, so each is set the one way.",
+      "top_level_values": [
+        "set_cookie",
+        "add_header"
+      ]
+    },
+    {
+      "path": "core/path.mli",
+      "contract_intro": "Paths: which URLs a route answers, and the names and types of their parameters. {[ let user_id = Path.int \"user_id\" let posts = Path.(s \"users\" / user_id / s \"posts\") let me = Path.(s \"users\" / s \"me\") ]} A path describes a URL and hands the handler nothing: a parameter reaches it as a dependency, [Spindle.param user_id], like any other input, so a dependency can be built from one -- load the user, check they may be ",
+      "top_level_values": [
+        "param",
+        "string",
+        "int",
+        "int64",
+        "rest",
+        "root",
+        "s",
+        "(",
+        "pattern",
+        "arg",
+        "url"
+      ]
+    },
+    {
+      "path": "core/path_repr.mli",
+      "contract_intro": "A path as the framework reads it: its segments and each parameter's codec. What {!Path} is, underneath, and what the router matches.",
+      "top_level_values": [
+        "parts_of",
+        "segments",
+        "encode",
+        "join_rest",
+        "rest_codec"
+      ]
+    },
+    {
+      "path": "core/query.mli",
+      "contract_intro": "Query parameters, typed: [Spindle.Query.optional \"page\" Spindle.Codec.int]. Each is a dependency that says what it reads, by name and {!Codec.type-shape}. A value that does not parse is {!Refusal.invalid} at [query.<name>], and a required one that is missing is too -- reported with every other problem of the request, at once. A parameter sent more than once, [?role=viewer&role=admin], is read by its first value, as t",
+      "top_level_values": [
+        "optional",
+        "required",
+        "default",
+        "list"
+      ]
+    },
+    {
+      "path": "core/rate.mli",
+      "contract_intro": "How often a key may call a route: a limit, and the dependency that holds a request to it. {[ let sign_ins = Spindle.Rate.create ~limit:10 ~per:Mtime.Span.s () (let+ () = Spindle.Rate.limit sign_ins ~key:Spindle.client_ip and+ ... in ...) ]} {b A limit is a dependency}, so it is listed where the route is, and the route's document names its [429]: a request past it is refused with {!Refusal.Code.rate_limited}, which {!",
+      "top_level_values": [
+        "create",
+        "limit"
+      ]
+    },
+    {
+      "path": "core/refusal.mli",
+      "contract_intro": "A request answered with \"no\": a code, a sentence and a detail. The client is sent the code and the sentence as [{\"error\": code, \"message\": sentence}]. The code is what a client branches on and the sentence is what a person reads, so it is a sentence -- a capital, a stop -- written for whoever is using the application, never an upstream service's wording or a parser's. The detail is what whoever runs the server needs,",
+      "top_level_values": [
+        "make",
+        "status",
+        "not_found",
+        "method_not_allowed",
+        "unreadable",
+        "invalid",
+        "too_large",
+        "rate_limited",
+        "busy",
+        "unsupported_media_type",
+        "cross_origin",
+        "not_implemented",
+        "internal",
+        "raised"
+      ]
+    },
+    {
+      "path": "core/request.mli",
+      "contract_intro": "What arrived: a method, a target, headers and a peer. A handler rarely reads this directly -- it asks for what it needs through {!Dep} -- but a dependency of the application's own is written against it. The body is not here: it is read only once the dependencies that do not need it have run, and reaches only those that say they do ({!Dep.of_body}). A request is read on the domain that answers it. Its query is parsed ",
+      "top_level_values": [
+        "make",
+        "id",
+        "meth",
+        "version",
+        "target",
+        "path",
+        "query",
+        "queries",
+        "header",
+        "headers",
+        "cookie",
+        "peer",
+        "proxied",
+        "proxy_header",
+        "host",
+        "client_ip",
+        "now",
+        "client_gone",
+        "secure"
+      ]
+    },
+    {
+      "path": "core/request_repr.mli",
+      "contract_intro": "A request as the framework holds it: what {!Request} is, underneath, and the one thing only the framework does to one, setting the route it matched. Each value {!Request} exports is documented there.",
+      "top_level_values": [
+        "make",
+        "with_matched",
+        "with_headers",
+        "matched",
+        "client_gone",
+        "mark_client_gone",
+        "meth",
+        "version",
+        "target",
+        "path",
+        "query",
+        "queries",
+        "headers",
+        "header",
+        "cookie",
+        "id",
+        "peer",
+        "proxied",
+        "proxy_header",
+        "client_ip",
+        "now",
+        "host",
+        "secure"
+      ]
+    },
+    {
+      "path": "core/response.mli",
+      "contract_intro": "What a handler answers. How an answer is framed, and whether its connection lasts, is the server's to say: [Content-Length], [Transfer-Encoding], [Connection], [Keep-Alive], [Upgrade], [TE] and [Trailer] are written by the server and by nothing else, because a length a handler wrote beside the server's is an answer a reader can take two ways. So are the fields the framework writes from what an answer carries -- [Cont",
+      "top_level_values": [
+        "make",
+        "json",
+        "html",
+        "empty",
+        "redirect",
+        "stream",
+        "events",
+        "takeover",
+        "refusal",
+        "refusal_json",
+        "add_headers",
+        "with_header",
+        "add_cookies",
+        "close_connection",
+        "closes_connection",
+        "status",
+        "headers",
+        "content_type",
+        "cookies",
+        "content",
+        "refused"
+      ]
+    },
+    {
+      "path": "core/returns.mli",
+      "contract_intro": "What a route returns, declared where the route is: a page, text, a JSON value, nothing, a stream of events, or a response the endpoint makes itself. It decides what the route's list of inputs finally returns, so a route cannot return anything else, and it is known without running the route -- which is how the API's document is written. {[ Spindle.get Path.(s \"users\" / user_id) (Returns.json user_json) (let+ id = Spin",
+      "top_level_values": [
+        "json",
+        "json_response",
+        "html",
+        "text",
+        "empty",
+        "empty_response",
+        "response",
+        "events",
+        "websocket"
+      ]
+    },
+    {
+      "path": "core/returns_repr.mli",
+      "contract_intro": "What a route returns: its model, what it describes, and how its result becomes a response. What {!Returns} is, underneath: a model is made only by {!Returns}.",
+      "top_level_values": [
+        "shape",
+        "upgrade",
+        "respond",
+        "declares"
+      ]
+    },
+    {
+      "path": "core/route.mli",
+      "contract_intro": "A route: a method, a path, what it returns and one list of inputs -- one value, so an endpoint is declared in one place, in the order a request line has it. {[ let order_id = Path.int \"order_id\" let order = Spindle.get ~refuses:[ gone ] Path.(s \"orders\" / order_id) (Returns.json order_json) (let+ id = Spindle.param order_id and+ now = Spindle.now in find_order id ~now) ]} The handler takes no arguments of its own -- ",
+      "top_level_values": [
+        "info",
+        "matched",
+        "pp_info"
+      ]
+    },
+    {
+      "path": "core/route_repr.mli",
+      "contract_intro": "A route: what it says of itself, its segments, and how it answers. Made only here, through {!Spindle.get} and its siblings; answered only by {!App}. What {!Route} is, underneath.",
+      "top_level_values": [
+        "input_key",
+        "framework_codes",
+        "mark",
+        "matched",
+        "handle",
+        "make",
+        "get",
+        "post",
+        "put",
+        "patch",
+        "delete"
+      ]
+    },
+    {
+      "path": "core/scalar.mli",
+      "contract_intro": "Scalar's standalone script, as the file under [scalar/] holds it.",
+      "top_level_values": [
+        "js"
+      ]
+    },
+    {
+      "path": "core/server.mli",
+      "contract_intro": "Serving an {!App}: the connection loop. The loop is Spindle's own, and so is every byte it reads and writes. Every decision about a connection is made here: where a head and a body end, whether a connection carries another request, and how long anything may take.",
+      "top_level_values": [
+        "listen_error_to_string",
+        "run",
+        "serve_on",
+        "stop_on_signals"
+      ]
+    },
+    {
+      "path": "core/session.mli",
+      "contract_intro": "Sessions kept on the server: a visit's data in a store, and a cookie that holds only its id. {[ let session = Spindle.Session.create ~store:(Spindle.Dep.return (Spindle.Session.memory ())) ~idle:Mtime.Span.(14 * day) ~absolute:Mtime.Span.(90 * day) visit_json let me = Spindle.get Path.(s \"me\") Returns.text (let+ session = session in let* visit = Spindle.Session.get session in Ok (match visit with Some v -> v.user | N",
+      "top_level_values": [
+        "memory",
+        "create",
+        "get",
+        "put",
+        "rotate",
+        "destroy"
+      ]
+    },
+    {
+      "path": "core/spindle.mli",
+      "contract_intro": "Spindle: a web framework on Eio. An application is a list of {!Route}s. A route is one value -- a method, a {!Path}, what it {!Returns} and a handler -- and a handler asks for everything it needs as {!Dep}endencies, a path parameter as much as the body, composed with [let+] and [and+], and returns the value its model names or a {!Refusal}. What the application holds -- here an engine -- is a {!Dep.of_resource}, hande",
+      "top_level_values": [
+        "serve",
+        "of_clock",
+        "until",
+        "blocking",
+        "route",
+        "get",
+        "post",
+        "put",
+        "patch",
+        "delete",
+        "param",
+        "request",
+        "now",
+        "keys",
+        "set_cookie",
+        "add_header",
+        "peer",
+        "client_ip",
+        "request_id",
+        "client_gone",
+        "body",
+        "body_stream",
+        "multipart",
+        "json"
+      ]
+    },
+    {
+      "path": "core/static.mli",
+      "contract_intro": "A directory of files -- a built site, its assets -- served by the process. {[ Spindle.serve env (routes @ [ Spindle.Static.directory \"dist\" ]) ]} {b Every file is [no-cache]}, with a strong entity tag: a browser keeps its copy and asks again each time, answered [304] while it is the same. Keeping a file longer -- what a build names by a hash of its contents -- is the application's policy, apart from what serves it: {",
+      "top_level_values": [
+        "load",
+        "route",
+        "directory",
+        "files"
+      ]
+    },
+    {
+      "path": "core/test.mli",
+      "contract_intro": "Calling an application in-process: no socket, no port, and a clock the test sets.",
+      "top_level_values": [
+        "app",
+        "call",
+        "browser",
+        "events",
+        "websocket_error_to_string",
+        "websocket",
+        "header"
+      ]
+    },
+    {
+      "path": "core/wire.mli",
+      "contract_intro": "A response as it goes out for one request: the status, every header, and what follows them. One function decides it, and both the server and {!Test.call} use it, so a test sees the head the wire gets. The two differ only in [Connection], which belongs to the connection and not to the response, and which the server alone writes -- but for a takeover's, which is the protocol's.",
+      "top_level_values": [
+        "render"
+      ]
+    },
+    {
+      "path": "core/zod.mli",
+      "contract_intro": "An application's routes as a TypeScript module of {{:https://zod.dev}Zod} schemas, for a client to parse what the server sends with the same shapes the server describes. It is printed from the same walk as {!Openapi.document}, so the two cannot disagree. Each component is [export const <Name>Schema] with its type [z.infer]red beside it, each after those it refers to, the refusal among them; then the codes a client ma",
+      "top_level_values": [
+        "schemas"
+      ]
+    },
+    {
+      "path": "http/accept.mli",
+      "contract_intro": "Content negotiation, as RFC 9110 §12 writes it: what a request accepts, each with its weight, and choosing among what a route can answer. {[ match Accept.parse_media \"text/csv;q=0.9, application/json\" with | Ok ranges -> Accept.choose_media ranges [ csv; json ] (* Some json",
+      "top_level_values": [
+        "parse_media",
+        "parse_weighted",
+        "choose_media",
+        "choose_language",
+        "choose_encoding",
+        "choose_token"
+      ]
+    },
+    {
+      "path": "http/auth.mli",
+      "contract_intro": "Authentication, as RFC 9110 §11 writes it: the credentials a request carries in [Authorization] or [Proxy-Authorization], and the challenges a [401] or a [407] names in [WWW-Authenticate] or [Proxy-Authenticate]. {[ Auth.credentials \"Bearer mF_9.B5f-4.1JqM\" = Ok { scheme = \"bearer\"; value = Token68 \"mF_9.B5f-4.1JqM\" } ]}",
+      "top_level_values": [
+        "credentials",
+        "challenges",
+        "to_string"
+      ]
+    },
+    {
+      "path": "http/base64url.mli",
+      "contract_intro": "Base64url without padding, as JOSE writes every part of a key and a signature (RFC 7515 §2).",
+      "top_level_values": [
+        "decode"
+      ]
+    },
+    {
+      "path": "http/cache_control.mli",
+      "contract_intro": "[Cache-Control], as RFC 9111 §5.2 writes it: directives, each with an argument or none. {[ Cache_control.parse {|max-age=60, private=\"Set-Cookie\"|} = Ok [ (\"max-age\", Some \"60\"); (\"private\", Some \"Set-Cookie\") ] ]} A value to read and write: what a directive asks of a cache is the application's, and nothing here caches.",
+      "top_level_values": [
+        "parse",
+        "to_string",
+        "delta_seconds"
+      ]
+    },
+    {
+      "path": "http/calendar.mli",
+      "contract_intro": "The names an HTTP-date gives a day of the week and a month.",
+      "top_level_values": [
+        "weekdays",
+        "months"
+      ]
+    },
+    {
+      "path": "http/connection.mli",
+      "contract_intro": "A connection once a protocol spoken after HTTP has it: a server's after it answered [101 Switching Protocols], a client's after its handshake.",
+      "top_level_values": []
+    },
+    {
+      "path": "http/context.mli",
+      "contract_intro": "The request a fiber runs for: its id, its place in a trace, and the span it records, if any -- what {!Log} and {!Trace} are both built on.",
+      "top_level_values": [
+        "current",
+        "bind",
+        "fresh_id",
+        "is_all_zeros",
+        "fresh_hex",
+        "sample_root",
+        "start_span",
+        "add_attributes",
+        "with_span"
+      ]
+    },
+    {
+      "path": "http/date.mli",
+      "contract_intro": "An HTTP-date read, as RFC 9110 §5.6.7 has a recipient read one: the IMF-fixdate a sender writes ({!to_string}), and the two obsolete forms a recipient must still accept. {[ (* each [Some] of the instant 1994-11-06T08:49:37Z",
+      "top_level_values": [
+        "parse",
+        "to_string"
+      ]
+    },
+    {
+      "path": "http/etag.mli",
+      "contract_intro": "Entity tags, as RFC 9110 §8.8.3 writes them, and the two ways §8.8.3.2 compares them. {[ Etag.parse {|W/\"xyzzy\"|} = Ok { weak = true; opaque = \"xyzzy\" } Etag.condition {|\"a\", W/\"b\"|} = Ok (Tags [ ...; ... ]) ]} An opaque tag may hold a comma, so a list of them is read by this grammar and never split where a comma is.",
+      "top_level_values": [
+        "parse",
+        "to_string",
+        "strong_equal",
+        "weak_equal",
+        "condition"
+      ]
+    },
+    {
+      "path": "http/event_stream.mli",
+      "contract_intro": "Server-Sent Events, as the HTML standard writes and reads an event stream ([text/event-stream]): what a server sends and what a client reads it as, in one module, so both ends of a stream have one account of where an event ends. {[ Event_stream.event ~name:\"state\" ~id:\"7\" {|{\"n\":1}|} = Ok \"event: state\\nid: 7\\ndata: {\\\"n\\\":1}\\n\\n\" let r = Event_stream.reader () in Event_stream.feed r \"event: state\\ndata: a\\n\\ndata: b",
+      "top_level_values": [
+        "event",
+        "retry",
+        "comment",
+        "reader",
+        "feed",
+        "last_id"
+      ]
+    },
+    {
+      "path": "http/field.mli",
+      "contract_intro": "The field grammar every message shares: RFC 9110's tokens, a field line split and checked, a list field's elements, and a field found by name. Both readers and the writer use this module and no grammar of their own, so what one of them refuses the others cannot let through.",
+      "top_level_values": [
+        "is_token",
+        "parse",
+        "is_text",
+        "is_writable",
+        "find",
+        "all",
+        "elements",
+        "quoted",
+        "has_element"
+      ]
+    },
+    {
+      "path": "http/forwarded.mli",
+      "contract_intro": "[Forwarded], as RFC 7239 writes it: each proxy a request passed through, what it saw -- who asked it, on which of its interfaces, for which host, over which protocol. {[ Forwarded.parse {|for=192.0.2.60;proto=https, for=\"[2001:db8::1]:47011\"|} ]} Believe it only from a proxy that writes it: a client writes one as easily.",
+      "top_level_values": [
+        "parse",
+        "to_string"
+      ]
+    },
+    {
+      "path": "http/frame.mli",
+      "contract_intro": "A WebSocket's frames, as RFC 6455 §5 spells them: read from a buffer and written to one, and nothing about what a conversation of them means. A payload is read in pieces, however large it is, so the reader's buffer never has to hold a whole frame: a server's is the connection's own, sized for a request head.",
+      "top_level_values": [
+        "read_header",
+        "read_payload",
+        "write",
+        "accept_key"
+      ]
+    },
+    {
+      "path": "http/framing.mli",
+      "contract_intro": "Where a body ends: decided from its message's head, then read off the connection a piece at a time. Whatever this cannot delimit exactly is refused rather than guessed at, because a body that ends in the wrong place leaves its remainder on the connection, to be read as the next request -- which, behind a proxy that shares its connections, is somebody else's request.",
+      "top_level_values": [
+        "of_request",
+        "of_response",
+        "reader",
+        "read",
+        "read_some",
+        "discard"
+      ]
+    },
+    {
+      "path": "http/grammar.mli",
+      "contract_intro": "RFC 9110 §5.6's pieces, which field values are built from, as parsers: one token, one quoted string and one list of parameters, so every structure that holds them reads them the same way.",
+      "top_level_values": [
+        "is_tchar",
+        "ows",
+        "token",
+        "value",
+        "parameters",
+        "once",
+        "list_of",
+        "parse"
+      ]
+    },
+    {
+      "path": "http/head.mli",
+      "contract_intro": "A message's head, read off a connection: its start line and its fields, and nothing a parser could read two ways. A head RFC 9112 forbids is refused rather than repaired, because two readers that repair it differently -- this one and a proxy in front of it -- disagree about where one message ends and the next begins. The one repair made is the one the RFC requires of a user agent, in {!Response}.",
+      "top_level_values": [
+        "error_to_string"
+      ]
+    },
+    {
+      "path": "http/instant.mli",
+      "contract_intro": "Instants, as a [Ptime.t], and the waits between them, as an [Mtime.Span.t]: what a clock is read into, the one place a wait until an instant is worked out, and a sleep for code no Eio loop runs.",
+      "top_level_values": [
+        "of_clock",
+        "until",
+        "add",
+        "sleep"
+      ]
+    },
+    {
+      "path": "http/jwk.mli",
+      "contract_intro": "Public keys as RFC 7517 writes them, of the kinds a signature is checked with here: RSA (RFC 7518 §6.3) of 2048 bits or more, which RFC 7518 §3.3 requires of RS256; EC on P-256 (RFC 7518 §6.2); and OKP on Ed25519 (RFC 8037 §2). A private member a key carries is not read. {[ match Jwk.set_of_string body with | Ok keys -> Jws.verify jws ~keys | Error why -> ... ]}",
+      "top_level_values": [
+        "kind",
+        "kid",
+        "alg",
+        "of_string",
+        "verify",
+        "set_of_string"
+      ]
+    },
+    {
+      "path": "http/jws.mli",
+      "contract_intro": "JSON Web Signatures in the compact serialization (RFC 7515 §7.1): a header, a payload and a signature, checked against public keys ({!Jwk}) by RS256, ES256 or EdDSA. No other algorithm is checked: [\"none\"] signs nothing, and an HMAC's key is a secret both ends hold, which a public key set never is. {[ let* jws = Jws.of_string token in let* payload = Jws.verify jws ~keys in ... ]}",
+      "top_level_values": [
+        "error_to_string",
+        "of_string",
+        "alg",
+        "kid",
+        "typ",
+        "verify"
+      ]
+    },
+    {
+      "path": "http/local.mli",
+      "contract_intro": "What belongs to the domain a fiber runs on. Eio forks a fiber only onto a switch of the domain it is on: a switch made at startup cannot take a fiber forked from a request on another domain. So every domain Spindle runs has a switch of its own, which lasts as long as that domain serves, and work that outlives a request -- [Spindle.Background], [Spindle.Alarm], a kept connection's watch -- is forked onto the switch of",
+      "top_level_values": [
+        "switch",
+        "within"
+      ]
+    },
+    {
+      "path": "http/log.mli",
+      "contract_intro": "What a line is made of, on either end of a call: the framework's source, a line's structured fields, and the request a fiber runs for. The reporter that writes a line is [Spindle.Log]'s; this is what a server and a client both write lines with, so that a call made while a request is answered logs under that request.",
+      "top_level_values": [
+        "http",
+        "pp_value",
+        "fields",
+        "tags",
+        "raised",
+        "request_id",
+        "trace_id",
+        "span_id",
+        "with_request_id",
+        "traceparent",
+        "tracestate",
+        "carry",
+        "fresh_id"
+      ]
+    },
+    {
+      "path": "http/media_type.mli",
+      "contract_intro": "A media type, as [Content-Type] holds one (RFC 9110 §8.3.1): a type, a subtype and parameters. {[ Media_type.parse {|application/json; charset=\"utf-8\"|} = Ok { type_ = \"application\"; subtype = \"json\"; parameters = [ (\"charset\", \"utf-8\") ]; } ]}",
+      "top_level_values": [
+        "parse",
+        "to_string",
+        "equal",
+        "is_pattern",
+        "matches",
+        "parameter"
+      ]
+    },
+    {
+      "path": "http/meth.mli",
+      "contract_intro": "Request methods: every one RFC 9110 §9 defines, and [PATCH] (RFC 5789); [`Other m] is any other, spelled as it came. {b The set is closed at 1.0.} A method registered later stays [`Other m] for every 1.x release, so a match on this type keeps its meaning across them.",
+      "top_level_values": [
+        "to_string",
+        "equal"
+      ]
+    },
+    {
+      "path": "http/multipart.mli",
+      "contract_intro": "[multipart/form-data], as RFC 7578 writes it over RFC 2046's boundaries: what a browser posts from a form with a file in it, read a part at a time as it arrives. {[ let parts = Multipart.create ~boundary ~max_head:8192 pull in match Multipart.next parts with | Ok (Some part) -> (* part.name, part.filename; then Multipart.read",
+      "top_level_values": [
+        "error_to_string",
+        "boundary",
+        "create",
+        "next",
+        "read",
+        "to_string"
+      ]
+    },
+    {
+      "path": "http/private.mli",
+      "contract_intro": "How Spindle's server and client read and write the wire: a head read off a connection, where a body ends, a message written, and a WebSocket run over a connection. They are reached here because both ends are built on them, and are not covered by the library's version -- any may change in any release. An application names none of them.",
+      "top_level_values": []
+    },
+    {
+      "path": "http/range.mli",
+      "contract_intro": "Byte ranges, as RFC 9110 §14 writes them: a request's [Range], and the [Content-Range] of an answer to one. {[ Range.parse \"bytes=0-499, -500\" = Ok (Bytes [ Span (0, 499); Suffix 500 ]) Range.satisfy ~length:1000 (Suffix 500) = Some (500, 999) Range.content_range ~first:500 ~last:999 ~length:1000 = \"bytes 500-999/1000\" ]}",
+      "top_level_values": [
+        "parse",
+        "satisfy",
+        "content_range",
+        "content_range_unsatisfied"
+      ]
+    },
+    {
+      "path": "http/spindle_http.mli",
+      "contract_intro": "HTTP as both ends speak it: what a server and a client share, and what an application names -- statuses, methods, fields and the values they carry, the messages spoken after HTTP, and what a line is logged with. Each module's [.mli] is its reference.",
+      "top_level_values": []
+    },
+    {
+      "path": "http/status.mli",
+      "contract_intro": "The statuses a handler may answer with. Every status RFC 9110 §15 defines is a constructor, and so are those of RFC 6585, 7725, 8297 and 8470 -- [`Precondition_required], [`Too_many_requests], [`Request_header_fields_too_large], [`Network_authentication_required], [`Unavailable_for_legal_reasons], [`Early_hints] and [`Too_early] -- so a route reads [~status:`Accepted]; [`Code n] is anything else, WebDAV's among them.",
+      "top_level_values": [
+        "to_int",
+        "of_int",
+        "equal",
+        "reason",
+        "all"
+      ]
+    },
+    {
+      "path": "http/structured.mli",
+      "contract_intro": "Structured Fields, as RFC 9651 defines them for the fields built on it: an item, a list or a dictionary, each value with parameters. {[ Structured.dictionary \"a=1, b;q=5, c=(x \\\"y\\\")\" = Ok [ (\"a\", Item (Integer 1, [])); (\"b\", Item (Boolean true, [ (\"q\", Integer 5) ])); (\"c\", Inner ([ (Token \"x\", []); (String \"y\", []) ], [])); ] ]} A field defines which of the three it is, so the caller says which it reads. A field gi",
+      "top_level_values": [
+        "item",
+        "list",
+        "dictionary",
+        "item_to_string",
+        "list_to_string",
+        "dictionary_to_string"
+      ]
+    },
+    {
+      "path": "http/trace.mli",
+      "contract_intro": "Spans: what a request did, and how long each part of it took, recorded under the W3C trace {!Log} already carries, so a server, the calls it makes and the statements it runs are one trace. Nothing is recorded unless an {!type-exporter} is given where the request begins, and the trace is kept: a trace begun here at the exporter's ratio, one joined from a caller as the caller's [traceparent] says. Everything else is on",
+      "top_level_values": [
+        "exporter",
+        "span",
+        "within",
+        "current",
+        "rename",
+        "add",
+        "fail"
+      ]
+    },
+    {
+      "path": "http/urlencoded.mli",
+      "contract_intro": "[application/x-www-form-urlencoded], as the WHATWG URL standard reads and writes it: what a browser posts from a form with no file in it. {[ Urlencoded.parse \"name=Kim+Lee&tag=a&tag=b%26c\" = [ (\"name\", \"Kim Lee\"); (\"tag\", \"a\"); (\"tag\", \"b&c\") ] ]} Every name and value is bytes as sent, percent-decoded: whether they are UTF-8 is the reader's to say, at the field.",
+      "top_level_values": [
+        "parse",
+        "to_string"
+      ]
+    },
+    {
+      "path": "http/version.mli",
+      "contract_intro": "The HTTP/1 versions a message is spoken in: what a request says it speaks ([Spindle.Request.version]), and what a test asks to be called with.",
+      "top_level_values": []
+    },
+    {
+      "path": "http/websocket.mli",
+      "contract_intro": "WebSockets, served and called, in one model: a protocol says what each side sends, and each end holds a socket typed from its own side. {[ type said = { text : string } [@@deriving wiretype] let chat = Websocket.(protocol ~client:(json said_json) ~server:(json said_json) ()) let echo = Spindle.get path (Returns.websocket chat) (Dep.return (Ok (fun ws -> let rec echo () = let* said = Websocket.receive ws in let* () = ",
+      "top_level_values": [
+        "json",
+        "text",
+        "binary",
+        "protocol",
+        "subprotocol",
+        "client",
+        "server",
+        "error_to_string",
+        "receive",
+        "send",
+        "encode",
+        "send_encoded",
+        "close"
+      ]
+    },
+    {
+      "path": "http/write.mli",
+      "contract_intro": "A message written: a start line and its fields, then a body's chunks, onto an [Eio.Buf_write.t]. Nothing here flushes; when the bytes leave is the caller's to decide. A head is checked whole before any of it is written, so a refused one leaves nothing on the connection.",
+      "top_level_values": [
+        "response_head",
+        "request_head",
+        "continue",
+        "chunk",
+        "last_chunk"
+      ]
+    },
+    {
+      "path": "mcp-client/protocol/spindle_mcp_protocol.mli",
+      "contract_intro": "The Model Context Protocol's messages, as both ends read and write them: JSON-RPC 2.0 as MCP 2026-07-28 uses it, and the protocol's version. It does no I/O, so the server and the client read one message one way.",
+      "top_level_values": [
+        "version",
+        "id_to_value",
+        "read",
+        "member",
+        "result",
+        "notification",
+        "error"
+      ]
+    },
+    {
+      "path": "mcp-client/spindle_mcp_client.mli",
+      "contract_intro": "Calling another server's tools over the Model Context Protocol, 2026-07-28, on {!Spindle_client} alone: a program that only calls tools installs and links no framework. {[ let weather = Spindle_mcp_client.create client ~url:\"https://weather.example.com/mcp\" let* tools = Spindle_mcp_client.tools weather in let* forecast = Spindle_mcp_client.call weather \"get_forecast\" query_json { city = \"Paris\" } forecast_json in ...",
+      "top_level_values": [
+        "create",
+        "error_to_string",
+        "discover",
+        "tools",
+        "call",
+        "call_value"
+      ]
+    },
+    {
+      "path": "mcp/spindle_mcp.mli",
+      "contract_intro": "A Model Context Protocol server: the routes an agent calls tools through, added to the application's own, as {!Spindle.Health.routes} are. {[ let forecast = Spindle_mcp.tool \"get_forecast\" ~scope:\"weather:read\" query_json forecast_json (let+ db = Db.pool in fun query -> Forecast.find db query) let routes = app_routes @ Spindle_mcp.routes ~name:\"weather\" ~version:\"1.0.0\" ~auth [ forecast ] ]} It speaks MCP 2026-07-28 ",
+      "top_level_values": [
+        "tool",
+        "answer",
+        "call",
+        "progress",
+        "routes"
+      ]
+    },
+    {
+      "path": "postgres/bounds.mli",
+      "contract_intro": "The framework's bounds on a connection: what {!Spindle_postgres.connect} and {!Pool.create} both ask for.",
+      "top_level_values": [
+        "apply"
+      ]
+    },
+    {
+      "path": "postgres/pool.mli",
+      "contract_intro": "Connections, made up front and borrowed one at a time: the Postgres backend's pool ([Rowtype_postgres.Pool]), each connection bounded as {!Spindle_postgres.connect} bounds one, and a transaction on a borrow.",
+      "top_level_values": [
+        "create",
+        "use",
+        "exec",
+        "transaction",
+        "stats",
+        "measure",
+        "check",
+        "close",
+        "run"
+      ]
+    },
+    {
+      "path": "postgres/session.mli",
+      "contract_intro": "Sessions in a table of the application's database, for a server of more than one process ({!Spindle.Session}). {[ let session = Spindle.Session.create ~store:(Spindle_postgres.Session.store db) ~idle:Mtime.Span.(14 * day) ~absolute:Mtime.Span.(90 * day) visit_json ]} The table is {!default_table} unless given another, made by the migration this package installs: [rowtype-migrate up --source spindle-postgres] applies ",
+      "top_level_values": [
+        "default_table",
+        "schema",
+        "statements",
+        "store"
+      ]
+    },
+    {
+      "path": "postgres/source.mli",
+      "contract_intro": "The library's one log source, [spindle-postgres]: a pool that could not be opened, and one with no connection free within its wait.",
+      "top_level_values": [
+        "src"
+      ]
+    },
+    {
+      "path": "postgres/spindle_postgres.mli",
+      "contract_intro": "Postgres for a Spindle server, over rowtype's Postgres backend: connections bounded as a server bounds them, a pool and the probe that asks it, and the refusal a database failure answers. A transaction is the backend's ([Rowtype_postgres.Transaction]), and migrating is [rowtype-migrate]'s, a step of its own before the server starts.",
+      "top_level_values": [
+        "error_to_string",
+        "refusal",
+        "connect"
+      ]
+    },
+    {
+      "path": "postgres/traced.mli",
+      "contract_intro": "What watches the statements of every connection the library makes.",
+      "top_level_values": [
+        "observer"
+      ]
+    },
+    {
+      "path": "sqlite/pool.mli",
+      "contract_intro": "Connections to one SQLite file, made up front and borrowed one at a time: the SQLite backend's pool ([Rowtype_sqlite.Pool]), the file in WAL mode, and a transaction on a borrow.",
+      "top_level_values": [
+        "create",
+        "use",
+        "exec",
+        "transaction",
+        "stats",
+        "measure",
+        "check",
+        "close",
+        "run"
+      ]
+    },
+    {
+      "path": "sqlite/session.mli",
+      "contract_intro": "Sessions in a table of the application's database ({!Spindle.Session}). {[ let session = Spindle.Session.create ~store:(Spindle_sqlite.Session.store db) ~idle:Mtime.Span.(14 * day) ~absolute:Mtime.Span.(90 * day) visit_json ]} The table is {!default_table} unless given another, made by the migration this package installs: [rowtype-migrate up --source spindle-sqlite] applies it, before the application's own, since mig",
+      "top_level_values": [
+        "default_table",
+        "schema",
+        "statements",
+        "store"
+      ]
+    },
+    {
+      "path": "sqlite/source.mli",
+      "contract_intro": "The library's one log source, [spindle-sqlite]: a pool that could not be opened, and one with no connection free within its wait.",
+      "top_level_values": [
+        "src"
+      ]
+    },
+    {
+      "path": "sqlite/spindle_sqlite.mli",
+      "contract_intro": "SQLite for a Spindle server, over rowtype's SQLite backend: a pool of connections to one file, in WAL mode so a read never waits on a write, the probe that asks it, and the refusal a database failure answers. A transaction is the backend's ([Rowtype_sqlite.Transaction]), and migrating is [rowtype-migrate]'s, a step of its own before the server starts: [rowtype-migrate up --url sqlite:app.db].",
+      "top_level_values": [
+        "error_to_string",
+        "refusal"
+      ]
+    },
+    {
+      "path": "sqlite/traced.mli",
+      "contract_intro": "What watches the statements of every connection the library makes.",
+      "top_level_values": [
+        "observer"
+      ]
+    }
+  ],
+  "test_suites": [
+    {
+      "path": "test/melange/test_client.ml",
+      "lines": 53,
+      "test_case_call_sites": 1,
+      "literal_test_labels": [
+        "every route, from the browser's runtime"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_cli.ml",
+      "lines": 227,
+      "test_case_call_sites": 10,
+      "literal_test_labels": [
+        "a document is printed or written",
+        "check passes on what the routes make",
+        "check fails on a stale file",
+        "check fails on a stale document",
+        "the melange client is printed and checked",
+        "check reports both stale files",
+        "check fails on a missing file",
+        "--strict fails on what is loose",
+        "a command line it cannot read is 124",
+        "the help names every exit status"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_docs.ml",
+      "lines": 69,
+      "test_case_call_sites": 1,
+      "literal_test_labels": [
+        "every example is on a page"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_gz.ml",
+      "lines": 43,
+      "test_case_call_sites": 0,
+      "literal_test_labels": [],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_http_rfc.ml",
+      "lines": 4956,
+      "test_case_call_sites": 28,
+      "literal_test_labels": [
+        "9112 §9.2: bytes on a kept connection are not the next answer",
+        "9112 §9.5: a kept connection the server closed is not lent",
+        "9112 §9.2: bytes after a TLS answer are not the next answer",
+        "9110 §5.6.4: a printed media type reads back",
+        "9110 §8.3.1: a malformed media type is 415",
+        "9110 §11.4: printed credentials read back",
+        "9111 §5.2: a printed Cache-Control reads back",
+        "9651 §3.3.7: a date Ptime cannot hold is refused",
+        "9112 §4: the space after the code, with no reason",
+        "9110 §5.5: a value that could split is never written",
+        "9110 §15: a status the reader refuses is never written",
+        "9112 §3: a target that could split is never written",
+        "9110 §5.6.7: a date is an IMF-fixdate",
+        "9110 §13, §14: a representation's answers",
+        "a compressed representation answers as the rfc says",
+        "9110 §15.5.2: a 401 without a challenge is refused",
+        "9110 §9.1: 501 comes before the not-found answer",
+        "9112 §3.2.2: a trusted proxy's host comes first",
+        "7239 §5.3: a proxy is read in its own header",
+        "9112 §6.1: an HTTP/1.0 stream, in-process",
+        "a connection failing under a head is a value",
+        "every row holds at any cut",
+        "every request is answered once, in order"
+      ],
+      "private_modules": [
+        "Framing",
+        "Head",
+        "Write"
+      ],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_mcp_spec.ml",
+      "lines": 1228,
+      "test_case_call_sites": 42,
+      "literal_test_labels": [
+        "basic §Messages: a message is one request",
+        "basic §_meta: the version and capabilities",
+        "basic §Responses: complete, naming the server",
+        "streamable-http §Sending: a notification is 202",
+        "streamable-http: a method not served is 404",
+        "streamable-http §Validation: headers agree",
+        "streamable-http §Encoding: a name in base64",
+        "streamable-http §Security: another site is 403",
+        "streamable-http §Compatibility: GET is 405",
+        "versioning: another version is -32022",
+        "versioning: initialize names the version",
+        "server/discover",
+        "tools §Listing: each tool, its schemas",
+        "tools §Structured: a call's result",
+        "tools §Errors: a tool's failure is a result",
+        "tools §Errors: an unknown tool is -32602",
+        "a tool's resource is checked at start",
+        "routes refuses what cannot be served",
+        "authorization: no token is 401",
+        "tools §Capabilities: the list is the token's",
+        "authorization §Scope: a scope not granted is 403",
+        "9728 §2: the metadata names every scope",
+        "mrtr §Basic: a tool's questions, at once",
+        "mrtr §Basic: the answers reach the tool",
+        "mrtr §Errors: an unreadable answer, again",
+        "mrtr §Server 7: no form elicitation is -32021",
+        "routes refuses a question that is no form",
+        "scenario 3: our client answers our server",
+        "progress §Flow: a call asking streams it",
+        "progress: a call not asking is one answer",
+        "progress: the client reports it",
+        "scenario 5: our client calls our server",
+        "tools §Errors: a tool's failure reaches the caller",
+        "basic §Errors: a protocol error is a refusal",
+        "streamable-http §Metadata: every request's",
+        "streamable-http §Encoding: a name in base64",
+        "streamable-http §Sending: an event stream is read",
+        "tools §x-mcp-header: arguments are mirrored",
+        "tools §x-mcp-header: a bad annotation is left out",
+        "pagination: every page is read",
+        "mrtr §Client: a question is answered, retried",
+        "mrtr §Server 7: no elicit, unanswered"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_multipart_rfc.ml",
+      "lines": 396,
+      "test_case_call_sites": 4,
+      "literal_test_labels": [
+        "the writer writes what reads back",
+        "7578 §4.8: a head past its limit is refused",
+        "2046 §5.1.1: a boundary is what it allows"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_oauth_rfc.ml",
+      "lines": 1454,
+      "test_case_call_sites": 51,
+      "literal_test_labels": [
+        "9068 §4: the issuer's tokens are accepted",
+        "8707 §2: a token for another resource is refused",
+        "6750 §3.1: a scope not granted is insufficient",
+        "9068 §4: another issuer's token is refused",
+        "scenario 6: a person signs in once",
+        "7515 A.2: the RS256 example verifies",
+        "7515 A.3: the ES256 example verifies",
+        "8037 A.4: the EdDSA example verifies",
+        "7515 §5.2: a key of another kind is not tried",
+        "7515 §5.2: alg none is refused",
+        "7515 §5.2: an HMAC is refused",
+        "7515 §4.1.11: crit is refused",
+        "7515 §4: a header parameter twice is refused",
+        "7515 §4.1.1: a header without alg is refused",
+        "7515 §7.1: the compact form is read strictly",
+        "7515 §4.1.4: a kid picks its key",
+        "7517 §4.4: a key's alg binds it",
+        "7518 §3.3: a short RSA key is refused",
+        "7518 §6.2.1: a P-256 key is its size, on the curve",
+        "7517 §4.2: a key for encryption is refused",
+        "7517 §5: a set keeps the keys it reads",
+        "6750 §2.1: a token in Authorization is read",
+        "6750 §3: no token is challenged",
+        "6750 §2.3: a token in the query is not read",
+        "6750 §3.1: a malformed header is invalid_request",
+        "6750 §3.1: a token failing a check is invalid",
+        "9068 §4: typ is at+jwt",
+        "9068 §4: iss is the issuer",
+        "8707 §2: aud names this resource",
+        "7519 §4.1.4: exp and nbf bound it",
+        "9068 §2.2: the required claims are there",
+        "6750 §3.1: a missing scope is insufficient_scope",
+        "9728 §3: the metadata document",
+        "9728 §3.1: a resource with no path",
+        "the API's document names the scopes",
+        "a token is in no line logged",
+        "8414 §2: make refuses what is no https URL",
+        "6749 §4.1, 7636, 8707, 8252: a sign-in",
+        "9728 §3.3: another resource's metadata is not used",
+        "9728 §3.1: the root's metadata after the path's",
+        "9207 §2.4: the answer is the issuer's",
+        "6749 §10.12: another state is refused",
+        "7636: a server without S256 is refused",
+        "MCP registration: a registered id first",
+        "MCP step-up: the scopes granted are kept",
+        "6749 §6: an expiring token is refreshed",
+        "8414 §3.1: the metadata, before the path",
+        "8414 §3.1: openid-configuration, after",
+        "8414 §3.3: another issuer's metadata is not used",
+        "an unknown kid fetches again once a minute",
+        "a failed fetch is tried again"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_openapi.ml",
+      "lines": 1147,
+      "test_case_call_sites": 27,
+      "literal_test_labels": [
+        "a member's access holds through a route",
+        "a value outside its bounds is the route's bug",
+        "each status is a response",
+        "a route is in the document",
+        "a stream is described by its events",
+        "a credential is said once",
+        "a credential says whether it is needed",
+        "what is loose is reported",
+        "two paths that make one operation are refused",
+        "routes told apart by a type are one operation",
+        "one path with two names is refused",
+        "one operation that answers two ways is refused",
+        "two reads of one input are one parameter",
+        "a body is required where an empty one is refused",
+        "nothing is said as its status",
+        "a body refused for its type says 415",
+        "a resource is no input",
+        "the zod schemas say the same",
+        "it says the same",
+        "a stream's events are a variant",
+        "a socket reading a header has no function",
+        "two labels of one name are refused",
+        "an operation named as a function is refused",
+        "a component named as a route's is refused",
+        "served from here",
+        "moved",
+        "a mistake raises"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_spindle.ml",
+      "lines": 10635,
+      "test_case_call_sites": 290,
+      "literal_test_labels": [
+        "a path parameter reaches the handler",
+        "two routes claiming one path are refused",
+        "one path under two methods",
+        "wrong method is 405 with Allow",
+        "unknown path is 404, or the not-found answer",
+        "the not-found answer reads dependencies",
+        "HEAD is GET without the body",
+        "nothing is an answer",
+        "a trailing slash is another path",
+        "a header the framework writes is the route's bug",
+        "a stream of negative length is the route's bug",
+        "the root answers /",
+        "a segment is decoded",
+        "a literal beats a parameter, in any order",
+        "a parameter that declines is asked first",
+        "routes that could both answer are refused",
+        "a parameter its path lacks is refused",
+        "a parameter behind a bind is found when it runs",
+        "a bad parameter is a problem",
+        "a custom segment: a problem, or not the route",
+        "a path prints only from its own parameters",
+        "the rest of a path is its segments",
+        "the rest ranks last at any depth",
+        "a rest takes only what no route names",
+        "a rest before the end is refused",
+        "the rest prints and parses back",
+        "a dot segment is printed encoded",
+        "int64, and a custom kind, read as sentences",
+        "it is read in parts",
+        "a content type that is no pattern is refused",
+        "a read after its handler reads nothing",
+        "a route reads one body",
+        "a site answers by its three rules",
+        "with nothing named, it serves its files",
+        "a site skips its dotfiles",
+        "a directory is read when the server starts",
+        "each start reads its own directory",
+        "a site under a prefix",
+        "a file is typed, and cached by its prefix",
+        "a cache policy keeps what it names",
+        "a matching tag is 304",
+        "a site that cannot be served is refused",
+        "a static file answers a range",
+        "a file is served from disk as it is",
+        "files never leave their directory",
+        "a file is never sniffed",
+        "a file answers its conditions and ranges",
+        "a download is named",
+        "an active file is an attachment",
+        "a file replaced before its body sends nothing",
+        "a directory not there is refused at start",
+        "a test is told to serve files it opened",
+        "an absent body is {}",
+        "a body is decoded",
+        "a malformed body is a sentence",
+        "a raise is 500 and says nothing of it",
+        "runs in the order listed",
+        "may answer alone",
+        "a raise is 500",
+        "can ask the route",
+        "headers reach every answer",
+        "an answer of its own is in the access log",
+        "the first refusal stops the list",
+        "query, header, cookie and clock",
+        "an input that is not UTF-8 is refused",
+        "a query is read as a form",
+        "a default stands in for an absent input",
+        "a header sent on several lines",
+        "a refusal before the body never reads it",
+        "a bind after the body reads it",
+        "a dependency says what it reads",
+        "a route reads the resource supplied",
+        "each start reads its own resources",
+        "start refuses what was not supplied",
+        "a resource behind a bind is found when it runs",
+        "a test calling for a resource it lacks raises",
+        "a dependency runs once per request",
+        "uncached runs at every use",
+        "a body dependency is read once",
+        "an input read twice is one input",
+        "a bind shares what it names",
+        "a codec reads and refuses as its grammar",
+        "a header is read by its codec",
+        "Secure except on loopback",
+        "clearing one",
+        "a key is made from a secret",
+        "what Key signs is never a cookie",
+        "a signed cookie reads only as it was made",
+        "an encrypted cookie reads only as it was made",
+        "a signed cookie ages",
+        "the server holds the keys",
+        "keys supplied as a resource seal",
+        "an encrypted cookie ages",
+        "a session is kept on the server",
+        "a refusal carries the session it moved",
+        "a session ends by its limits",
+        "sign-in rotates the id",
+        "a failing store is a 500",
+        "expired sessions are swept",
+        "the memory store sweeps by expiry",
+        "a session's cookie lasts its limit, rounded up",
+        "refuses a name it cannot hold",
+        "holds text from the request",
+        "a plain value keeps its spelling",
+        "a value writes no attribute",
+        "one a script wrote reads",
+        "a broken escape is absent",
+        "one that does not read is absent",
+        "a request from another site is refused",
+        "a trusted origin, a trusted proxy",
+        "JSON is only JSON",
+        "a test browser keeps what the app set",
+        "a test reads a stream that never ends",
+        "an event stream reads as the standard says",
+        "the client reads as it arrives",
+        "each wait for a streamed answer is bounded",
+        "a failed read is answered again",
+        "an answer at the deadline leaves no socket open",
+        "a limit that cannot be is refused",
+        "a burst is its own figure",
+        "a limit refuses past its rate",
+        "an IPv6 client is counted by its network",
+        "two apps count apart",
+        "a server times its limit on its monotonic clock",
+        "a compression that cannot be is refused",
+        "an answer is compressed where it may be",
+        "a compressed answer revalidates",
+        "a compressed static file revalidates",
+        "a stream compresses in process",
+        "a static file's precompressed sibling is served",
+        "a file's precompressed sibling is served",
+        "a preflight is the framework's",
+        "an answer says who may read it",
+        "an allowed origin may write",
+        "a form's fields are typed inputs",
+        "a value sent twice is read by its first",
+        "a form is read once, and only as a form",
+        "a form is described",
+        "urlencoded reads as a browser writes",
+        "an upload is read a part at a time",
+        "a form's files are inputs",
+        "a line is one JSON object",
+        "a domain that logs can end",
+        "every line reaches stderr whole",
+        "a line is written while the program runs",
+        "a printer that logs writes its own line",
+        "levels are read from a spec",
+        "the wire is not raised by the everything level",
+        "the request id crosses to a thread",
+        "a request joins the trace it was sent",
+        "a line carries the trace",
+        "posted work keeps the trace",
+        "a call carries the trace",
+        "a call's failure joins the caller's",
+        "a kept trace records its spans",
+        "a cancelled span is no error",
+        "a trace is kept whole or not at all",
+        "a tracestate is passed on",
+        "a request and its call are one trace",
+        "spans reach a collector",
+        "a whole batch is sent without waiting for the tick",
+        "no header value reaches the log",
+        "no refused byte reaches the log",
+        "no exception message reaches the log",
+        "request ids are distinct across domains",
+        "answers, times out, and reports",
+        "a failed handshake leaves no socket",
+        "a refused address leaves no socket",
+        "a quoted keep-alive timeout is read",
+        "a client calls through the network it is given",
+        "a connection that cannot be watched is not kept",
+        "a client sends the URL as it was given",
+        "an error says whether the request went out",
+        "a lookup is bounded by the call's deadline",
+        "a forwarded address needs a trusted proxy",
+        "forwarded is believed where it is named",
+        "every serving domain raises its minor heap",
+        "a limit out of range is refused",
+        "run checks its limits before it binds",
+        "an IPv4 peer through the IPv6 wildcard",
+        "the access log says what went out",
+        "a body past the limit is 413",
+        "HEAD says how long GET would be",
+        "a stop lets answers finish",
+        "a stop lets a stream of known length finish",
+        "a drain that runs out ends on time",
+        "a signal stops the server",
+        "a background raise is logged, not raised",
+        "past the cap a connection waits",
+        "a failed accept is not the server's end",
+        "a client leaving a quiet topic ends its producer",
+        "a producer that ignores the client going ends at its send",
+        "a client that never reads frees its slot",
+        "a stream sent from two fibers keeps its send limit",
+        "the send limit is on a stop, not a length",
+        "a stream ends when its client stops reading",
+        "a jumping clock moves no duration",
+        "localhost is both loopbacks",
+        "a wildcard listens on every interface",
+        "an address is exactly that one",
+        "localhost held on one loopback is refused",
+        "a port held is refused",
+        "a wildcard held on IPv4 is refused",
+        "a port out of range is refused",
+        "a host not found is refused",
+        "a listen error says where and why",
+        "serve says why it cannot listen",
+        "localhost is localhost in any case",
+        "a stream ends when its client goes",
+        "a gone client ends its connection quietly",
+        "https is never spoken as plain http",
+        "a server answers on every domain it was given",
+        "every core, unasked",
+        "work runs where it was caused",
+        "a pretty line reads",
+        "a line stands alone whatever it holds",
+        "blocking carries the request, refuses an effect",
+        "the client answers times out and reports",
+        "a forwarded address is believed only from a trusted proxy",
+        "a body past the limit is 413",
+        "head says how long get would be",
+        "a middleware answer is in the access log",
+        "the access log says what went out",
+        "an ipv4 peer through the ipv6 wildcard",
+        "a drain that runs out ends on time",
+        "a stop lets answers finish",
+        "a stop lets a stream of known length finish",
+        "past the cap a connection waits",
+        "a failed accept is not the server's end",
+        "localhost is both loopbacks",
+        "a wildcard listens on every interface",
+        "an address is exactly that one",
+        "a stream ends when its client goes",
+        "a gone client ends its connection quietly",
+        "a client that never reads frees its slot",
+        "a stream sent from two fibers keeps its send limit",
+        "a client leaving a quiet topic ends its producer",
+        "a producer that ignores the client going ends at its send",
+        "the send limit is on a stop, not a length",
+        "a stream ends when its client stops reading",
+        "a jumping clock moves no duration",
+        "https is never spoken as plain http",
+        "an answer encodes what the route returns",
+        "a page and text are their media types",
+        "what an endpoint sets goes with its answer",
+        "a refusal's own fields win",
+        "a call after the answer changes nothing",
+        "serve refuses routes before it listens",
+        "serve listens, and stops",
+        "serve takes only what it uses",
+        "a code nobody declared is the route's bug",
+        "a middleware's codes are declared",
+        "a route answers the status it chose",
+        "a route's statuses are checked",
+        "a retry-after is at least a second",
+        "a code's status is a failure",
+        "every problem is told at once",
+        "typed inputs",
+        "a stream sends its declared events",
+        "a code means one thing",
+        "a HEAD route is refused",
+        "a body's own refusal is declared",
+        "a status has one spelling",
+        "every error has its words",
+        "every status and method HTTP defines is named",
+        "an app lists its routes",
+        "liveness runs no check",
+        "ready when every check passes",
+        "not ready names what failed",
+        "a check reads a resource",
+        "a probe is logged at debug",
+        "written as Prometheus reads them",
+        "every domain counts into one series",
+        "a metric that cannot be exposed is refused",
+        "counting never fails a request",
+        "a server counts its requests",
+        "guarded as a route is",
+        "probes and the reference are guarded",
+        "a comment is split at every line end",
+        "an id is one line",
+        "a name is one line, and a retry is digits",
+        "a slow subscriber is dropped",
+        "a depth below one is refused",
+        "a wait until an instant is never negative",
+        "an instant a span on stops at 9999",
+        "a clock is read as the nearest instant",
+        "a sleep lasts its span",
+        "an alarm set again supersedes",
+        "an alarm set from several domains fires once",
+        "an event reaches every domain"
+      ],
+      "private_modules": [
+        "Head"
+      ],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_spindle_postgres.ml",
+      "lines": 1207,
+      "test_case_call_sites": 36,
+      "literal_test_labels": [
+        "a lost race is run again",
+        "a lost race answers busy",
+        "a closed connection answers internal",
+        "a closed pool answers busy",
+        "an exhausted pool is a warning",
+        "a held pool is busy, then serves",
+        "a closed pool answers closed at once",
+        "a pool takes the driver's options",
+        "a run pool is closed after",
+        "a cancelled run pool passes the cancellation on",
+        "a connection that keeps no statements reads text",
+        "a bound is whole milliseconds, rounded up",
+        "an instant reads back to the millisecond",
+        "a statement is a span",
+        "a pool is measured",
+        "a pool says how it stands",
+        "a busy pool is ready",
+        "a closed pool is not ready",
+        "a revived connection keeps its bounds",
+        "a connection is bounded by default",
+        "an abandoned query is stopped at the server",
+        "a connection asks for ISO dates",
+        "a silent server is given up on",
+        "a read and a write are one transaction",
+        "a refused bracket keeps nothing unless it says",
+        "a deferred conflict answers as a statement's does",
+        "the installed migration is the schema",
+        "sessions are kept in a table",
+        "sessions read the pool as a resource",
+        "a store's table is checked where it is made",
+        "a reserved word is a table's name",
+        "the longest name is a table's name",
+        "a store's busy pool reads as the pool's words",
+        "every failure has its words",
+        "an unreachable database answers busy",
+        "the log source is the library's name"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_spindle_sqlite.ml",
+      "lines": 488,
+      "test_case_call_sites": 18,
+      "literal_test_labels": [
+        "every failure has its words",
+        "each failure has its answer",
+        "the log source is the library's name",
+        "its file in WAL mode",
+        "no database in memory",
+        "a held pool is busy",
+        "a run pool is closed after",
+        "it says how it stands",
+        "it is measured",
+        "it is a readiness check",
+        "all or nothing",
+        "a lock held past the wait",
+        "a statement is a span",
+        "the installed migration is the schema",
+        "kept in a table",
+        "a table of its own",
+        "the table checked where the store is made",
+        "read through the pool"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_structured.ml",
+      "lines": 254,
+      "test_case_call_sites": 2,
+      "literal_test_labels": [],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_websocket.ml",
+      "lines": 941,
+      "test_case_call_sites": 26,
+      "literal_test_labels": [
+        "a socket is typed both ways",
+        "a message it cannot read closes it with 1007",
+        "a refusal comes before the upgrade",
+        "a handler that raises is closed with 1011",
+        "a handler's own failure is closed with 1011",
+        "a handler that raises is logged as an error",
+        "another site's page cannot open one",
+        "a socket route is a GET",
+        "the client calls the server",
+        "a client answers its function's own failure",
+        "a socket's failure joins the caller's",
+        "a client runs as long as its function",
+        "a refusal reaches the client",
+        "a client socket says how it ended",
+        "a client handler that raises is logged once",
+        "the client speaks wss",
+        "a socket whose TLS breaks is lost",
+        "a socket whose server stopped reading is lost",
+        "a room is a broadcast of frames",
+        "a silent peer is pinged, then dropped",
+        "a peer sending slowly is heard",
+        "a peer reading slowly is sent the whole message",
+        "a socket whose peer stopped reading gives back its slot",
+        "a stopping server says going away",
+        "a socket is in the document",
+        "a socket is in the zod module"
+      ],
+      "private_modules": [
+        "Head",
+        "Websocket"
+      ],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_websocket_rfc.ml",
+      "lines": 1174,
+      "test_case_call_sites": 11,
+      "literal_test_labels": [
+        "5.2 a length is written in the fewest bytes",
+        "5.2 a send cut off mid-frame ends the socket",
+        "10.4 a declared length holds no memory",
+        "5.5 a close sends no reason it cannot carry",
+        "5.3 a mask of another length writes nothing",
+        "8.1 a text message that is not UTF-8 is not sent",
+        "5.2 a send cut off mid-frame ends the socket",
+        "4.1 a client asks as the RFC says",
+        "10.3 a key is fresh every time",
+        "every row holds at any cut"
+      ],
+      "private_modules": [
+        "Head",
+        "Websocket"
+      ],
+      "status": "not executed; statically indexed only"
+    },
+    {
+      "path": "test/test_wire.ml",
+      "lines": 1235,
+      "test_case_call_sites": 39,
+      "literal_test_labels": [
+        "an unread body is not a request",
+        "pipelined requests are answered in order",
+        "a 413 is followed by the next request",
+        "a length past the discard limit is never read",
+        "a 304 is a head alone",
+        "a stream of a length is framed by it",
+        "a stream sends nothing once its producer returned",
+        "a compressed stream arrives as it is sent",
+        "a streamed body is past max_body",
+        "a streamed body past its own limit is 413",
+        "what a stream left is discarded",
+        "a streamed body that falls behind is cut off",
+        "a read left waiting shares nothing with the loop",
+        "a chunked body is read whole",
+        "a malformed chunk ends the connection",
+        "forbidden framing is refused and closed",
+        "a body asked about is asked for",
+        "a client gone before its continue is a value",
+        "a declared length holds only what arrived",
+        "bodies share a budget",
+        "a refusal before the body costs nothing",
+        "the log source is the library's name",
+        "a forbidden head is refused and closed",
+        "a refused head is answered before the connection goes",
+        "a lenient head is read",
+        "a head past the limit is 431",
+        "a slow head is 408",
+        "an idle connection is closed",
+        "a quiet stream is kept alive",
+        "a body that falls behind the rate is cut off",
+        "a body kept at the rate is read whole",
+        "a limit passes within a tick",
+        "HEAD is the head, on every kind",
+        "a 204 says no length",
+        "a header that could split is never written",
+        "HTTP/1.0 is closed after its answer",
+        "owns the connection until the server stops",
+        "one answered during a stop gets the drain",
+        "a request arriving as a stop begins is answered"
+      ],
+      "private_modules": [],
+      "status": "not executed; statically indexed only"
+    }
+  ],
+  "loams_commit": "bc902971d84c83383523b9e0cb166e151f643d8a",
+  "loams_integration_files": [
+    {
+      "path": "Cargo.toml",
+      "sha256": "f87229ff0c90b781100f916b8102e44f8147a87c0594af237239583adfcd9d2a"
+    },
+    {
+      "path": "sdks/README.md",
+      "sha256": "4c150cdf8ee14bd21cc8e8a8f1f733f432df7eee85e6e187784917759183602d"
+    },
+    {
+      "path": "sdks/rust/Cargo.toml",
+      "sha256": "64e63974d0d55b3641e55a5aa01aff0954924af55173a4332b6555fe1ea465bf"
+    },
+    {
+      "path": "sdks/rust/src/consistency.rs",
+      "sha256": "41cc1f56e1e4f4c45ea838d34d8ca87d0b0db40fef4a2b4dfc9bb805dd6d6579"
+    },
+    {
+      "path": "sdks/rust/src/request.rs",
+      "sha256": "bafc51aa81f1564fed811607fa839bf2d009df482b088dc58b28a0cb4ec26e87"
+    },
+    {
+      "path": "sdks/rust/src/call.rs",
+      "sha256": "f5e2d679db3ec152ed0653f7b3fd15c4e1e02c9bcbca65fc8adf25a426662148"
+    },
+    {
+      "path": "sdks/rust/src/client.rs",
+      "sha256": "b7927af543c1a0a5ae01cf0ebcdf87ed636a5bdefb5759838bb4edf437a826a6"
+    },
+    {
+      "path": "sdks/rust/src/lib.rs",
+      "sha256": "2da017fd44bacdd545fbb8362264812f08063679dd8aa29bd2ef26e1194656e0"
+    },
+    {
+      "path": "sdks/conformance/required.mjs",
+      "sha256": "7ea6601c584fe469ef0ccc1e80fb663b62cedb52f03dad83bd138a677ff853b9"
+    },
+    {
+      "path": "sdks/conformance/check-languages.mjs",
+      "sha256": "e4984edd88d7c1e2fcf3d2d777b790e69a99e80a222eeea7d2be265e364f7e1a"
+    },
+    {
+      "path": "sdks/fixtures/manifest.json",
+      "sha256": "de1273a76f37b56f6a5aa2fdb317909cd6a6668c452ed05a83431bd5a8367fd8"
+    },
+    {
+      "path": "sdks/fixtures/README.md",
+      "sha256": "26353329dfa01e04180d19a785106e88feb01c05f08df461d705d260a3272e36"
+    },
+    {
+      "path": "docs/sdk/runtime-contract.md",
+      "sha256": "22227777eed60a98e6ea27e47a18b3435bf6ab54fe1feb077b4b5b2d417d3b9b"
+    },
+    {
+      "path": "crates/loams/Cargo.toml",
+      "sha256": "ce95028e0305f278104cd15c0e6ba4cc7d93f223ee7e273a64483ae3de38c3d9"
+    },
+    {
+      "path": "crates/loams/src/main.rs",
+      "sha256": "c4b764646d9f7640b0e44b48119ed5702c3cdaace6fa2b7443c62493b6395008"
+    },
+    {
+      "path": "crates/loams/src/auth/mod.rs",
+      "sha256": "0f3318435da9034a51f453fc9b34fd977ebdf38751dffb31ae193ec94ab368ac"
+    },
+    {
+      "path": "proto/loams/live/v1/live.proto",
+      "sha256": "6475b822229d27d74a000cd5f6c2e5288ad99a5a1e421554957885cc1f3f1d56"
+    },
+    {
+      "path": "crates/loams-durable/src/lib.rs",
+      "sha256": "f5108c943365c4e790990b6982e8c348475a49fda659b0b27f8615d40955689a"
+    },
+    {
+      "path": "crates/loams-durable/src/runtime.rs",
+      "sha256": "9a5cb3a0c28319188de5525662521f813f25e488b1f57531f3eacbe114861181"
+    },
+    {
+      "path": "crates/loams-durable/Cargo.toml",
+      "sha256": "584c1e2c9d7bcf80bf69d1f73140a7953495591e6503e108bda7725aae081db7"
+    }
+  ],
+  "external_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/remorses/gpuix/main/README.md",
+      "sha256": "d2b96a6ee32f9b72cd849192aef580ae66de4b71e86ce338c8bc0b4362fa1f90",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/specta-rs/rspc/main/README.md",
+      "sha256": "ba1878d962a8e4b39fa3fd5031be7345e61690d4b4b9680c95010419e8f00bba",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/longbridge/gpui-kit/v0.8.0/Cargo.toml",
+      "sha256": "542183e9afd4df79603da1f867c2e256f06e577abcae1d6d71e86da0857c8d10",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/remorses/gpuix/a53b294401280014e94eb9bd98a7c7ed1929f92d/packages/native/Cargo.toml",
+      "sha256": "816306c667d9876deb230e9418e222f19bf50246c1f0a030b6e593fd0e8d5542",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/remorses/gpuix/a53b294401280014e94eb9bd98a7c7ed1929f92d/packages/native/src/custom_elements/mod.rs",
+      "sha256": "f9682f1a718651f50129ce6b9b217ac70e8b72354b1740c82af891f89d59d941",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/remorses/gpuix/a53b294401280014e94eb9bd98a7c7ed1929f92d/packages/native/src/lib.rs",
+      "sha256": "9bf373de2a08c40229e8c307b67e17231469a3cd91cae51c49d256088ab39414",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/remorses/gpuix/a53b294401280014e94eb9bd98a7c7ed1929f92d/packages/native/src/renderer.rs",
+      "sha256": "d45a0d61cbfa36bbc7dad175e551b0a1a3e3c70fcdf75f3863c81621aaeacce2",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/remorses/gpuix/a53b294401280014e94eb9bd98a7c7ed1929f92d/packages/react/package.json",
+      "sha256": "46b54415ac8af9b7c2e1318e10299b0ae1be1ff02ac486b25f47d82d37f5ade7",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/remorses/gpuix/a53b294401280014e94eb9bd98a7c7ed1929f92d/.gitmodules",
+      "sha256": "e1565b5f477f9e53b407e22427f32522811547fff5ebc2b902af1bc9bd2782ae",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://api.github.com/repos/remorses/gpuix/git/trees/main?recursive=1",
+      "sha256": "0d2137ab2ca3c741007a67847d5c3afa9e16b364fd0e52cb5bbcd80bcdfe39b0",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://api.github.com/repos/longbridge/gpui-kit/git/ref/tags/v0.8.0",
+      "sha256": "f263b0b9cebc3a063079486f1ce4cd4e3be5fa17cd452c591fa81b0688c73d09",
+      "fetched_date": "2026-10-25"
+    },
+    {
+      "url": "https://registry.npmjs.org/@loams%2fweb",
+      "sha256": "c8d3eae160a892e32837db3dcae515e843e5383fef52b8141940c8bcf8b6d59f",
+      "fetched_date": "2026-10-25",
+      "http_status": 404
+    },
+    {
+      "url": "https://registry.npmjs.org/@loams%2freact",
+      "sha256": "c8d3eae160a892e32837db3dcae515e843e5383fef52b8141940c8bcf8b6d59f",
+      "fetched_date": "2026-10-25",
+      "http_status": 404
+    }
+  ]
+}

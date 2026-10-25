@@ -1,5 +1,13 @@
 # PRDs
 
+## Loams Web planning
+
+- [Rust port plan v2](loams-web-port.md): scope, architecture decisions, implementation tickets and release gates.
+- [Inspection report](loams-web-inspection.md): upstream behavior, integration findings and verification limits.
+- [Source inventory](loams-web-source-inventory.json): pinned source hashes, module contracts and static test labels.
+
+## Upstream Spindle convention
+
 Spindle's PRDs, one a piece of work, decided as Hypha's `PRD.md` says. A
 PRD is deleted once its work lands; this table says where each of its facts
 goes then.
