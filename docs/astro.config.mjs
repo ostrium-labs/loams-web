@@ -79,6 +79,7 @@ export default defineConfig({
             "guide/metrics",
           ],
         },
+        { label: "Loams Web", items: ["loams-web"] },
         { label: "Reference", items: ["reference"] },
       ],
     }),

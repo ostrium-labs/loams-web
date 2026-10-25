@@ -1,0 +1,13 @@
+Loams Web
+
+The new Rust implementation under crates/ and examples/bill-split/ is
+licensed under the Apache License, Version 2.0; see LICENSE-APACHE.
+
+This repository retains Spindle source, tests, documentation and history:
+Copyright (c) 2026 Hypha Technologies Ltd.
+The complete MIT license for that material remains in LICENSE.
+
+The Structured Fields test corpus in test/structured-field-tests/ has its
+own terms in test/structured-field-tests/LICENSE.md. Bundled Scalar assets
+retain the notices in their upstream source. Cargo dependencies retain
+their respective licenses. No Scalar asset is included in the Rust adapter.

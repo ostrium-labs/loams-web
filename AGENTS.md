@@ -1,5 +1,27 @@
 # AGENTS.md
 
+## Loams Web Rust port
+
+The Rust workspace implements the incremental port described in
+`prds/loams-web-port.md`. Its source lives in `crates/`, with the runnable
+example in `examples/bill-split/`. The OCaml sources remain the Spindle
+reference; the Spindle package, Eio, HTTP-engine and `.mli` rules below
+govern that retained implementation. The Rust implementation uses
+axum/Tokio as specified by the port plan.
+
+Use the pinned toolchain in `rust-toolchain.toml`. Run `make rust-test`
+and `make rust-lint`; `cargo doc --locked --workspace --no-deps` checks
+Rust API documentation. Keep Cargo.lock committed. Core descriptions and
+validation must remain independent of transport and must not execute
+handlers during schema discovery. Do not mark a conformance row passing
+without execution evidence; fixtures alone establish no parity.
+
+New Rust files use Apache-2.0, with the full license in LICENSE-APACHE.
+Preserve LICENSE and the upstream notices for retained source and tests.
+Describe Rust user-visible behavior in `docs/src/content/docs/loams-web.md`.
+
+## Retained Spindle reference
+
 Spindle is an OCaml library of Hypha Stack, and keeps PRDs: a web
 framework for OCaml 5 and Eio: typed routes, dependencies and answers,
 and HTTP/1.1 read and written by itself. This file is for anyone changing

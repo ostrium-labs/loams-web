@@ -1,0 +1,534 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "split-basic",
+      "kind": "split",
+      "source": {
+        "path": "examples/split.ml",
+        "row": "type bill ="
+      },
+      "rfc": null,
+      "input": {
+        "total": 90,
+        "tip": 10,
+        "people": 3
+      },
+      "expected": {
+        "each": 33.0
+      },
+      "fragmentation": [
+        "structured"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "implemented"
+      },
+      "divergence": null,
+      "runners": {
+        "rust": {
+          "path": "examples/bill-split/tests/portable.rs",
+          "command": "cargo test -p bill-split --test portable",
+          "test": "portable_split_cases"
+        }
+      }
+    },
+    {
+      "id": "split-zero",
+      "kind": "split",
+      "source": {
+        "path": "examples/split.ml",
+        "row": "type bill ="
+      },
+      "rfc": null,
+      "input": {
+        "total": 0,
+        "tip": 0,
+        "people": 1
+      },
+      "expected": {
+        "each": 0.0
+      },
+      "fragmentation": [
+        "structured"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "implemented"
+      },
+      "divergence": null,
+      "runners": {
+        "rust": {
+          "path": "examples/bill-split/tests/portable.rs",
+          "command": "cargo test -p bill-split --test portable",
+          "test": "portable_split_cases"
+        }
+      }
+    },
+    {
+      "id": "split-upper-bounds",
+      "kind": "split",
+      "source": {
+        "path": "examples/split.ml",
+        "row": "type bill ="
+      },
+      "rfc": null,
+      "input": {
+        "total": 100,
+        "tip": 100,
+        "people": 50
+      },
+      "expected": {
+        "each": 4.0
+      },
+      "fragmentation": [
+        "structured"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "implemented"
+      },
+      "divergence": null,
+      "runners": {
+        "rust": {
+          "path": "examples/bill-split/tests/portable.rs",
+          "command": "cargo test -p bill-split --test portable",
+          "test": "portable_split_cases"
+        }
+      }
+    },
+    {
+      "id": "split-invalid-all",
+      "kind": "split",
+      "source": {
+        "path": "examples/split.ml",
+        "row": "type bill ="
+      },
+      "rfc": null,
+      "input": {
+        "total": -1,
+        "tip": 101,
+        "people": 0
+      },
+      "expected": {
+        "invalid_fields": [
+          "total",
+          "tip",
+          "people"
+        ]
+      },
+      "fragmentation": [
+        "structured"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "implemented_partial"
+      },
+      "divergence": "Rust runner proves invalid_argument/HTTP 400 rejection. Current fixed invalid_input error does not expose individual invalid_fields; full field-problem parity remains planned.",
+      "runners": {
+        "rust": {
+          "path": "examples/bill-split/tests/portable.rs",
+          "command": "cargo test -p bill-split --test portable",
+          "test": "portable_split_cases"
+        }
+      }
+    },
+    {
+      "id": "split-invalid-negative-tip",
+      "kind": "split",
+      "source": {
+        "path": "examples/split.ml",
+        "row": "type bill ="
+      },
+      "rfc": null,
+      "input": {
+        "total": 90,
+        "tip": -1,
+        "people": 3
+      },
+      "expected": {
+        "invalid_fields": [
+          "tip"
+        ]
+      },
+      "fragmentation": [
+        "structured"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "implemented_partial"
+      },
+      "divergence": "Rust runner proves invalid_argument/HTTP 400 rejection. Current fixed invalid_input error does not expose individual invalid_fields; full field-problem parity remains planned.",
+      "runners": {
+        "rust": {
+          "path": "examples/bill-split/tests/portable.rs",
+          "command": "cargo test -p bill-split --test portable",
+          "test": "portable_split_cases"
+        }
+      }
+    },
+    {
+      "id": "split-invalid-large-party",
+      "kind": "split",
+      "source": {
+        "path": "examples/split.ml",
+        "row": "type bill ="
+      },
+      "rfc": null,
+      "input": {
+        "total": 90,
+        "tip": 10,
+        "people": 51
+      },
+      "expected": {
+        "invalid_fields": [
+          "people"
+        ]
+      },
+      "fragmentation": [
+        "structured"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "implemented_partial"
+      },
+      "divergence": "Rust runner proves invalid_argument/HTTP 400 rejection. Current fixed invalid_input error does not expose individual invalid_fields; full field-problem parity remains planned.",
+      "runners": {
+        "rust": {
+          "path": "examples/bill-split/tests/portable.rs",
+          "command": "cargo test -p bill-split --test portable",
+          "test": "portable_split_cases"
+        }
+      }
+    },
+    {
+      "id": "framing-conflict",
+      "kind": "http_framing",
+      "source": {
+        "path": "test/test_http_rfc.ml",
+        "row": "Transfer-Encoding beside Content-Length is refused"
+      },
+      "rfc": "9112 \u00a76.1 / \u00a76.3 / \u00a77.1",
+      "input": {
+        "request_latin1": "POST / HTTP/1.1\r\nHost: t\r\nTransfer-Encoding: chunked\r\nContent-Length: 5\r\n\r\n"
+      },
+      "expected": {
+        "status": 400
+      },
+      "fragmentation": [
+        "whole",
+        "bytewise",
+        "every_single_cut"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "planned"
+      },
+      "divergence": null
+    },
+    {
+      "id": "framing-different-lengths",
+      "kind": "http_framing",
+      "source": {
+        "path": "test/test_http_rfc.ml",
+        "row": "two different lengths are 400"
+      },
+      "rfc": "9112 \u00a76.1 / \u00a76.3 / \u00a77.1",
+      "input": {
+        "request_latin1": "POST / HTTP/1.1\r\nHost: t\r\nContent-Length: 5\r\nContent-Length: 6\r\n\r\n"
+      },
+      "expected": {
+        "status": 400
+      },
+      "fragmentation": [
+        "whole",
+        "bytewise",
+        "every_single_cut"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "planned"
+      },
+      "divergence": null
+    },
+    {
+      "id": "framing-negative-length",
+      "kind": "http_framing",
+      "source": {
+        "path": "test/test_http_rfc.ml",
+        "row": "a Content-Length that is not a number is 400"
+      },
+      "rfc": "9112 \u00a76.1 / \u00a76.3 / \u00a77.1",
+      "input": {
+        "request_latin1": "POST / HTTP/1.1\r\nHost: t\r\nContent-Length: -5\r\n\r\n"
+      },
+      "expected": {
+        "status": 400
+      },
+      "fragmentation": [
+        "whole",
+        "bytewise",
+        "every_single_cut"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "planned"
+      },
+      "divergence": null
+    },
+    {
+      "id": "framing-chunked",
+      "kind": "http_framing",
+      "source": {
+        "path": "test/test_http_rfc.ml",
+        "row": "a chunked body is read to its last chunk"
+      },
+      "rfc": "9112 \u00a76.1 / \u00a76.3 / \u00a77.1",
+      "input": {
+        "request_latin1": "POST / HTTP/1.1\r\nHost: t\r\nTransfer-Encoding: chunked\r\n\r\n5\r\nhello\r\n1\r\n!\r\n0\r\n\r\n"
+      },
+      "expected": {
+        "body": "hello!"
+      },
+      "fragmentation": [
+        "whole",
+        "bytewise",
+        "every_single_cut"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "planned"
+      },
+      "divergence": null
+    },
+    {
+      "id": "head-no-body",
+      "kind": "http_framing",
+      "source": {
+        "path": "test/test_http_rfc.ml",
+        "row": "a response to HEAD has no body, whatever its length says"
+      },
+      "rfc": "9112 \u00a76.3",
+      "input": {
+        "request_method": "HEAD",
+        "response_latin1": "HTTP/1.1 200 OK\r\nContent-Length: 999\r\n\r\n"
+      },
+      "expected": {
+        "body": "",
+        "framing": "no_body"
+      },
+      "fragmentation": [
+        "whole",
+        "bytewise",
+        "every_single_cut"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "planned"
+      },
+      "divergence": null
+    },
+    {
+      "id": "multipart-boundary",
+      "kind": "multipart",
+      "source": {
+        "path": "test/test_multipart_rfc.ml",
+        "row": "each part between boundaries, the last closed with --"
+      },
+      "rfc": "7578 \u00a74.1",
+      "input": {
+        "boundary": "b",
+        "body_latin1": "--b\r\nContent-Disposition: form-data; name=\"a\"\r\n\r\none\r\n--b\r\nContent-Disposition: form-data; name=\"b\"\r\n\r\ntwo\r\n--b--\r\n"
+      },
+      "expected": {
+        "parts": [
+          {
+            "name": "a",
+            "body": "one"
+          },
+          {
+            "name": "b",
+            "body": "two"
+          }
+        ]
+      },
+      "fragmentation": [
+        "whole",
+        "bytewise",
+        "every_single_cut"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "planned"
+      },
+      "divergence": null
+    },
+    {
+      "id": "websocket-close",
+      "kind": "websocket_close",
+      "source": {
+        "path": "test/test_websocket_rfc.ml",
+        "row": "a close is answered with a close naming its code"
+      },
+      "rfc": "6455 \u00a75.5.1",
+      "input": {
+        "client_frame_hex": "88820102030402eb"
+      },
+      "expected": {
+        "server_frame_hex": "880203e9",
+        "close_code": 1001
+      },
+      "fragmentation": [
+        "whole",
+        "bytewise",
+        "every_single_cut"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "planned"
+      },
+      "divergence": null
+    },
+    {
+      "id": "error-redaction",
+      "kind": "error_redaction",
+      "source": {
+        "path": "core/refusal.mli",
+        "row": "The detail is what whoever runs the server needs, and it goes to the log and nowhere else."
+      },
+      "rfc": null,
+      "input": {
+        "internal_exception": "credential=secret-conformance-canary",
+        "safe_message": "An internal error occurred."
+      },
+      "expected": {
+        "forbidden_public_substrings": [
+          "secret-conformance-canary",
+          "credential="
+        ],
+        "safe_message": "An internal error occurred."
+      },
+      "fragmentation": [
+        "structured"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "planned"
+      },
+      "divergence": "Rust ApiError envelope differs intentionally; compare secrecy and safe message, not Spindle JSON keys."
+    },
+    {
+      "id": "limits-invalid-zero-header",
+      "kind": "limits",
+      "source": {
+        "path": "core/server.mli",
+        "row": "fewer than one connection, header byte or byte a second"
+      },
+      "rfc": null,
+      "input": {
+        "max_header_bytes": 0
+      },
+      "expected": {
+        "reject": true
+      },
+      "fragmentation": [
+        "structured"
+      ],
+      "timing": "deterministic; no sleeps",
+      "targets": [
+        "ocaml-reference",
+        "rust"
+      ],
+      "status": "fixture_ready",
+      "runtime_status": {
+        "ocaml-reference": "planned",
+        "rust": "planned"
+      },
+      "divergence": "Rust rejects configuration through a Result rather than raising OCaml Invalid_argument."
+    }
+  ]
+}

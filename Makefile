@@ -11,6 +11,18 @@ REFERENCE = spindle spindle-http spindle-client spindle-mcp spindle-mcp-client s
 
 .DEFAULT_GOAL := help
 .PHONY: help setup build test lint fmt docs docs-serve db db-down
+.PHONY: rust-test rust-lint rust-run
+
+rust-test: ## test the Rust port
+	cargo test --locked --workspace
+
+rust-lint: ## check the Rust port
+	cargo fmt --all -- --check
+	cargo clippy --locked --workspace --all-targets -- -D warnings
+	cargo check --locked -p loams-web --no-default-features
+
+rust-run: ## serve the Rust bill-split example
+	cargo run --locked -p bill-split
 
 help: ## list targets
 	@grep -hE '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \

@@ -1,0 +1,18 @@
+[package]
+name = "loams-web"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Typed procedures and HTTP adapters for Loams applications"
+
+[features]
+default = ["http", "openapi"]
+http = ["dep:loams-web-http"]
+openapi = ["dep:loams-web-openapi"]
+
+[dependencies]
+loams-web-core.workspace = true
+loams-web-http = { workspace = true, optional = true }
+loams-web-openapi = { workspace = true, optional = true }

@@ -1,6 +1,10 @@
 # Loams Web: Rust port plan v2
 
-Status: proposed implementation plan, ready for review. No Rust port is implemented by this document.
+Status: implementation in progress. The initial Rust workspace implements
+the LW-004 backend vertical slice, OpenAPI and TypeScript generators, and
+an initial conformance workbench; see the
+[Rust preview guide](../docs/src/content/docs/loams-web.md). M0 remains open
+until its reference, protocol and integration evidence is recorded.
 Date: 2026-10-25. Supersedes the assumptions and sequencing in the supplied 2026-10-23 v1 brief.
 
 ## 0. Decision
@@ -24,7 +28,7 @@ Local clone: `/home/keshav/Ostrium/loams-web`.
 
 See [inspection report](loams-web-inspection.md) and [source inventory](loams-web-source-inventory.json). The inventory records all 402 tracked upstream files and static test labels. Inspection is static: upstream suites have **not** been run in this environment. `opam`, `dune`, `bun`, `cargo` and `rustup` are absent from PATH. No claim of conformance follows from inspection.
 
-The checkout retains full upstream Git history and its existing `origin`; a hosted `ostrium-labs/loams-web` fork has not been created. Planning files are the only project changes in this task.
+The checkout retains full upstream Git history and its existing `origin`; a hosted `ostrium-labs/loams-web` fork has not been created. The inspection below predates implementation. Rust implementation files now live beside the retained reference source.
 
 ### Corrections to v1
 

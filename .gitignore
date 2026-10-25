@@ -1,4 +1,5 @@
 _build/
+target/
 .DS_Store
 # The documentation site's dependencies and Astro's cache, and the reference
 # copied into it.

@@ -1,10 +1,14 @@
 # PRDs
 
-## Loams Web planning
+## Loams Web port
 
 - [Rust port plan v2](loams-web-port.md): scope, architecture decisions, implementation tickets and release gates.
 - [Inspection report](loams-web-inspection.md): upstream behavior, integration findings and verification limits.
 - [Source inventory](loams-web-source-inventory.json): pinned source hashes, module contracts and static test labels.
+- [Rust preview guide](../docs/src/content/docs/loams-web.md): runnable backend,
+  OpenAPI and TypeScript generation, commands and current limits.
+- [Conformance workbench](../conformance/README.md): traceability ledger,
+  portable cases and executable observation adapter.
 
 ## Upstream Spindle convention
 
