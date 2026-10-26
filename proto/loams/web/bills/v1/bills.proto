@@ -1,0 +1,25 @@
+syntax = "proto3";
+package loams.web.bills.v1;
+
+// Explicit opt-in RPC representation. Field numbers are stable, not Rust order.
+service BillSplitService {
+  rpc Split(SplitRequest) returns (SplitResponse);
+}
+
+message SplitRequest {
+  double total = 1;
+  uint32 tip = 2;
+  uint32 people = 3;
+}
+
+message SplitResponse {
+  double each = 1;
+}
+
+// Application error information carried in standard Connect/gRPC status details.
+message ProcedureErrorDetail {
+  string reason = 1;
+  string request_id = 2;
+  bytes details_json = 3;
+  optional uint64 retry_after_millis = 4;
+}

@@ -1,0 +1,21 @@
+[package]
+name = "loams-web-derive"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { workspace = true, features = ["full", "extra-traits", "visit-mut"] }
+quote.workspace = true
+proc-macro2.workspace = true
+
+[dev-dependencies]
+loams-web-core.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true

@@ -19,6 +19,16 @@ use std::{
 };
 use tokio::sync::OnceCell;
 
+/// Dependencies used by generated code; not a stable application-facing API.
+#[doc(hidden)]
+pub mod __private {
+    pub use schemars;
+}
+
+/// A type whose serde wire representation and bounds have a generated schema.
+/// Deriving `WireType` also implements `JsonSchema`; serde traits stay explicit.
+pub trait WireType: JsonSchema {}
+
 /// Canonical RPC codes; transport adapters project these to their protocol.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]

@@ -9,6 +9,15 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt};
 #[test]
 fn configuration_is_validated_without_panicking() {
     assert!(Server::new(ServerConfig::default()).is_ok());
+    for max_http2_streams in [0, u32::MAX] {
+        assert!(matches!(
+            Server::new(ServerConfig {
+                max_http2_streams,
+                ..ServerConfig::default()
+            }),
+            Err(ConfigError::Http2Streams)
+        ));
+    }
     for max_connections in [0, usize::MAX] {
         assert!(matches!(
             Server::new(ServerConfig {
@@ -62,6 +71,19 @@ fn configuration_is_validated_without_panicking() {
 }
 
 #[tokio::test(start_paused = true)]
+async fn silent_protocol_detection_is_bounded() {
+    let (_client, server) = tokio::io::duplex(1024);
+    let (_stop, stop_rx) = watch::channel(false);
+    let started = tokio::time::Instant::now();
+    assert!(
+        connection(server, Router::new(), ServerConfig::default(), stop_rx)
+            .await
+            .is_err()
+    );
+    assert_eq!(started.elapsed(), Duration::from_secs(10));
+}
+
+#[tokio::test(start_paused = true)]
 async fn partial_header_expires_on_virtual_time() {
     let (mut client, server) = tokio::io::duplex(1024);
     let (_stop, stop_rx) = watch::channel(false);
@@ -77,7 +99,11 @@ async fn partial_header_expires_on_virtual_time() {
         .unwrap();
     let started = tokio::time::Instant::now();
     let error = task.await.unwrap().unwrap_err();
-    assert!(error.is_timeout());
+    assert!(
+        error
+            .downcast_ref::<hyper::Error>()
+            .is_some_and(hyper::Error::is_timeout)
+    );
     assert_eq!(started.elapsed(), Duration::from_secs(10));
 }
 
@@ -134,7 +160,7 @@ async fn drain_deadline_cancels_pending_tasks_and_observes_cleanup() {
     tasks.spawn(async move {
         let _drop = DropFlag(flag);
         let _ = started.send(());
-        std::future::pending::<Result<(), hyper::Error>>().await
+        std::future::pending::<ConnectionResult>().await
     });
     ready.await.unwrap();
     let mut report = ShutdownReport::default();

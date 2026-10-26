@@ -1,0 +1,25 @@
+{
+  "format_version": 1,
+  "package": "loams.web.bills.v1",
+  "messages": {
+    "SplitRequest": {
+      "total": { "number": 1, "type": "double" },
+      "tip": { "number": 2, "type": "uint32" },
+      "people": { "number": 3, "type": "uint32" }
+    },
+    "SplitResponse": {
+      "each": { "number": 1, "type": "double" }
+    },
+    "ProcedureErrorDetail": {
+      "reason": { "number": 1, "type": "string" },
+      "request_id": { "number": 2, "type": "string" },
+      "details_json": { "number": 3, "type": "bytes" },
+      "retry_after_millis": { "number": 4, "type": "uint64", "optional": true }
+    }
+  },
+  "services": {
+    "BillSplitService": {
+      "Split": { "input": "SplitRequest", "output": "SplitResponse" }
+    }
+  }
+}

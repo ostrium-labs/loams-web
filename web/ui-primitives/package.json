@@ -1,0 +1,10 @@
+{
+  "name": "@loams/react",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {".": "./src/index.tsx", "./dom": "./src/dom.ts"},
+  "dependencies": {"@loams/host-dom": "workspace:*"},
+  "devDependencies": {"react-dom": "19.2.0"},
+  "peerDependencies": {"react": "19.2.0"}
+}

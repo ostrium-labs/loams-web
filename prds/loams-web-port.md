@@ -7,6 +7,16 @@ an initial conformance workbench; see the
 until its reference, protocol and integration evidence is recorded.
 Date: 2026-10-25. Supersedes the assumptions and sequencing in the supplied 2026-10-23 v1 brief.
 
+Implementation progress (2026-10-26): the workspace now also has bounded
+validation problems, `WireType`/procedure macros, one-port REST/Connect/gRPC/
+gRPC-Web serving, a request-scoped adapter for published Loams SDK 0.1.2,
+and a React 19 DOM app with shared primitives. Rust/Bun checks and the
+source-pinned reference harness checks pass. The OCaml reference suites and
+official Connect conformance were not executed; the reference image could not
+be inspected after slow external image downloads, and the attempt recorded
+zero suites. LW-006 rspc and LW-008 GPUIX/Kit spikes are still outstanding, so
+these additions do not close M0 or claim full Spindle parity.
+
 ## 0. Decision
 
 Proceed with a behavior-preserving Rust port of Spindle, using Tokio, axum/tower and hyper, with real React 19 and a DOM host as the first release path. Develop GPUIX as a second host. Keep the GPUI Kit bridge and GPU browser target behind explicit feasibility gates. Rust-native React remains a separate future program.

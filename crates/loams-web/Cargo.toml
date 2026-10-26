@@ -8,11 +8,17 @@ publish.workspace = true
 description = "Typed procedures and HTTP adapters for Loams applications"
 
 [features]
-default = ["http", "openapi"]
+default = ["http", "openapi", "macros"]
 http = ["dep:loams-web-http"]
 openapi = ["dep:loams-web-openapi"]
+macros = ["dep:loams-web-derive"]
+rpc = ["dep:loams-web-rpc"]
+platform = ["dep:loams-web-platform"]
 
 [dependencies]
 loams-web-core.workspace = true
 loams-web-http = { workspace = true, optional = true }
 loams-web-openapi = { workspace = true, optional = true }
+loams-web-derive = { workspace = true, optional = true }
+loams-web-rpc = { workspace = true, optional = true }
+loams-web-platform = { workspace = true, optional = true }

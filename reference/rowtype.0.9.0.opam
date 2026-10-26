@@ -1,0 +1,48 @@
+opam-version: "2.0"
+synopsis:
+  "One value describes a query's parameters and rows, for any SQL database"
+description:
+  "A query's parameters and rows described once, binding and decoding both, and run by a backend. Reads no SQL and links no database's library."
+maintainer: ["Hypha Technologies Ltd <dev@hyphatech.io>"]
+authors: ["Hypha Technologies Ltd"]
+license: "MIT"
+homepage: "https://github.com/hyphatech/rowtype"
+bug-reports: "https://github.com/hyphatech/rowtype/issues"
+depends: [
+  "dune" {>= "3.18"}
+  "ocaml" {>= "5.5"}
+  "ptime" {>= "1.2.0"}
+  "uuidm" {>= "0.9.10"}
+  "alcotest" {with-test & >= "1.9.1"}
+  "qcheck-core" {with-test & >= "0.91"}
+  "qcheck-alcotest" {with-test & >= "0.91"}
+  "odoc" {with-dev-setup & >= "3.2.1"}
+  "merlin" {with-dev-setup & >= "5.6-504"}
+  "ocaml-lsp-server" {with-dev-setup & >= "1.25.0"}
+  "ocamlformat" {with-dev-setup & = "0.29.0"}
+  "odoc" {with-doc}
+]
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+dev-repo: "git+https://github.com/hyphatech/rowtype.git"
+x-maintenance-intent: ["(latest)"]
+x-commit-hash: "7583020581742bf4476eba7b466501669eab4878"
+url {
+  src: "https://github.com/hyphatech/rowtype/releases/download/0.9.0/rowtype-0.9.0.tar.gz"
+  checksum: [
+    "sha256=4f280540e5bbe8f50c665af93c302ccb34ab24cd014836771b3740fd9d33feb9"
+    "sha512=72acdf2018d5ba5b308ce181842073e7d3ae103b786cca927f44be45a27f852c7da00d47806158faf97d09c99dbf51555b8144ab74c7561027d98d69ee99d06e"
+  ]
+}

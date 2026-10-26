@@ -1,13 +1,13 @@
 ---
 title: Loams Web Rust preview
-description: Build and run the first Rust procedure and HTTP adapter.
+description: Build and run the Rust procedure, RPC adapters and React DOM example.
 ---
 
-The Rust workspace is an early backend vertical slice of the Loams Web
-port. It includes typed procedures, schema validation, safe API errors,
-request context, a JSON HTTP adapter, and OpenAPI 3.2 generation. The
-OCaml documentation elsewhere on this site describes the retained
-Spindle reference.
+The Rust workspace is an early Loams Web port. It includes typed procedures,
+schema validation, safe API errors, request context, OpenAPI and TypeScript
+generation, Connect/gRPC/gRPC-Web adapters, a request-scoped Loams SDK adapter,
+and a React 19 DOM example. The OCaml documentation elsewhere on this site
+describes the retained Spindle reference.
 
 From the repository root, with the toolchain in `rust-toolchain.toml`:
 
@@ -26,8 +26,8 @@ curl http://127.0.0.1:8080/split \
 
 The response is `{"each":33.0}`. The input schema constrains `total` to
 nonnegative values, `tip` to 0–100, and `people` to 1–50. These bounds are
-declared on the Rust type using Schemars and used for runtime validation
-and documentation. JSON with missing or unknown fields, incompatible
+declared on the Rust type using `#[derive(WireType)]` and `#[wire(...)]`, then
+used for runtime validation and documentation. JSON with missing or unknown fields, incompatible
 types, or values outside the bounds is rejected before the handler runs.
 
 Validation failures use `code: "invalid_argument"`, `reason:
@@ -56,11 +56,13 @@ cargo run --locked -p loams-web-cli -- /tmp/bill-split.descriptors.json --write 
 cargo run --locked -p loams-web-cli -- /tmp/bill-split.descriptors.json --check /tmp/client.ts
 ```
 
-The generator supports a strict JSON-schema subset and fails on unsupported
-shapes. Numeric values use TypeScript `number`; protobuf generation and a
-lossless int64 representation are outside this preview. `--check` fails for
-missing or stale artifacts. This helper does not add `loams app` to the
-separate engine CLI.
+The TypeScript generator supports a strict JSON-schema subset and fails on
+unsupported shapes. Numeric values use TypeScript `number`; a lossless int64
+representation is outside this preview. `--check` fails for missing or stale
+artifacts. Opt-in protobuf messages and services use the committed field
+ledger at `proto/field-tags.json`. The same procedure can be mounted at REST,
+Connect, native gRPC and gRPC-Web paths on one TCP port. This helper does not
+add `loams app` to the separate engine CLI.
 
 Create a standalone application using the local unpublished framework:
 
@@ -80,9 +82,10 @@ Set `LOAMS_WEB_ADDR` to change the listen address. The default is
 `127.0.0.1:8080`. Ctrl-C stops accepting connections and gives active
 requests up to five seconds to drain.
 
-The `loams-web` facade re-exports the core types. Its default features add
-the HTTP and OpenAPI crates. Disable default features for a core-only
-consumer; the core has no axum dependency.
+The `loams-web` facade re-exports the core types and opt-in macros. Its default
+features add HTTP, OpenAPI and macros; enable `rpc` or `platform` to use those
+adapters. Disable default features for a core-only consumer; the core has no
+axum dependency.
 
 The HTTP adapter initially supports static paths and JSON procedures.
 GET, HEAD and OPTIONS require unit input and an empty request body. The
@@ -94,26 +97,39 @@ when that bound is too small for them. Its invocation deadline cancels
 the handler future; this has not established Spindle cancellation parity.
 
 `loams_web::http::server::Server` serves an explicitly bound Tokio listener
-using hyper HTTP/1. Its default policy admits up to 512 TCP connections,
+using hyper HTTP/1 and HTTP/2 with protocol detection. Its default policy admits up to 512 TCP connections,
 closes excess connections immediately, allows 10 seconds to read each
 request head, parses up to 100 header fields, and sets a 16 KiB read buffer
-bound. The buffer bound is not an exact header byte limit. Shutdown stops
+bound. HTTP/2 admits up to 128 concurrent streams per connection and limits
+header lists to 16 KiB. The buffer bound is not an exact HTTP/1 header byte limit. Shutdown stops
 accepting, requests graceful connection completion, then cancels remaining
 connection tasks after five seconds. The helper returns connection counts
 and installs no signal or logging hooks; the example supplies Ctrl-C.
 
-This helper does not yet implement TLS, HTTP/2, dual-family binding,
-minimum body rate, idle/write progress deadlines, or handler panic
-containment. A connection task panic is counted as a failed connection;
-the process's existing panic hook still applies.
-This preview does not implement the complete Spindle transport policy,
-OAuth, cookies, sessions, streaming, RPC, SDK integration, frontend hosts,
-or the procedure and WireType macros. Application validation beyond the
-generated JSON schema can use the procedure's input validator. Runtime
-validation and schema construction must not fetch external schemas.
+The server does not yet implement TLS, dual-family binding, HTTP/2 per-header
+progress deadlines, minimum body rate, idle/write progress deadlines, or
+handler panic containment. A connection task panic is counted as a failed
+connection; the process's existing panic hook still applies. The Connect
+runtime has not been run against the official external conformance suite.
+
+`crates/loams-web-platform` pins the published Rust SDK and scopes auth
+assertions, outbound credentials and consistency-token merges to a verified
+request. The host must provide a trusted identity verifier; this adapter does
+not implement JWT/OIDC or Tailscale verification. Its SDK future bridge has
+the cancellation and deadline limitations documented in that crate's README.
+The `web/` workspace has a host-independent React primitive package, DOM host,
+generated API client, and bill-split app. Run its Bun checks from `web/`; see
+`web/README.md` in the repository for the local workflow.
+
+This preview still omits much of Spindle: OAuth, cookies, sessions, SSE,
+WebSockets, multipart/file policies, the rspc adapter, and GPUIX/Kit hosts.
+Application validation beyond the generated JSON schema can use the
+procedure's input validator. Runtime validation and schema construction must
+not fetch external schemas.
 
 The port plan in `prds/loams-web-port.md` tracks the remaining milestones.
 The `conformance/` directory accounts for upstream rows separately from
 execution evidence; a fixture or a green Rust subset does not establish
 full Spindle parity. The OCaml baseline has not yet been run in this
-environment.
+environment. The current external-download blocker and its evidence are
+recorded in `reference/attempt-status.json`.

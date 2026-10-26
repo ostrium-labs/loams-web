@@ -1,0 +1,37 @@
+[package]
+name = "loams-web-rpc"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[features]
+default = []
+client = ["connectrpc/client"]
+
+[dependencies]
+loams-web-core.workspace = true
+connectrpc.workspace = true
+buffa.workspace = true
+bytes.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+schemars.workspace = true
+tokio.workspace = true
+http.workspace = true
+
+[build-dependencies]
+connectrpc-build.workspace = true
+protox.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+axum.workspace = true
+tower.workspace = true
+http-body-util.workspace = true
+hyper.workspace = true
+hyper-util.workspace = true
+loams-web-http.workspace = true
+connectrpc = { workspace = true, features = ["client"] }
+base64 = "0.22"

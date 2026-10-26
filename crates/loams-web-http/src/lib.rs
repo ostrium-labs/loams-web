@@ -1,7 +1,7 @@
 //! Bounded JSON REST adapter for transport-independent Loams Web procedures.
 //!
 //! This first slice supports literal paths. [`server`] adds connection admission,
-//! HTTP/1 header-read deadlines, and bounded shutdown. Path/query extractors,
+//! HTTP/1 header-read deadlines, HTTP/2 stream bounds, and bounded shutdown. Path/query extractors,
 //! authentication, streaming, and progress-based I/O limits remain future work.
 
 pub mod server;
@@ -81,9 +81,14 @@ impl HttpAdapter {
         Self::default()
     }
 
-    pub fn procedure(
+    pub fn procedure(self, procedure: impl ErasedProcedure + 'static) -> Result<Self, BuildError> {
+        self.shared_procedure(Arc::new(procedure))
+    }
+
+    /// Register an existing procedure shared with another transport adapter.
+    pub fn shared_procedure(
         mut self,
-        procedure: impl ErasedProcedure + 'static,
+        procedure: Arc<dyn ErasedProcedure>,
     ) -> Result<Self, BuildError> {
         let descriptor = procedure.descriptor();
         let binding = descriptor
@@ -118,7 +123,7 @@ impl HttpAdapter {
         }
         self.names.insert(descriptor.name.clone());
         self.routes.insert(key);
-        self.procedures.push(Arc::new(procedure));
+        self.procedures.push(procedure);
         Ok(self)
     }
 

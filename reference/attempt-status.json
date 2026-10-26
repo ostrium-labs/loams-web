@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "status": "execution_blocked_by_external_downloads",
+  "source_commit": "e180e57ae94ea6869038fccde8621d738dd2b84a",
+  "source_archive_sha256": "abd208aaeb40b55ce5f95d258481849f604897501e505ca4d86cfd95cd0959ae",
+  "verified_source_files": 402,
+  "local_harness_unit_tests_passed": 5,
+  "ocaml_suites_executed": 0,
+  "ocaml_suites_unexecuted": 15,
+  "service_skips": "Not evaluated; no reference test process started.",
+  "installed_reference_packages": "Not measured; reference image never completed.",
+  "attempts": [
+    {
+      "command": "python3 reference/manage.py build",
+      "result": "Sandbox denied Podman container storage; retried with escalation",
+      "error": "set sticky bit on: chmod /run/user/1000/libpod: read-only file system"
+    },
+    {
+      "command": "python3 reference/manage.py build (escalated)",
+      "result": "Cancelled after persistent stalled registry layer downloads; no dependency solve or test execution",
+      "last_stage": "Pulling digest-pinned Bun image blobs"
+    },
+    {
+      "command": "curl -fL --max-time 120 https://github.com/oven-sh/bun/releases/download/bun-v1.3.0/bun-linux-x64.zip -o reference/.work/bun-linux-x64.zip",
+      "exit_code": 28,
+      "elapsed_milliseconds_reported": 115971,
+      "downloaded_bytes": 320129,
+      "expected_bytes": 39661013,
+      "error": "Operation timed out after 115971 milliseconds with 320129 out of 39661013 bytes received"
+    }
+  ],
+  "cleanup": "Stopped only identified reference Podman pull PID25980 and build PID35659 with SIGTERM; no service containers/network were created.",
+  "retry": [
+    "python3 reference/verify.py",
+    "python3 reference/manage.py build",
+    "python3 reference/manage.py run"
+  ]
+}

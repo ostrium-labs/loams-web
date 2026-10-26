@@ -378,7 +378,7 @@ pub fn generate_typescript(descriptors: &[ProcedureDescriptor]) -> Result<String
         );
         text.push('\n');
     }
-    text.push_str("export class ApiClientError extends Error {\n  constructor(public readonly status: number, public readonly body: unknown) {\n    super(`Request failed with HTTP ${status}`);\n    this.name = \"ApiClientError\";\n  }\n}\n\nexport function createClient(baseUrl: string, fetchImpl: typeof fetch = fetch) {\n  const base = baseUrl.replace(/\\/$/, \"\");\n  return {\n");
+    text.push_str("export class ApiClientError extends Error {\n  constructor(public readonly status: number, public readonly body: unknown) {\n    super(`Request failed with HTTP ${status}`);\n    this.name = \"ApiClientError\";\n  }\n}\n\nexport type Fetcher = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;\n\nexport function createClient(baseUrl: string, fetchImpl: Fetcher = fetch) {\n  const base = baseUrl.replace(/\\/$/, \"\");\n  return {\n");
     for descriptor in procedures {
         let prefix = identifier(&descriptor.name);
         let binding = descriptor.http.as_ref().expect("bindings validated above");

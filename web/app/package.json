@@ -1,0 +1,13 @@
+{
+  "name": "loams-web-example",
+  "private": true,
+  "type": "module",
+  "scripts": {"dev": "vite --host 127.0.0.1", "build": "vite build"},
+  "dependencies": {
+    "@loams/web": "workspace:*",
+    "@loams/react": "workspace:*",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {"vite": "7.1.12"}
+}

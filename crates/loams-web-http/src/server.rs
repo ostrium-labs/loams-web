@@ -1,19 +1,26 @@
-//! HTTP/1 server policy over hyper with bounded connection admission and shutdown.
+//! HTTP/1 and HTTP/2 server policy with bounded admission and shutdown.
 //!
 //! Hyper owns framing and header parsing. This helper does not yet implement the
 //! reference server's minimum body rate, idle/read/write progress timeouts, TLS,
-//! dual-family binding, or HTTP/2. Supply an already-bound listener explicitly.
+//! dual-family binding, or HTTP/2 per-header progress deadlines. Supply an
+//! already-bound listener explicitly.
 
-use std::{future::Future, io, time::Duration};
+use std::{
+    future::Future,
+    io,
+    pin::Pin,
+    task::{Context, Poll},
+    time::Duration,
+};
 
 use axum::Router;
-use hyper::server::conn::http1;
 use hyper_util::{
-    rt::{TokioIo, TokioTimer},
+    rt::{TokioExecutor, TokioIo, TokioTimer},
+    server::conn::auto,
     service::TowerToHyperService,
 };
 use tokio::{
-    io::{AsyncRead, AsyncWrite},
+    io::{AsyncRead, AsyncWrite, ReadBuf},
     net::TcpListener,
     sync::{Semaphore, watch},
     task::JoinSet,
@@ -34,6 +41,8 @@ pub struct ServerConfig {
     /// Hyper's HTTP/1 read-buffer bound; this is not an exact header-byte limit.
     /// Must lie between 8 KiB and 64 MiB, inclusive.
     pub max_header_buffer_bytes: usize,
+    /// Maximum concurrent streams on each HTTP/2 connection, from 1 to 65535.
+    pub max_http2_streams: u32,
 }
 
 impl Default for ServerConfig {
@@ -44,6 +53,7 @@ impl Default for ServerConfig {
             drain_timeout: Duration::from_secs(5),
             max_headers: 100,
             max_header_buffer_bytes: 16 * 1024,
+            max_http2_streams: 128,
         }
     }
 }
@@ -61,6 +71,8 @@ pub enum ConfigError {
     Headers,
     #[error("max_header_buffer_bytes must be between 8192 and 67108864")]
     HeaderBuffer,
+    #[error("max_http2_streams must be between 1 and 65535")]
+    Http2Streams,
 }
 
 /// Connection accounting for one run, without request data or error messages.
@@ -77,7 +89,7 @@ pub struct ShutdownReport {
     pub forced_connections: u64,
 }
 
-/// A validated HTTP/1 server configuration. Libraries install no global hooks.
+/// A validated HTTP server configuration. Libraries install no global hooks.
 pub struct Server {
     config: ServerConfig,
 }
@@ -98,6 +110,9 @@ impl Server {
         }
         if !(8192..=64 * 1024 * 1024).contains(&config.max_header_buffer_bytes) {
             return Err(ConfigError::HeaderBuffer);
+        }
+        if !(1..=65535).contains(&config.max_http2_streams) {
+            return Err(ConfigError::Http2Streams);
         }
         Ok(Self { config })
     }
@@ -155,21 +170,31 @@ impl Server {
     }
 }
 
+type ConnectionResult = Result<(), Box<dyn std::error::Error + Send + Sync>>;
+
 async fn connection<I>(
     io: I,
     router: Router,
     config: ServerConfig,
     mut stop: watch::Receiver<bool>,
-) -> Result<(), hyper::Error>
+) -> ConnectionResult
 where
     I: AsyncRead + AsyncWrite + Unpin + Send + 'static,
 {
-    let mut builder = http1::Builder::new();
+    let mut builder = auto::Builder::new(TokioExecutor::new());
     builder
+        .http1()
         .timer(TokioTimer::new())
         .header_read_timeout(config.header_timeout)
         .max_headers(config.max_headers)
         .max_buf_size(config.max_header_buffer_bytes);
+    builder
+        .http2()
+        .timer(TokioTimer::new())
+        .max_concurrent_streams(config.max_http2_streams)
+        .max_header_list_size(config.max_header_buffer_bytes as u32)
+        .max_send_buf_size(1024 * 1024);
+    let io = DetectionIo::new(io, config.header_timeout);
     let connection = builder.serve_connection(TokioIo::new(io), TowerToHyperService::new(router));
     tokio::pin!(connection);
     // A just-spawned connection may first run after the stop notification.
@@ -187,7 +212,7 @@ where
 }
 
 fn record_result(
-    result: Result<Result<(), hyper::Error>, tokio::task::JoinError>,
+    result: Result<ConnectionResult, tokio::task::JoinError>,
     report: &mut ShutdownReport,
 ) {
     if !matches!(result, Ok(Ok(()))) {
@@ -196,7 +221,7 @@ fn record_result(
 }
 
 async fn drain(
-    connections: &mut JoinSet<Result<(), hyper::Error>>,
+    connections: &mut JoinSet<ConnectionResult>,
     report: &mut ShutdownReport,
     deadline: Duration,
 ) {
@@ -216,6 +241,71 @@ async fn drain(
                 record_result(result, report);
             }
         }
+    }
+}
+
+// The auto builder reads a possible HTTP/2 preface before starting HTTP/1's
+// header timer. Bound that negotiation too, including clients sending nothing.
+struct DetectionIo<I> {
+    inner: I,
+    timeout: Pin<Box<tokio::time::Sleep>>,
+    matched: usize,
+    detected: bool,
+}
+impl<I> DetectionIo<I> {
+    fn new(inner: I, timeout: Duration) -> Self {
+        Self {
+            inner,
+            timeout: Box::pin(tokio::time::sleep(timeout)),
+            matched: 0,
+            detected: false,
+        }
+    }
+}
+impl<I: AsyncRead + Unpin> AsyncRead for DetectionIo<I> {
+    fn poll_read(
+        mut self: Pin<&mut Self>,
+        cx: &mut Context<'_>,
+        buffer: &mut ReadBuf<'_>,
+    ) -> Poll<io::Result<()>> {
+        if !self.detected && self.timeout.as_mut().poll(cx).is_ready() {
+            return Poll::Ready(Err(io::Error::new(
+                io::ErrorKind::TimedOut,
+                "HTTP protocol detection deadline exceeded",
+            )));
+        }
+        let before = buffer.filled().len();
+        let result = Pin::new(&mut self.inner).poll_read(cx, buffer);
+        if matches!(&result, Poll::Ready(Ok(()))) && !self.detected {
+            const PREFACE: &[u8] = b"PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n";
+            for byte in &buffer.filled()[before..] {
+                if *byte != PREFACE[self.matched] {
+                    self.detected = true;
+                    break;
+                }
+                self.matched += 1;
+                if self.matched == PREFACE.len() {
+                    self.detected = true;
+                    break;
+                }
+            }
+        }
+        result
+    }
+}
+impl<I: AsyncWrite + Unpin> AsyncWrite for DetectionIo<I> {
+    fn poll_write(
+        mut self: Pin<&mut Self>,
+        cx: &mut Context<'_>,
+        bytes: &[u8],
+    ) -> Poll<io::Result<usize>> {
+        Pin::new(&mut self.inner).poll_write(cx, bytes)
+    }
+    fn poll_flush(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<io::Result<()>> {
+        Pin::new(&mut self.inner).poll_flush(cx)
+    }
+    fn poll_shutdown(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<io::Result<()>> {
+        Pin::new(&mut self.inner).poll_shutdown(cx)
     }
 }
 
