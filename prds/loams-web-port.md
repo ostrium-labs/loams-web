@@ -26,6 +26,10 @@ GPUIX/Kit source spike is recorded in [the feasibility report](../docs/gpui-feas
 Kit and GPUIX graphs use distinct GPUI package identities, and GPUIX exposes no
 usable external custom-element API. A patched shared-graph build remains
 unverified, so these additions do not close M0 or claim full Spindle parity.
+The LW-007 auth/Durable source boundary is recorded in
+[the feasibility report](../docs/platform-feasibility.md); it identifies an
+engine-authenticated `WhoAmI` candidate and `/durable/` gateway, but no
+Loams-Web verifier or worker adapter has passed an end-to-end test.
 
 ## 0. Decision
 
@@ -287,7 +291,7 @@ These ranges are a provisional rebaseline, not measured delivery commitments. Fu
 4. **LW-004:** Add minimal `core`, `http`, facade and example crates, Tokio/axum/hyper server, explicit procedure builder and in-process invocation. Add only the error/schema traits needed for bill-split.
 5. **LW-005 (attempted; remains open):** The official Connect v1.0.6 server profile needs a stdin/stdout compatibility adapter and ConformanceService, neither of which the bill-split app provides; its runner asset transfer stalled at 0 bytes. Corpus and harness checks pass, but the Rust SDK lacks the six required fixture tests, and a filtered Cargo check proves the apparent test commands run zero tests. See [`proto/README.md`](../proto/README.md). Implement the adapter and actual fixture reporting before closing this gate; do not claim conformance from the existing local RPC tests.
 6. **LW-006:** Spike complete; adoption gate remains open. A temporary adapter compiled against the existing `Procedure::invoke`, but rspc is unmaintained, the exact release requires an additional compatibility pin, and typed export requires parallel Specta `Type` derives. See [the spike report](../docs/rspc-spike.md). Keep Connect plus the generated fetch client as the supported path unless Loams explicitly takes ownership of an internal fork and its dependency/API maintenance.
-7. **LW-007:** Prove auth verification, scoped token flow and external Durable task transport without pulling engine internals into app dependencies. Open concrete upstream extraction/SDK tasks for missing interfaces.
+7. **LW-007:** Source boundary is recorded in [the feasibility report](../docs/platform-feasibility.md). The SDK has a `WhoAmI` call and the engine serves an authenticated `/durable/` gateway, but SDK docs mark `WhoAmI` unimplemented and no app verifier or external worker adapter is proven. Run the authenticated server and task-replay checks before closing this gate; open upstream SDK/extraction tasks for any missing supported interface.
 8. **LW-008:** Source inspection is recorded in `docs/gpui-feasibility.md` with exact pins, API visibility findings and a proposed patch/build recipe. The required gate remains open until Kit and GPUIX compile together against one GPUI package identity and a small external factory app renders successfully.
 
 M0 completion means evidence exists for these gates, not merely that these tickets or directories exist.
