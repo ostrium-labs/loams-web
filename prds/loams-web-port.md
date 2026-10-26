@@ -11,11 +11,21 @@ Implementation progress (2026-10-26): the workspace now also has bounded
 validation problems, `WireType`/procedure macros, one-port REST/Connect/gRPC/
 gRPC-Web serving, a request-scoped adapter for published Loams SDK 0.1.2,
 and a React 19 DOM app with shared primitives. Rust/Bun checks and the
-source-pinned reference harness checks pass. The OCaml reference suites and
-official Connect conformance were not executed; the reference image could not
-be inspected after slow external image downloads, and the attempt recorded
-zero suites. LW-006 rspc and LW-008 GPUIX/Kit spikes are still outstanding, so
-these additions do not close M0 or claim full Spindle parity.
+source-pinned reference harness checks pass. The shared Loams fixture corpus
+verifies (38 fixtures, 28 required) and its 25 Node harness tests pass, but the
+Rust SDK does not define the six required fixture test names; filtered Cargo
+invocations run zero tests and no Rust fixture report is produced. The official
+Connect v1.0.6 profile remains unrun: its stdin/stdout compatibility adapter and
+ConformanceService are not implemented, and fetching the pinned runner asset
+stalled at zero bytes. The OCaml reference image could not be inspected after
+slow external image downloads, and the attempt recorded zero suites. The
+LW-006 rspc/Specta spike is recorded in
+[the feasibility report](../docs/rspc-spike.md): the isolated adapter compiles,
+but rspc is unmaintained and needs an explicit Specta macro pin. The LW-008
+GPUIX/Kit source spike is recorded in [the feasibility report](../docs/gpui-feasibility.md): the pinned
+Kit and GPUIX graphs use distinct GPUI package identities, and GPUIX exposes no
+usable external custom-element API. A patched shared-graph build remains
+unverified, so these additions do not close M0 or claim full Spindle parity.
 
 ## 0. Decision
 
@@ -275,10 +285,10 @@ These ranges are a provisional rebaseline, not measured delivery commitments. Fu
 2. **LW-002:** Create a reproducible OCaml 5.5 reference image with Hypha opam repository, Eio/wiretype pins, Bun OIDC test issuer and Postgres. Capture `make lint`/`make test` results and explicit skips before changing behavior.
 3. **LW-003:** Inventory individual conformance rows and classify them; establish a machine-readable traceability manifest. Port split, malformed framing, HEAD, multipart boundaries and one WS close scenario as the first cases.
 4. **LW-004:** Add minimal `core`, `http`, facade and example crates, Tokio/axum/hyper server, explicit procedure builder and in-process invocation. Add only the error/schema traits needed for bill-split.
-5. **LW-005:** Run `connectrpc` official conformance profile and shared Loams fixture baseline; prove one-port REST/RPC composition without tonic. Record gaps rather than writing a second transport immediately.
-6. **LW-006:** Pin rspc/Specta/TS packages and make a tiny maintained adapter build. Record whether Loams owns patch maintenance; keep the fallback decision visible.
+5. **LW-005 (attempted; remains open):** The official Connect v1.0.6 server profile needs a stdin/stdout compatibility adapter and ConformanceService, neither of which the bill-split app provides; its runner asset transfer stalled at 0 bytes. Corpus and harness checks pass, but the Rust SDK lacks the six required fixture tests, and a filtered Cargo check proves the apparent test commands run zero tests. See [`proto/README.md`](../proto/README.md). Implement the adapter and actual fixture reporting before closing this gate; do not claim conformance from the existing local RPC tests.
+6. **LW-006:** Spike complete; adoption gate remains open. A temporary adapter compiled against the existing `Procedure::invoke`, but rspc is unmaintained, the exact release requires an additional compatibility pin, and typed export requires parallel Specta `Type` derives. See [the spike report](../docs/rspc-spike.md). Keep Connect plus the generated fetch client as the supported path unless Loams explicitly takes ownership of an internal fork and its dependency/API maintenance.
 7. **LW-007:** Prove auth verification, scoped token flow and external Durable task transport without pulling engine internals into app dependencies. Open concrete upstream extraction/SDK tasks for missing interfaces.
-8. **LW-008:** Run the GPUIX/Kit source-level spike above; store exact revisions, patch and build recipe.
+8. **LW-008:** Source inspection is recorded in `docs/gpui-feasibility.md` with exact pins, API visibility findings and a proposed patch/build recipe. The required gate remains open until Kit and GPUIX compile together against one GPUI package identity and a small external factory app renders successfully.
 
 M0 completion means evidence exists for these gates, not merely that these tickets or directories exist.
 
@@ -303,7 +313,7 @@ All decisions below are proposed unless directly fixed by the brief. They are re
 | 001 | Retain upstream history and behavior provenance; license new code Apache while preserving upstream notices | Clean new repo is tidier but loses fork traceability | Fixed direction; exact retained-source layout in M0 |
 | 002 | axum/tower over hyper; core descriptors independent of transport | Custom engine gives control but materially expands risk/work | Fixed hyper-first direction; revisit only with M7 measurements |
 | 003 | Prefer Loams `connectrpc`/`buffa`; prove conformance | tonic is mature but adds a second message/runtime family; handwritten Connect adds maintenance | Proposed; replace only for documented missing requirements |
-| 004 | Isolate/pin rspc and resolve maintenance ownership before adoption | Connect-only TS reduces adapter count but changes the brief | Proposed; M0 decision required before promising rspc support |
+| 004 | Do not adopt rspc by default; keep a bounded adapter prototype and use Connect + generated TS as the supported path | rspc preserves the brief's tRPC-like surface but adds a dead upstream, Specta-specific DTO derives and error mapping | Recommended by LW-006 spike; revisit only with named internal maintenance ownership or upstream resumption |
 | 005 | One descriptor + validation schema; explicit builder before macros | Macro-first is attractive but can conceal an incoherent runtime model | Proposed; reassess after vertical slice |
 | 006 | Opt-in protobuf generation with stable field ledger | Automatic tags by Rust field order break evolution | Proposed; revisit only after compatibility evidence |
 | 007 | Request/principal-scoped SDK consistency sessions | Global token state is simpler but leaks causality across callers/scopes | Proposed; must satisfy existing SDK R4 |
