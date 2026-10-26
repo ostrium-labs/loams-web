@@ -115,8 +115,11 @@ runtime has not been run against the official external conformance suite.
 `crates/loams-web-platform` pins the published Rust SDK and scopes auth
 assertions, outbound credentials and consistency-token merges to a verified
 request. The host must provide a trusted identity verifier; this adapter does
-not implement JWT/OIDC or Tailscale verification. Its SDK future bridge has
-the cancellation and deadline limitations documented in that crate's README.
+not implement JWT/OIDC or Tailscale verification. Host middleware can attach
+the verified `loams_web_core::Ctx` to the REST request extensions; the REST
+and Connect adapters carry it into the shared procedure. The HTTP adapter does
+not treat identity headers as trusted. Its SDK future bridge has the
+cancellation and deadline limitations documented in that crate's README.
 The `web/` workspace has a host-independent React primitive package, DOM host,
 generated API client, and bill-split app. Run its Bun checks from `web/`; see
 `web/README.md` in the repository for the local workflow.

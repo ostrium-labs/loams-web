@@ -37,6 +37,12 @@ worker/client module. This repository has no worker registration, task
 acquisition, checkpoint, or replay adapter. Do not treat forwarding one
 request envelope as task execution or crash-recovery proof.
 
+The REST adapter now preserves a host-injected `loams_web_core::Ctx` through
+procedure invocation and returns that context's request ID. This supplies the
+last in-process propagation seam for trusted host middleware; it does not
+verify credentials or make an unauthenticated context trusted. The RPC adapter
+already reads the same context type from Connect request extensions.
+
 ## Next proof
 
 1. Make a request-scoped SDK call to `WhoAmI` using the credential presented

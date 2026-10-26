@@ -3,6 +3,9 @@
 //! This first slice supports literal paths. [`server`] adds connection admission,
 //! HTTP/1 header-read deadlines, HTTP/2 stream bounds, and bounded shutdown. Path/query extractors,
 //! authentication, streaming, and progress-based I/O limits remain future work.
+//! A host may attach a verified [`Ctx`] as a request extension; this adapter
+//! carries it into the procedure and uses its request ID in the response. It
+//! does not authenticate credentials or trust identity headers itself.
 
 pub mod server;
 
@@ -220,7 +223,20 @@ async fn serve(
     limits: HttpLimits,
     gate: Arc<Semaphore>,
 ) -> Response {
-    let request_id = format!("lw-{}", NEXT_REQUEST.fetch_add(1, Ordering::Relaxed));
+    let fallback_id = format!("lw-{}", NEXT_REQUEST.fetch_add(1, Ordering::Relaxed));
+    let ctx = match request.extensions().get::<Ctx>() {
+        Some(ctx) if valid_request_id(&ctx.request_id) => ctx.clone(),
+        Some(_) => {
+            return framework_error(
+                StatusCode::BAD_REQUEST,
+                "invalid_request_context",
+                "Host request context has an invalid request ID",
+                Some(&fallback_id),
+            );
+        }
+        None => Ctx::new(fallback_id),
+    };
+    let request_id = ctx.request_id.clone();
     let Ok(_permit) = gate.try_acquire_owned() else {
         return framework_error(
             StatusCode::SERVICE_UNAVAILABLE,
@@ -283,10 +299,7 @@ async fn serve(
                 }
             }
         };
-        match procedure
-            .invoke_json(Ctx::new(request_id.clone()), input)
-            .await
-        {
+        match procedure.invoke_json(ctx, input).await {
             Ok(value) => match serde_json::to_vec(&value) {
                 Ok(bytes) if bytes.len() <= limits.max_response_bytes => (
                     [
@@ -343,6 +356,12 @@ async fn serve(
             Some(&request_id),
         ),
     }
+}
+
+fn valid_request_id(request_id: &str) -> bool {
+    !request_id.is_empty()
+        && request_id.len() <= 1024
+        && header::HeaderValue::from_str(request_id).is_ok()
 }
 
 fn framework_error(

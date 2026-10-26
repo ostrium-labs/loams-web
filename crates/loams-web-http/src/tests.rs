@@ -73,6 +73,58 @@ async fn happy_invalid_and_unroutable_requests() {
 }
 
 #[tokio::test]
+async fn verified_request_context_reaches_procedure_and_response() {
+    let procedure = Procedure::<String, String>::builder("who")
+        .http(HttpMethod::Post, "/who")
+        .handler(|ctx, input: String| async move {
+            let principal = ctx
+                .principal
+                .as_ref()
+                .map(|p| p.subject.as_str())
+                .unwrap_or("anonymous");
+            Ok(format!("{}:{}:{}", ctx.request_id, principal, input))
+        })
+        .build()
+        .unwrap();
+    let app = HttpAdapter::new()
+        .procedure(procedure)
+        .unwrap()
+        .router()
+        .unwrap();
+    let mut req = request("/who", r#""ok""#);
+    req.extensions_mut()
+        .insert(
+            Ctx::new("verified-request-7").with_principal(loams_web_core::Principal {
+                namespace: "ns_demo".into(),
+                subject: "user_42".into(),
+                scopes: vec!["read".into()],
+            }),
+        );
+    let response = app.oneshot(req).await.unwrap();
+    assert_eq!(response.status(), StatusCode::OK);
+    assert_eq!(response.headers()["x-request-id"], "verified-request-7");
+    assert_eq!(
+        payload(response).await,
+        json!("verified-request-7:user_42:ok")
+    );
+}
+
+#[tokio::test]
+async fn invalid_host_request_id_is_rejected_before_invocation() {
+    let app = HttpAdapter::new()
+        .procedure(procedure())
+        .unwrap()
+        .router()
+        .unwrap();
+    let mut req = request("/split", r#"{"people":2}"#);
+    req.extensions_mut().insert(Ctx::new("bad\r\nrequest-id"));
+    let response = app.oneshot(req).await.unwrap();
+    assert_eq!(response.status(), StatusCode::BAD_REQUEST);
+    assert!(response.headers().contains_key("x-request-id"));
+    assert_eq!(payload(response).await["reason"], "invalid_request_context");
+}
+
+#[tokio::test]
 async fn content_type_size_and_output_limits() {
     let app = HttpAdapter::new()
         .procedure(procedure())
